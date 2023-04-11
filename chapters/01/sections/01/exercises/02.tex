@@ -1,0 +1,36 @@
+\begin{exercise}
+Let \(p : \cat{E} \to \cat{B}\) be a functor; assume \(f : X \to Y\) is in \(\cat E\) and put \(u = p f\).
+Show that \(f\) is Cartesian if and only if for each \(Z \in \cat{E}\) and \(v : p Z \to pX\) in \(\cat{B}\), the function
+\begin{equation*}
+\cat{E}_v(Z, X) \xrightarrow{f \circ (-)} \cat{E}_{u \circ v}(Z, Y)
+\end{equation*}
+is an isomorphism.
+\end{exercise}
+
+We will prove this in the more general context of displayed categories (cf.~\cite{lmcs:5252}).
+
+\begin{solution}
+Suppose \(\cat{E}\) is a displayed category over \(\cat{B}\), \(u : I \to J\) is a morphism in \(\cat{B}\), and \(f : X \to Y\) is a morphism in \(\cat{E}\) over \(u\).
+
+(\(\Longrightarrow\))
+Suppose \(f\) is Cartesian, and take a morphism \(v : K \to I\) in \(\cat{B}\) and an object \(Z\) in \(\cat{E}\) over \(K\).
+Since \(f\) is Cartesian, this situation gives rise to a one-to-one correspondence between the dashed arrows in the diagram below.
+\begin{equation*}
+\begin{tikzcd}[row sep=small]
+Z \arrow[rd, dashed, ""{name=A}] \arrow[dd, -Triangle] \arrow[rrd, dashed, bend left, ""{name=B, below}] \\
+& X \arrow[dd, -Triangle] \arrow[r, "f"] & Y \arrow[dd, -Triangle] \\
+K \arrow[rd, "v"] \arrow[rrd, bend left, near end, "u \circ v"] \\
+& I \arrow[r, "u"] & J
+\arrow[from=uul, to=l, -Triangle, crossing over]
+\arrow[from=A, to=B, Leftrightarrow]
+\end{tikzcd}
+\end{equation*}
+Indeed, given a morphism \(g : Z \to X\) in \(\cat{E}\) over \(v\), composition with \(f\) yields a morphism \(f \circ g : Z \to Y\) over \(u \circ v\).
+Conversely, given a morphism \(h :Z \to Y\) in \(\cat{E}\) over \(u \circ v\), there is a unique morphism \(g : Z \to X\) in \(\cat{E}\) over \(v\) such that \(f \circ g = h\) since \(f\) is Cartesian.
+This is precisely the assertion that \(\cat{E}_v(Z, X) \xrightarrow{f \circ (-)} \cat{E}_{u \circ v}(Z, Y)\) is an isomorphism (of sets).
+
+(\(\Longleftarrow\))
+Conversely, suppose that \(\cat{E}_v(Z, X) \xrightarrow{f \circ (-)} \cat{E}_{u \circ v}(Z, Y)\) is an isomorphism for every morphism \(v : K \to I\) in \(\cat{B}\) and an object \(Z\) in \(\cat{E}\) over \(K\).
+Consider a particular morphism \(v : K \to I\) in \(\cat{B}\) and an object \(Z\) in \(\cat{E}\) over \(K\), and suppose there is a morphism \(h : Z \to Y\) in \(\cat{E}\) over \(u \circ v\).
+Then the assumed isomorphism implies that there is a unique morphism \(g : Z \to X\) in \(\cat{E}\) over \(v\) such that \(h = f \circ g\), which shows that \(f\) is Cartesian.
+\end{solution}
