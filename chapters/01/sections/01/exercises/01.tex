@@ -47,3 +47,18 @@ I \arrow[rd, equal] & & X^\prime \arrow[dd, -Triangle] \arrow[r, "f^\prime"] & Y
 Thus, since \(f^\prime\) is Cartesian, \(\varphi \circ \psi = \id_{X^\prime}\).
 By symmetry, \(\psi \circ \varphi = \id_X\), and hence \(\varphi\) is an isomorphism.
 \end{partsolution}
+
+\begin{partsolution}{ii}
+Suppose \(\cat{E}\) is a displayed category over \(\cat{B}\), \(u : I \to J\) and \(v : K \to I\) are morphisms in \(\cat{B}\), \(f : X \to Y\) is a Cartesian morphism in \(\cat{E}\) over \(u\), and \(g, h : Z \to X\) are morphisms in \(\cat{E}\) over \(v\) such that \(f \circ g = f \circ h\).
+These suppositions are summarized in the following commutative diagram.
+\begin{equation*}
+\begin{tikzcd}[row sep=small]
+Z \arrow[rd, bend left, near end, "g"] \arrow[rd, bend right, "h"{below}] \arrow[dd, -Triangle] \arrow[rrd, bend left, near end, "f \circ g = f \circ h"] \\
+& X \arrow[dd, -Triangle] \arrow[r, "f"] & Y \arrow[dd, -Triangle] \\
+K \arrow[rd, "v"] \arrow[rrd, bend left, near end, "u \circ v"] \\
+& I \arrow[r, "u"] & J
+\arrow[from=uul, to=l, -Triangle, crossing over]
+\end{tikzcd}
+\end{equation*}
+Since \(f\) is Cartesian, this situation immediately implies that \(g = h\).
+\end{partsolution}
