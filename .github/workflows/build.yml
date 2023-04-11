@@ -2,6 +2,10 @@ name: Build PDF
 
 on: [push, pull_request]
 
+
+permissions:
+  contents: write
+
 jobs:
   build_latex:
     runs-on: ubuntu-latest
