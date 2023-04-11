@@ -1,0 +1,49 @@
+\begin{exercise}~ %
+\begin{parts}
+\part
+Prove Proposition~1.1.4.\footnote{%
+\cite[Proposition~1.1.4]{MR1674451} asserts that Cartesian liftings are unique up-to-isomorphism (in a slice): if \(f\) and \(f^\prime\) with \(\cod f = \cod f^\prime\) are both Cartesian over the same map, then there is a unique vertical isomorphism \(\varphi : X \xrightarrow{\cong} X^\prime\) with \(f^\prime \circ \varphi = f\).%
+}
+\part
+Suppose \(f\) is Cartesian and \(g\) and \(h\) are above the same map.
+Show that \(f \circ g = f \circ h\) implies \(g = h\).
+\end{parts}
+\end{exercise}
+
+We will prove this in the more general context of displayed categories (cf.~\cite{lmcs:5252}).
+
+\begin{partsolution}{i}
+Suppose \(\cat{E}\) is a displayed category over \(\cat{B}\), \(u : I \to J\) is a morphism in \(\cat{B}\), and \(f : X \to Y\) and \(f^\prime : X^\prime \to Y\) are Cartesian morphisms in \(\cat{E}\) over \(u\).
+Since \(f^\prime\) is Cartesian and \(f\) is a morphism into \(Y\) over \(u = u \circ \id_I\), there exists a unique morphism \(\varphi : X \to X^\prime\) in \(\cat{E}\) over \(I\) such that \(f = f^\prime \circ \varphi\).
+This is summarized by the following diagram.
+\begin{equation*}
+\begin{tikzcd}[row sep=small]
+X \arrow[rrd, bend left, "f"] \arrow[dd, -Triangle] \\
+& X^\prime \arrow[r, "f^\prime"] & Y \arrow[dd, -Triangle] \\
+I \arrow[rd, equal] \arrow[rrd, bend left, near end, "u"] \\
+& I \arrow[r, "u"] & J
+\arrow[from=uul, to=l, -Triangle, crossing over]
+\end{tikzcd}
+\implies
+\begin{tikzcd}[row sep=small]
+X \arrow[rrd, bend left, "f"] \arrow[dd, -Triangle] \arrow[rd, dashed, "\exists!\,\varphi"] \\
+& X^\prime \arrow[r, "f^\prime"] \arrow[dd, -Triangle] & Y \arrow[dd, -Triangle] \\
+I \arrow[rd, equal]\\
+& I \arrow[r, "u"] & J
+\end{tikzcd}
+\end{equation*}
+Similarly, there exists a unique morphism \(\psi : X^\prime \to X\) in \(\cat{E}\) over \(I\) such that \(f^\prime = f \circ \psi\).
+Moreover, both \(\id_{X^\prime}\) and \(\varphi \circ \psi\) are morphisms in \(\cat{E}\) over \(I\) whose composition with \(f^\prime\) is \(f^\prime\) itself, as suggested in the following diagram.
+\begin{equation*}
+\begin{tikzcd}[row sep=small]
+X^\prime \arrow[rd, "\psi"] \arrow[rrrdd, bend left, near start, "f^\prime"] \arrow[dd, -Triangle] \\
+& X \arrow[rd, "\varphi"] \arrow[rrd, bend left, near start, "f"] \arrow[dd, -Triangle] \\
+I \arrow[rd, equal] & & X^\prime \arrow[dd, -Triangle] \arrow[r, "f^\prime"] & Y \arrow[dd, -Triangle] \\
+& I \arrow[rd, equal] \\
+& & I \arrow[r, "u"] & J
+\arrow[from=llluuuu, to=luu, bend right, crossing over, near start, "\id_{X^\prime}"{below}]
+\end{tikzcd}
+\end{equation*}
+Thus, since \(f^\prime\) is Cartesian, \(\varphi \circ \psi = \id_{X^\prime}\).
+By symmetry, \(\psi \circ \varphi = \id_X\), and hence \(\varphi\) is an isomorphism.
+\end{partsolution}
