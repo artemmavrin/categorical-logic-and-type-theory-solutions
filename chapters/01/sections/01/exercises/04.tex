@@ -27,7 +27,7 @@ From \partref{1}{1}{3}{ii} in the previous exercise it follows that all fibres o
 We will prove this in the more general context of displayed categories (cf.~\cite{lmcs:5252}).
 
 \begin{partsolution}{i}
-Let \(\cat{E}\) be a fibration over \(\cat{B}\), and let \(f : X \to Y\) be a displayed isomorphism in \(\cat{E}\) above an isomorphism \(u : I \to J\) in \(\cat{B}\).
+Let \(\cat{E}\) be a displayed category over \(\cat{B}\) (not necessarily a fibration), and let \(f : X \to Y\) be a displayed isomorphism in \(\cat{E}\) above an isomorphism \(u : I \to J\) in \(\cat{B}\).
 Suppose \(v : K \to I\) is a morphism in \(\cat{B}\) and \(g : Z \to Y\) is a morphism in \(\cat{E}\) above \(u \circ v : K \to J\). Then \(f^{-1} \circ g : Z \to X\) is the unique morphism in \(\cat{E}\) above \(v\) such that the following diagram commutes.
 \begin{equation*}
 \begin{tikzcd}[row sep=small]
@@ -38,6 +38,59 @@ K \arrow[rd, "v"] \arrow[rrd, bend left, near end, "u \circ v"] \\
 \arrow[from=uul, to=l, -Triangle, crossing over]
 \end{tikzcd}
 \end{equation*}
-Indeed, to verify uniqueness, suppose \(h : Z \to X\) is another morphism in \(\cat{E}\) above \(v\) such that \(f \circ h = g\), and observe that \(h = f^{-1} \circ f \circ h = f^{-1} \circ g\).
+Indeed, to verify uniqueness, suppose \(h : Z \to X\) is another morphism in \(\cat{E}\) above \(v\) such that \(f \circ h = g\), and observe that
+\begin{equation*}
+h = f^{-1} \circ f \circ h = f^{-1} \circ g.
+\end{equation*}
 Therefore \(f\) is Cartesian.
+\end{partsolution}
+
+\begin{partsolution}{ii}
+Suppose \(\cat{E}\) is a displayed category over \(\cat{B}\) (not necessarily a fibration), \(u : I \to J\) and \(v : J \to K\) are morphisms in \(\cat{B}\), and \(f : X \to Y\) and \(g : Y \to Z\) are Cartesian morphisms in \(\cat{E}\) over \(u\) and \(v\), respectively.
+To show that \(g \circ f : X \to Z\) is Cartesian over \(v \circ u : I \to K\), consider a morphism \(w : L \to I\) in \(\cat{B}\) and a morphism \(h : W \to Z\) in \(\cat{E}\) above \(v \circ u \circ w\).
+These data are summarized in the following commutative diagram.
+\begin{equation*}
+\begin{tikzcd}[row sep=small]
+W \arrow[rrrd, bend left, "h"] \arrow[dd, -Triangle] \\
+& X \arrow[ddr, phantom," " {pullback}, very near start] \arrow[r, "f"] & Y \arrow[ddr, phantom," " {pullback}, very near start] \arrow[r, "g"] & Z \\
+L \arrow[rd, "w"] \\
+& I \arrow[r, "u"] & J \arrow[r, "v"] & K
+\arrow[from=uull, to=ll, -Triangle, crossing over]
+\arrow[from=uul, to=l, -Triangle, crossing over]
+\arrow[from=uu, -Triangle, crossing over]
+\end{tikzcd}
+\end{equation*}
+Since \(g\) is Cartesian, there exists a unique morphism \(h^\prime : W \to Y\) in \(\cat{E}\) above \(u \circ w\) such that \(h = g \circ h^\prime\), as in the following commutative diagram.
+\begin{equation*}
+\begin{tikzcd}[row sep=small]
+W \arrow[rrrd, bend left, "h"] \arrow[rrd, dashed, bend left, near end, "h^\prime"] \arrow[dd, -Triangle] \\
+& X \arrow[ddr, phantom," " {pullback}, very near start] \arrow[r, "f"] & Y \arrow[ddr, phantom," " {pullback}, very near start] \arrow[r, "g"] & Z \\
+L \arrow[rd, "w"] \\
+& I \arrow[r, "u"] & J \arrow[r, "v"] & K
+\arrow[from=uull, to=ll, -Triangle, crossing over]
+\arrow[from=uul, to=l, -Triangle, crossing over]
+\arrow[from=uu, -Triangle, crossing over]
+\end{tikzcd}
+\end{equation*}
+Moreover, since \(f\) is Cartesian, there exists a unique morphism \(h^{\prime\prime} : W \to X\) in \(\cat{E}\) above \(w\) such that \(h^\prime = f \circ h^{\prime\prime}\), as in the following commutative diagram.
+\begin{equation*}
+\begin{tikzcd}[row sep=small]
+W \arrow[rrrd, bend left, "h"] \arrow[rrd, bend left, near end, "h^\prime"] \arrow[rd, dashed, "h^{\prime\prime}"] \arrow[dd, -Triangle] \\
+& X \arrow[ddr, phantom," " {pullback}, very near start] \arrow[r, "f"] & Y \arrow[ddr, phantom," " {pullback}, very near start] \arrow[r, "g"] & Z \\
+L \arrow[rd, "w"] \\
+& I \arrow[r, "u"] & J \arrow[r, "v"] & K
+\arrow[from=uull, to=ll, -Triangle, crossing over]
+\arrow[from=uul, to=l, -Triangle, crossing over]
+\arrow[from=uu, -Triangle, crossing over]
+\end{tikzcd}
+\end{equation*}
+In particular, we have
+\begin{equation*}
+h
+= g \circ h^\prime
+= g \circ f \circ h^{\prime\prime}.
+\end{equation*}
+It remains to show that if \(i : W \to X\) is another morphism in \(\cat{E}\) above \(w\) such that \(h = g \circ f \circ i\), then \(i = h^{\prime\prime}\).
+Indeed, in this case the uniqueness of \(h^\prime\) implies that \(f \circ i = h^\prime\), and so the uniqueness of \(h^{\prime\prime}\) implies that \(i = h^{\prime\prime}\).
+Thus, \(g \circ f\) is Cartesian.
 \end{partsolution}

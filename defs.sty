@@ -100,3 +100,8 @@
 
 % Use \widebar for \bar
 \renewcommand{\bar}{\widebar}
+
+% https://tex.stackexchange.com/questions/503536
+\tikzset{pullback/.style={minimum size=1.2ex,path picture={
+\draw[opacity=1,black,-,#1] (-0.5ex,-0.5ex) -- (0.5ex,-0.5ex) -- (0.5ex,0.5ex);%
+}}}
