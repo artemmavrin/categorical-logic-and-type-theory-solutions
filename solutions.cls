@@ -124,12 +124,12 @@
 \setlist[parts, 1]{label={(\roman*)}}
 
 % Use \part instead of \item in parts environments for automatic label generation
-\newcommand\@partlabel[3]{\label{ex:#1.#2.#3}}
-\renewcommand\part{\item\@partlabel{\arabic{chapter}}{\arabic{exercise}}{\roman{partsi}}}
+\newcommand\@partlabel[4]{\label{ex:#1.#2.#3.#4}}
+\renewcommand\part{\item\@partlabel{\arabic{chapter}}{\arabic{section}}{\arabic{exercise}}{\roman{partsi}}}
 
 % Solution for a problem
-\newenvironment{partsolution}[1]{\begin{solution}[Solution, {\normalfont\partref{\arabic{chapter}}{\arabic{exercise}}{#1}}]}{\end{solution}}
-\newenvironment{altpartsolution}[1]{\begin{altsolution}[Alternative Solution, {\normalfont\partref{\arabic{chapter}}{\arabic{exercise}}{#1}}]}{\end{altsolution}}
+\newenvironment{partsolution}[1]{\begin{solution}[Solution, {\normalfont\partref{\arabic{chapter}}{\arabic{section}}{\arabic{exercise}}{#1}}]}{\end{solution}}
+\newenvironment{altpartsolution}[1]{\begin{altsolution}[Alternative Solution, {\normalfont\partref{\arabic{chapter}}{\arabic{section}}{\arabic{exercise}}{#1}}]}{\end{altsolution}}
 
 % Remove indent after environments
 \newcommand*\@NoIndentAfter{%
@@ -235,23 +235,10 @@
 }
 
 % Referencing shortcuts
-\newcommand\ifcurrentchapter[1]{\ifnumequal{#1}{\arabic{chapter}}}
 \newcommand\chref[1]{\hyperref[ch:#1]{Chapter~#1}}
-\newcommand\exref[2]{%
-    \ifcurrentchapter{#1}{%
-        \hyperref[ex:#1.#2]{Exercise~#2}%
-    }{%
-        \hyperref[ex:#1.#2]{Chapter~#1, Exercise~#2}%
-    }%
-}
-\newcommand\partref[3]{\ref{ex:#1.#2.#3}}
-\newcommand\expartref[3]{%
-    \ifcurrentchapter{#1}{%
-        \hyperref[ex:#1.#2.#3]{Exercise~#2,~\partref{#1}{#2}{#3}}%
-    }{%
-        \hyperref[ex:#1.#2.#3]{Chapter~#1, Exercise~#2,~\partref{#1}{#2}{#3}}%
-    }%
-}
+\newcommand\exref[3]{\hyperref[ex:#1.#2.#3]{Exercise~#1.#2.#3}}
+\newcommand\partref[4]{\ref{ex:#1.#2.#3.#4}}
+\newcommand\expartref[4]{\hyperref[ex:#1.#2.#3.#4]{Exercise~#1.#2.#3(#4)}}
 
 % A more compact table of contents
 \RequirePackage{titletoc}

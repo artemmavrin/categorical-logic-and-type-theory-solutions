@@ -1,0 +1,25 @@
+\begin{exercise}
+Let
+\begin{tikzcd}[row sep=small]
+\cat{E} \arrow[d, "p"] \\ \cat{B}
+\end{tikzcd}
+be a fibration.
+Prove that
+\begin{parts}
+\part
+all isomorphisms in \(\cat{E}\) are Cartesian;
+\part
+if \(\xrightarrow{f}\xrightarrow{g}\) is a composable pair of Cartesian morphisms in \(\cat{E}\), then also their composite \(\xrightarrow{g \circ f}\) is Cartesian.
+\end{parts}
+Hence it makes sense to talk about the subcategory \(\Cart(\cat{E}) \hookrightarrow \cat{E}\) having all objects from \(\cat{E}\) but only the Cartesian arrows.
+We write \(|p|\) for the composite \(\Cart(\cat{E}) \hookrightarrow \cat{E} \to \cat{B}\).
+\begin{parts}[resume]
+\part
+Let \(\xrightarrow{f}\xrightarrow{g}\) be a composable pair in \(\cat{E}\) again.
+Show now that if \(g\) and \(g \circ f\) are Cartesian, then \(f\) is Cartesian as well.
+\part
+Verify that a consequence of \partref{1}{1}{4}{iii} is that the functor \(|p| : \Cart(\cat{E}) \to \cat{B}\) is a fibration.
+From \partref{1}{1}{3}{ii} in the previous exercise it follows that all fibres of \(|p|\) are groupoids (\emph{i.e.} that all maps in the fibres are isomorphisms).
+\end{parts}
+[This \(|p|\) will be called the \textbf{fibration of objects} of \(p\).]
+\end{exercise}
