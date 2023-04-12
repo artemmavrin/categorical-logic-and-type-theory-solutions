@@ -1,0 +1,35 @@
+\begin{exercise}
+Consider the total category of a fibration.
+Show that
+\begin{parts}
+\part
+every morphism factors as a vertical map followed (diagrammatically) by a Cartesian one;
+\part
+a Cartesian map above an isomorphism is an isomorphism.
+Especially a vertical Cartesian map is an isomorphism.
+\end{parts}
+\end{exercise}
+
+\begin{partsolution}{i}
+Let \(\cat{E}\) be a fibration over \(\cat{B}\), and let \(f : X \to Y\) be a morphism in \(\cat{E}\) over a morphism \(u : I \to J\) in \(\cat{B}\).
+Then there exists a Cartesian morphism \(f^\prime : X^\prime \to Y\) in \(\cat{E}\) above \(u\).
+Then we are in the situation of the diagram on the left below, so there exists a unique (vertical) morphism \(g : X \to X^\prime\) over \(I\) such that the diagram below on the right commutes.
+\begin{equation*}
+\begin{tikzcd}[row sep=small]
+X \arrow[rrd, bend left, "f"] \arrow[dd, -Triangle] \\
+& X^\prime \arrow[r, "f^\prime"] & Y \arrow[dd, -Triangle] \\
+I \arrow[rd, equal] \arrow[rrd, bend left, near end, "u"] \\
+& I \arrow[r, "u"] & J
+\arrow[from=uul, to=l, -Triangle, crossing over]
+\end{tikzcd}
+\implies
+\begin{tikzcd}[row sep=small]
+X \arrow[rrd, bend left, "f"] \arrow[dd, -Triangle] \arrow[rd, dashed, "g"] \\
+& X^\prime \arrow[r, "f^\prime"] & Y \arrow[dd, -Triangle] \\
+I \arrow[rd, equal] \arrow[rrd, bend left, near end, "u"] \\
+& I \arrow[r, "u"] & J
+\arrow[from=uul, to=l, -Triangle, crossing over]
+\end{tikzcd}
+\end{equation*}
+In particular, \(f = f^\prime \circ g\); in other words, \(f\) factors as a vertical morphism followed by a Cartesian morphism.
+\end{partsolution}
