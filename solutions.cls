@@ -215,7 +215,7 @@
                     % Read section heading
                     \input{\@sectiondir/main}
                     % Add section label
-                    \@sectionlabel{\arabic{chapter}}%
+                    \@sectionlabel{\arabic{section}}%
 
                     % Loop over exercises in the chapter
                     \foreach \@e in {1,2,...,\@MAXEXERCISES}{%
