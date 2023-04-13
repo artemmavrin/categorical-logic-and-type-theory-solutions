@@ -116,3 +116,23 @@ Moreover, suppose \(i : W \to X\) is another morphism above \(w\) such that \(h 
 Then \(g \circ h = g \circ f \circ i\), so the uniqueness of \(h^\prime\) arising from \(g \circ f\) being Cartesian implies that \(i = h^\prime\).
 Thus, \(f\) is Cartesian.
 \end{partsolution}
+
+\begin{partsolution}{iv}
+Let \(p : \cat{E} \to \cat{B}\) be a fibration; we will show that \(|p| : \Cart(\cat{E}) \to \cat{B}\) is also a fibration.
+Consider a morphism \(u : I \to J\) in \(\cat{B}\) and an object \(Y\) in \(\cat{E}\) over \(J\).
+Since \(p\) is a fibration, there exists a \(p\)-Cartesian morphism \(f : X \to Y\) in \(\cat{E}\) over \(u\).
+We claim that \(f\) is \(|p|\)-Cartesian as well.
+Indeed, suppose there is a morphism \(v : K \to I\) in \(\cat{B}\) and a \(p\)-Cartesian morphism \(h : Z \to Y\) in \(\cat{E}\) over \(u \circ v\).
+Since \(f\) is \(p\)-Cartesian, there exists a unique morphism \(h : Z \to X\) in \(\cat{E}\) over \(v\) such that \(g = f \circ h\).
+But now \partref{1}{1}{4}{iii} implies that \(h\) is \(p\)-Cartesian as well, so the entire diagram below is actually a diagram in the displayed category induced by \(|p| : \Cart(\cat{E}) \to \cat{B}\).
+\begin{equation*}
+\begin{tikzcd}[row sep=small]
+Z \arrow[rd, dashed, "\exists! h"] \arrow[rrd, bend left, "g"] \arrow[dd, -Triangle] \\
+& X \arrow[r, "f"] & Y \arrow[dd, -Triangle] \\
+K \arrow[rd, "v"] \arrow[rrd, bend left, near end, "u \circ v"] \\
+& I \arrow[r, "u"] & J
+\arrow[from=uul, to=l, -Triangle, crossing over]
+\end{tikzcd}
+\end{equation*}
+Therefore, \(f\) is \(|p|\)-Cartesian, so \(|p|\) is a fibration.
+\end{partsolution}
