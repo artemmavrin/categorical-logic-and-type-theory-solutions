@@ -4,3 +4,4 @@
 ![GitHub last commit](https://img.shields.io/github/last-commit/amavrin/categorical-logic-and-type-theory-solutions)
 
 Solutions to the exercises in *Categorical Logic and Type Theory* by Bart Jacobs.
+[See solutions here](https://artemmavrin.github.io/categorical-logic-and-type-theory-solutions/solutions.pdf).
