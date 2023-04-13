@@ -116,7 +116,7 @@
 \RequirePackage{enumitem}
 
 % Redefine enumerate behavior
-\setlist[enumerate, 1]{label=(\arabic*)}
+\setlist[enumerate, 1]{label=(\alph*)}
 \setlist[enumerate, 2]{label=(\alph*)}
 
 % Exercise parts list

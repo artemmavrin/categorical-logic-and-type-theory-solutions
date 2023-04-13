@@ -1,0 +1,64 @@
+\begin{exercise}
+Consider a functor \(p: \cat{E} \to \cat{B}\).
+We describe a slightly weaker notion of Cartesianness, than the one above.
+Call a morphism \(f : X \to Y\) in \(\cat{E}\) \textbf{weak Cartesian} if for each \(g : Z \to Y\) with \(p f = p g\) there is a unique vertical \(h : Z \to X\) with \(f \circ h = g\).
+Show that the functor \(p\) is a fibration if and only if both
+\begin{enumerate}
+\item
+\label{ex:1.1.6.a}
+every morphism \(u : I \to p Y\) in \(\cat{B}\) has a weak Cartesian lifting \(f : X \to Y\);
+\item
+\label{ex:1.1.6.b}
+the composition of two weak Cartesian morphisms is again weak Cartesian.
+\end{enumerate}
+\end{exercise}
+
+\begin{solution}
+(\(\Longrightarrow\))
+Since every Cartesian morphism is weak Cartesian and compositions of Cartesian morphisms are Cartesian by \expartref{1}{1}{4}{ii}, every fibration satisfies \ref{ex:1.1.6.a} and \ref{ex:1.1.6.b}.
+
+(\(\Longrightarrow\))
+Conversely, suppose \ref{ex:1.1.6.a} and \ref{ex:1.1.6.b} hold.
+Let \(u : I \to J\) be a morphism in \(\cat{B}\), and let \(Y\) be an object in \(\cat{E}\) above \(J\).
+By \ref{ex:1.1.6.a}, let \(f : X \to Y\) be a weak Cartesian lift of \(u\) in \(\cat{E}\).
+Consider another morphism \(v : K \to I\) in \(\cat{B}\) and a morphism \(g : Z \to Y\) in \(\cat{E}\) over \(u \circ v\).
+By \ref{ex:1.1.6.a}, choose a weak Cartesian lift \(p : W \to X\) in \(\cat{E}\) of \(v\).
+Now \(f \circ p\) is weak Cartesian over \(u \circ v\) by \ref{ex:1.1.6.b}, so there exists a unique vertical morphism \(q : Z \to W\) over \(K\) such that the following diagram commutes.
+\begin{equation*}
+\begin{tikzcd}[row sep=small]
+Z \arrow[rd, dashed, "q"] \arrow[rrrd, bend left, "g"] \arrow[dd, -Triangle] \\
+& W \arrow[r, "p"] & X \arrow[r, "f"] & Y \\
+K \arrow[rd, equal] \\
+& K \arrow[r, "v"] & I \arrow[r, "u"] & J
+\arrow[from=uull, to=ll, -Triangle, crossing over]
+\arrow[from=uul, to=l, -Triangle, crossing over]
+\arrow[from=uu, -Triangle, crossing over]
+\end{tikzcd}
+\end{equation*}
+In particular, the following diagram commutes.
+\begin{equation*}
+\begin{tikzcd}[row sep=small]
+Z \arrow[rd, "p \circ q"] \arrow[rrd, bend left, "g"] \arrow[dd, -Triangle] \\
+& X \arrow[r, "f"] & Y \\
+K \arrow[rd, "v"] \\
+& I \arrow[r, "u"] & J
+\arrow[from=uul, to=l, -Triangle, crossing over]
+\arrow[from=uu, -Triangle, crossing over]
+\end{tikzcd}
+\end{equation*}
+It remains to show that if \(h : Z \to X\) is another morphism in \(\cat{E}\) above \(v\) such that \(g = f \circ h\), then \(h = p \circ q\).
+In this case, since \(p\) is weak Cartesian, we can find a unique vertical morphism \(q^\prime : Z \to W\) over \(K\) such that \(h = p \circ q^\prime\).
+\begin{equation*}
+\begin{tikzcd}[row sep=small]
+Z \arrow[rd, dashed, "q^\prime"] \arrow[rrd, bend left, near end, "h"] \arrow[rrrd, bend left, "g"] \arrow[dd, -Triangle] \\
+& W \arrow[r, "p"] & X \arrow[r, "f"] & Y \\
+K \arrow[rd, equal] \\
+& K \arrow[r, "v"] & I \arrow[r, "u"] & J
+\arrow[from=uull, to=ll, -Triangle, crossing over]
+\arrow[from=uul, to=l, -Triangle, crossing over]
+\arrow[from=uu, -Triangle, crossing over]
+\end{tikzcd}
+\end{equation*}
+In particular, \(g = f \circ p \circ q^\prime\), so the uniqueness of \(q\) implies that \(q^\prime = q\), and hence \(h = p \circ q\).
+Thus, \(f\) is a Cartesian lift of \(u\), so \(p\) is a fibration.
+\end{solution}
