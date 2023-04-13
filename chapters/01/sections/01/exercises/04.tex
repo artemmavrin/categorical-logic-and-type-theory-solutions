@@ -94,3 +94,25 @@ It remains to show that if \(i : W \to X\) is another morphism in \(\cat{E}\) ab
 Indeed, in this case the uniqueness of \(h^\prime\) implies that \(f \circ i = h^\prime\), and so the uniqueness of \(h^{\prime\prime}\) implies that \(i = h^{\prime\prime}\).
 Thus, \(g \circ f\) is Cartesian.
 \end{partsolution}
+
+\begin{partsolution}{iii}
+Suppose \(\cat{E}\) is a displayed category over \(\cat{B}\) (not necessarily a fibration), \(u : I \to J\) and \(v : J \to K\) are morphisms in \(\cat{B}\), and \(f : X \to Y\) and \(g : Y \to Z\) are morphisms in \(\cat{E}\) over \(u\) and \(v\), respectively, such that \(g\) and \(g \circ f\) are Cartesian.
+To show that \(f : X \to Y\) is Cartesian over \(u\), consider a morphism \(w : L \to I\) in \(\cat{B}\) and a morphism \(h : W \to Y\) in \(\cat{E}\) above \(u \circ w\).
+This situation is summarized in the following commutative diagram.
+\begin{equation*}
+\begin{tikzcd}[row sep=small]
+W \arrow[rrd, bend left, "h"] \arrow[dd, -Triangle] \\
+& X \arrow[r, "f"] & Y \arrow[r, "g"] & Z \\
+L \arrow[rd, "w"] \\
+& I \arrow[r, "u"] & J \arrow[r, "v"] & K
+\arrow[from=uull, to=ll, -Triangle, crossing over]
+\arrow[from=uul, to=l, -Triangle, crossing over]
+\arrow[from=uu, -Triangle, crossing over]
+\end{tikzcd}
+\end{equation*}
+But then \(g \circ h : W \to Z\) is a morphism in \(\cat{E}\) above \(v \circ u \circ w\), so since \(g \circ f\) is Cartesian, there exists a unique morphism \(h^\prime : W \to X\) in \(\cat{E}\) over \(w\) such that \(g \circ h = g \circ f \circ h^\prime\).
+Since \(g\) is Cartesian, \expartref{1}{1}{1}{i} implies that \(h = f \circ h^\prime\).
+Moreover, suppose \(i : W \to X\) is another morphism above \(w\) such that \(h = f \circ i\).
+Then \(g \circ h = g \circ f \circ i\), so the uniqueness of \(h^\prime\) arising from \(g \circ f\) being Cartesian implies that \(i = h^\prime\).
+Thus, \(f\) is Cartesian.
+\end{partsolution}
