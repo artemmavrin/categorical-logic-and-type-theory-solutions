@@ -38,7 +38,8 @@ K \arrow[rd, "v"] \\
 \end{equation*}
 Observe that \((v, g) : (K, Z) \to (I, Y)\) is the unique morphism in \(\cat{B} \times \cat{C}\) that fills in the dashed ``\(?\)'' morphism making the diagram above commute, so \((u, \id_Y)\) is Cartesian and hence \(\cat{B} \times \cat{C} \xrightarrow{\fst} \cat{B}\) is a fibration.
 
-Next, consider the identity functor \(\cat{B} \xrightarrow{\id} \cat{B}\) and a morphism \(u : I \to J\) in \(\cat{B}\).
+Next, consider the identity functor \(\cat{B} \xrightarrow{\id} \cat{B}\), and observe that this situation is equivalent to the functor \(\cat{B} \times 1 \xrightarrow{\fst} \cat{B}\), so it is a fibration by the first part of this exercise.
+More explicitly, consider a morphism \(u : I \to J\) in \(\cat{B}\).
 The only object above \(J\) in this scenario is \(J\) itself, and we claim that \(u\) itself is the unique Carteisan lift of \(u\).
 Indeed, given morphisms \(v : K \to I\) in \(\cat{B}\) (``below'') and \(w : K \to J\) in \(\cat{B}\) (``above'') over \(u \circ v\) (i.e., \(w = u \circ v\)), the unique morphism \(K \to I\) which fills in the dashed ``?'' arrow in the diagram below is \(v\) itself.
 \begin{equation*}
@@ -49,7 +50,7 @@ K \arrow[rd, bend left, dashed, near end, "?"] \arrow[rd, bend right, "v"{below}
 \end{equation*}
 Thus, \(u\) is a Cartesian lift of \(u\), and \(\cat{B} \xrightarrow{\id} \cat{B}\) is a fibration.
 
-Consider the functor \(\cat{B} \to 1\), and observe that this situation is equivalent to the functor \(1 \times B \xrightarrow{\fst} 1\), so it is a fibration by the first part of this exercise.
+Consider the functor \(\cat{B} \to 1\), and observe that this situation is equivalent to the functor \(1 \times \cat{B} \xrightarrow{\fst} 1\), so it is a fibration by the first part of this exercise.
 More explicitly, consider \emph{the} morphism \(* \to *\) in \(1\), and let \(Y\) be an object in \(\cat{B}\) (vacuously above \(*\)).
 Then \(\id_Y : Y \to Y\) is a Cartesian lift of \(* \to *\), whence \(\cat{B} \to 1\) is a fibration.
 
