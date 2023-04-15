@@ -10,3 +10,20 @@ Show that \(\dom\) is a fibration (without any assumptions about \(\cat{B}\)).
 Show also that for each \(I \in \cat{B}\) the domain functor \(\dom_I : \cat{B} / I \to \cat{B}\) is a fibration.
 \end{parts}
 \end{exercise}
+
+\begin{partsolution}{i}
+For a category \(\cat{B}\) and an object \(I \in \cat{B}\), the category \(I \setminus \cat{B}\) has
+\begin{description}
+\item[objects]
+Morphisms \(\begin{pmatrix}\begin{tikzcd}[row sep=small] I \arrow[d, "\varphi"] \\ X\end{tikzcd}\end{pmatrix}\) in \(\cat{B}\) with domain \(I\).
+\item[morphisms]
+Given objects \(\begin{pmatrix}\begin{tikzcd}[row sep=small] I \arrow[d, "\varphi"] \\ X\end{tikzcd}\end{pmatrix}\) and \(\begin{pmatrix}\begin{tikzcd}[row sep=small] I \arrow[d, "\psi"] \\ Y\end{tikzcd}\end{pmatrix}\) in \(I \setminus \cat{B}\), a morphism in \(I \setminus \cat{B}\) from the first to the second consists of a morphism \(f : X \to Y\) in \(\cat{B}\) such that the following diagram commutes.
+\begin{equation*}
+\begin{tikzcd}[column sep=small]
+& I \arrow[dl, "\varphi"{above left}] \arrow[dr, "\psi"] \\
+X \arrow[rr, "f"] && Y
+\end{tikzcd}
+\qedhere
+\end{equation*}
+\end{description}
+\end{partsolution}
