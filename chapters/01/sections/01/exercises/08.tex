@@ -27,3 +27,76 @@ X \arrow[rr, "f"] && Y
 \end{equation*}
 \end{description}
 \end{partsolution}
+
+\begin{partsolution}{ii}
+Consider a morphism \(u : I \to J\) in \(\cat{B}\), and another morphism \(\psi: J \to Y\) in \(\cat{B}\) (i.e., an object \(\begin{pmatrix}\begin{tikzcd}[row sep=small] J \arrow[d, "\psi"] \\ Y\end{tikzcd}\end{pmatrix}\) in \(\cat{B}^{\rightarrow}\) over \(J\) with respect to \(\dom : \cat{B}^{\rightarrow} \to \cat{B}\)).
+We claim that
+\begin{equation}
+\label{eq:ex:1.1.1.8(ii):lift candidate}
+\begin{tikzcd}
+\begin{pmatrix}
+\begin{tikzpicture}
+        \node(1){\(I\)}; 
+        \node(2)[below of=1]{\(Y\)};
+        \draw[->](1)--node[right]{\scriptsize\(\psi \circ u\)} (2);
+\end{tikzpicture}
+\end{pmatrix}
+\arrow[r, "{(\id_Y, u)}"]
+&
+\begin{pmatrix}
+\begin{tikzpicture}
+        \node(1){\(J\)}; 
+        \node(2)[below of=1]{\(Y\)};
+        \draw[->](1)--node[right]{\scriptsize\(\psi\)} (2);
+\end{tikzpicture}
+\end{pmatrix}
+\end{tikzcd}
+\end{equation}
+is a Cartesian lift of \(u\).
+Indeed, consider a situation as in the following commutative diagram of solid arrows.
+\begin{equation}
+\label{eq:ex:1.1.1.8(ii):situation}
+\begin{tikzcd}[row sep=small]
+\begin{pmatrix}
+\begin{tikzpicture}
+        \node(1){\(K\)}; 
+        \node(2)[below of=1]{\(Z\)};
+        \draw[->](1)--node[right]{\scriptsize\(\varphi\)} (2);
+\end{tikzpicture}
+\end{pmatrix}
+\arrow[rrd, bend left, near end, "{(g, u \circ v)}"]
+\arrow[rd, dashed, "?"] \arrow[dd, -Triangle, "\dom"{left}]
+\\[-7ex]
+& \begin{pmatrix}
+\begin{tikzpicture}
+        \node(1){\(I\)}; 
+        \node(2)[below of=1]{\(Y\)};
+        \draw[->](1)--node[right]{\scriptsize\(\psi \circ u\)} (2);
+\end{tikzpicture}
+\end{pmatrix}
+\arrow[r, "{(\id_Y, u)}"] \arrow[dd, -Triangle, "\dom"]
+&
+\begin{pmatrix}
+\begin{tikzpicture}
+        \node(1){\(J\)}; 
+        \node(2)[below of=1]{\(Y\)};
+        \draw[->](1)--node[right]{\scriptsize\(\psi\)} (2);
+\end{tikzpicture}
+\end{pmatrix} \arrow[dd, -Triangle, "\dom"]
+\\
+K \arrow[rd, "v"]
+\\
+& I \arrow[r, "u"] & J
+\end{tikzcd}
+\end{equation}
+We must find a unique morphism in \(\cat{B}^{\rightarrow}\) to fill in the dashed ``\(?\)'' arrow in \eqref{eq:ex:1.1.1.8(ii):situation} that makes the diagram commute.
+But observe that \eqref{eq:ex:1.1.1.8(ii):situation} is equivalent to the following diagram.
+\begin{equation*}
+\begin{tikzcd}
+K \arrow[r, "v"] \arrow[d, "\varphi"] & I \arrow[r, "u"] \arrow[d, "\psi \circ u"] & J \arrow[d, "\psi"] \\
+Z \arrow[r, dashed, "?"] \arrow[rr, bend right, "g"{below}] & Y \arrow[r, equal] & Y
+\end{tikzcd}
+\end{equation*}
+It becomes evident that the unique morphism that fills in the dashed ``\(?\)'' arrow in \eqref{eq:ex:1.1.1.8(ii):situation} to makes the diagram commute is \(? = (g, v)\).
+Thus, \eqref{eq:ex:1.1.1.8(ii):lift candidate} is a Cartesian lift of \(u\), and hence \(\dom : \cat{B}^{\rightarrow} \to \cat{B}\) is a fibration.
+\end{partsolution}

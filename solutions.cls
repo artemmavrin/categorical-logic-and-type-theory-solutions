@@ -78,7 +78,7 @@
 \declaretheorem[%
     name={},
     style=exercisestyle,
-    parent=chapter,
+    parent=section,
     refname={Exercise,Exercises},
     Refname={Exercise,Exercises},
     mdframed={
