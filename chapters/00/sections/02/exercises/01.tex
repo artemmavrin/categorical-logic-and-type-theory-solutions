@@ -8,3 +8,72 @@ Define a left adjoint \(F : \Fam(\Sets) \to \Pred\) to the inclusion functor
 \end{equation*}
 such that: (1) \(F\) makes the triangle commute (so it does not change the index set), and (2) \(F\) commutes with substitution.
 \end{exercise}
+
+\begin{solution}
+Recall that the inclusion functor \(G : \Pred \hookrightarrow \Fam(\Sets)\) sends a predicate \((I, X)\) (where \(X \subseteq I\)) to the family \(G(I, X) = \left(X_i\right)_{i \in I}\), where
+\begin{equation*}
+X_i =
+\begin{cases}
+\{*\} & \text{if \(i \in X\)} \\
+\emptyset & \text{otherwise.}
+\end{cases}
+\end{equation*}
+Define the functor \(F : \Fam(\Sets) \to \Pred\) on objects by
+\begin{equation*}
+F\left(\left(X_i\right)_{i \in I}\right)
+= \left(I, \big\{i \in I : X_i \neq \emptyset\big\}\right)
+\end{equation*}
+and on morphisms by
+\begin{equation*}
+F\left(\left(X_i\right)_{i \in I} \xrightarrow{(u, f)} \left(Y_j\right)_{j \in J}\right)
+= u.
+\end{equation*}
+Note that \(F\) is well-defined on morphisms.
+Indeed, suppose \(\left(X_i\right)_{i \in I}\) and \(\left(Y_j\right)_{j \in J}\) are families of sets and \((u, f) : \left(X_i\right)_{i \in I} \to \left(Y_j\right)_{j \in J}\) is a morphism of families.
+If \(i \in I\) and \(X_i \neq \emptyset\), then \(\emptyset \neq f(X_i) \subseteq Y_{u(i)}\), so \(Y_{u(i)} \neq \emptyset\), and hence \(u\) is a morphism from \(F\left(\left(X_i\right)_{i \in I}\right)\) to \(F\left(\left(Y_j\right)_{j \in J}\right)\) in \(\Pred\).
+Moreover, \(F\) does not change the index set by definition.
+
+Next, we claim that \(F \dashv G\) by demonstrating the adjointness criteria in \cite[Definition~3.1.4]{MR1291599}, namely that there is a ``unit'' natural transformation
+\begin{equation*}
+\eta : \id_{\Fam(\Sets)} \to G \circ F.
+\end{equation*}
+such that for each \(I\)-indexed family of sets \(\left(X_i\right)_{i \in I}\), each object \((J, Y)\) in \(\Pred\), and each morphism \((v, g) : \left(X_i\right)_{i \in I} \to G(J, Y)\) in \(\Fam(\Sets)\), there exists a unique morphism \(v^\prime : F\left(\left(X_i\right)_{i \in I}\right) \to (J, Y)\) in \(\Pred\) such that \(G(v^\prime) \circ \eta_{\left(X_i\right)_{i \in I}} = (v, g)\), as in the following commutative diagram.
+\begin{equation*}
+\begin{tikzcd}[column sep=small]
+\Pred &&& \Fam(\Sets) \\[-5ex]
+F\left(\left(X_i\right)_{i \in I}\right) \arrow[d, dashed, "v^\prime"]
+&& \left(X_i\right)_{i \in I} \arrow[rr, "\eta_{\left(X_i\right)_{i \in I}}"] \arrow[drr, "{(v,g)}"{below left}] && G\left(F\left(\left(X_i\right)_{i \in I}\right)\right) \arrow[d, dashed, "G(v^\prime)"]
+\\
+(J, Y)
+&&&& G(J, Y)
+\end{tikzcd}
+\end{equation*}
+To this end, for an object \(\left(X_i\right)_{i \in I}\) define the component
+\begin{equation*}
+\eta_{\left(X_i\right)_{i \in I}} : \left(X_i\right)_{i \in I} \to G\left(F\left(\left(X_i\right)_{i \in I}\right)\right)
+= \big(\ite{X_i \neq \emptyset}{\{*\}}{\emptyset}\big)_{i \in I}
+\end{equation*}
+as
+\begin{equation*}
+\eta_{\left(X_i\right)_{i \in I}} = \left(\id_I, \big(f_i : X_i \to \ite{X_i \neq \emptyset}{\{*\}}{\emptyset}\big)_{i \in I}\right),
+\end{equation*}
+where
+\begin{equation*}
+f_i = \begin{cases}
+x \mapsto * & \text{if \(X_i \neq \emptyset\)} \\
+\id_\emptyset & \text{otherwise.}
+\end{cases}
+\end{equation*}
+We omit the rest of the verification that \(\eta\) is the unit of the adjunction \(F \dashv G\).
+
+Finally, we claim that \(F\) commutes with substitution.
+Indeed, if \(u : I \to J\) is a morphism in \(\Sets\) and \(\left(Y_i\right)_{j \in J}\) is a \(J\)-indexed family of sets, then
+\begin{align*}
+u^*\left(F\left(\left(Y_j\right)_{j \in J}\right)\right)
+&= u^*\left(J, \big\{j \in J : Y_j \neq \emptyset\big\}\right) \\
+&= \left(I, \big\{i \in I : Y_{u(i)} \neq \emptyset\big\}\right) \\
+&= F\left(\left(Y_{u(i)}\right)_{i \in I}\right) \\
+&= F\left(u^*\left(\left(Y_j\right)_{j \in J}\right)\right).
+\qedhere
+\end{align*}
+\end{solution}
