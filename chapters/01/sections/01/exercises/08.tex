@@ -31,9 +31,9 @@ X \arrow[rr, "f"] && Y
 \begin{partsolution}{ii}
 Consider a morphism \(u : I \to J\) in \(\cat{B}\), and another morphism \(\psi: J \to Y\) in \(\cat{B}\) (i.e., an object \(\begin{pmatrix}\begin{tikzcd}[row sep=small] J \arrow[d, "\psi"] \\ Y\end{tikzcd}\end{pmatrix}\) in \(\cat{B}^{\rightarrow}\) over \(J\) with respect to \(\dom : \cat{B}^{\rightarrow} \to \cat{B}\)).
 We claim that
-\begin{equation}
+\begin{align}
 \label{eq:ex:1.1.1.8(ii):lift candidate}
-\begin{tikzcd}
+\begin{tikzcd}[ampersand replacement=\&,]
 \begin{pmatrix}
 \begin{tikzpicture}
         \node(1){\(I\)}; 
@@ -42,7 +42,7 @@ We claim that
 \end{tikzpicture}
 \end{pmatrix}
 \arrow[r, "{(\id_Y, u)}"]
-&
+\&
 \begin{pmatrix}
 \begin{tikzpicture}
         \node(1){\(J\)}; 
@@ -51,7 +51,15 @@ We claim that
 \end{tikzpicture}
 \end{pmatrix}
 \end{tikzcd}
-\end{equation}
+&& \text{i.e.,}
+&&
+\begin{pmatrix}
+\begin{tikzcd}[ampersand replacement=\&,]
+I \arrow[r, "u"] \arrow[d, "\psi \circ u"] \& J \arrow[d, "\psi"] \\
+Y \arrow[r, equal] \& Y
+\end{tikzcd}
+\end{pmatrix}
+\end{align}
 is a Cartesian lift of \(u\).
 Indeed, consider a situation as in the following commutative diagram of solid arrows.
 \begin{equation}
@@ -99,4 +107,38 @@ Z \arrow[r, dashed, "?"] \arrow[rr, bend right, "g"{below}] & Y \arrow[r, equal]
 \end{equation*}
 It becomes evident that the unique morphism that fills in the dashed ``\(?\)'' arrow in \eqref{eq:ex:1.1.1.8(ii):situation} to makes the diagram commute is \(? = (g, v)\).
 Thus, \eqref{eq:ex:1.1.1.8(ii):lift candidate} is a Cartesian lift of \(u\), and hence \(\dom : \cat{B}^{\rightarrow} \to \cat{B}\) is a fibration.
+\end{partsolution}
+
+\begin{partsolution}{iii}
+The same proof as in \partref{1}{1}{8}{ii} applies here as well.
+Explicitly, fix an object \(I\) in \(\cat{B}\), let \(u : X \to Y\) be a morphism in \(\cat{B}\), and let \(\begin{pmatrix}\begin{tikzcd}[row sep=small] Y \arrow[d, "\psi"] \\ I\end{tikzcd}\end{pmatrix}\) in \(\cat{B} / I\) over \(Y\) relative to the functor \(\dom_I : \cat{B} / I \to \cat{B}\).
+Then a straightforward modification of the proof of \partref{1}{1}{8}{ii} shows that
+\begin{align*}
+\begin{tikzcd}[ampersand replacement=\&,]
+\begin{pmatrix}
+\begin{tikzpicture}
+        \node(1){\(X\)}; 
+        \node(2)[below of=1]{\(I\)};
+        \draw[->](1)--node[right]{\scriptsize\(\psi \circ u\)} (2);
+\end{tikzpicture}
+\end{pmatrix}
+\arrow[r, "u"]
+\&
+\begin{pmatrix}
+\begin{tikzpicture}
+        \node(1){\(Y\)};
+        \node(2)[below of=1]{\(I\)};
+        \draw[->](1)--node[right]{\scriptsize\(\psi\)} (2);
+\end{tikzpicture}
+\end{pmatrix}
+\end{tikzcd}&& \text{i.e.,}
+&&
+\begin{pmatrix}
+\begin{tikzcd}[ampersand replacement=\&, column sep=small]
+X \arrow[rr, "u"] \arrow[dr, "\psi \circ u"] \& \& J \arrow[dl, "\psi"] \\
+\& I
+\end{tikzcd}
+\end{pmatrix}
+\end{align*}
+is a Cartesian lift of \(u\), and hence \(\dom_I : \cat{B} / I \to \cat{B}\) is a fibration.
 \end{partsolution}
