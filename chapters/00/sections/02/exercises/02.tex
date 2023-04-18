@@ -1,0 +1,24 @@
+\begin{exercise}
+Define for a subset \(X \subseteq I\) the relation \(\nEq(X) \subseteq I \times I\) by
+\begin{equation*}
+\nEq(X) = \big\{(i, i^\prime) : \text{\(i \neq i^\prime\) or \(i \in X\)}\big\}
+\end{equation*}
+and show that the assignment \(X \mapsto \nEq(X)\) is right adjoint to contraction \(\delta^* : P(I \times I) \to P(I)\).
+Notice that \(\nEq(X)\) at the bottom element \(X = \emptyset\) is inequality on \(I\).
+\end{exercise}
+
+\begin{solution}
+Fix a set \(I\) and consider the functors
+\begin{equation*}
+\begin{tikzcd}
+P(I) \arrow[r, shift right=0.5ex, "\nEq"{below}] & P(I \times I). \arrow[l, shift right=0.5ex, "\delta^*"{above}]
+\end{tikzcd}
+\end{equation*}
+To show that \(\delta^* \dashv \nEq\), we fix \(X \subseteq I\) and \(Y \subseteq I \times I\) and claim that
+\(\delta^*(Y) \subseteq X\) if and only if \(Y \subseteq \nEq(X)\).
+Suppose \(\delta^*(Y) \subseteq X\) and \((i, j) \in Y\).
+If \(i \neq j\), then \((i, j) \in \nEq(X)\), and if \(i = j\), then \(i \in \delta^*(Y) \subseteq X\), and hence \((i, j) \in \nEq(X)\).
+Thus, \(Y \subseteq \nEq(X)\).
+Conversely, suppose \(Y \subseteq \nEq(X)\) and \(i \in \delta^*(Y)\).
+Then \((i, i) \in Y \subseteq \nEq(X)\), so \(i \in X\), whence \(\delta^*(Y) \subseteq X\) and \((i, j) \in Y\).
+\end{solution}
