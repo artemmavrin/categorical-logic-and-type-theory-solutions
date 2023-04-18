@@ -53,12 +53,10 @@ We claim that
 \end{tikzcd}
 && \text{i.e.,}
 &&
-\begin{pmatrix}
 \begin{tikzcd}[ampersand replacement=\&,]
-I \arrow[r, "u"] \arrow[d, "\psi \circ u"] \& J \arrow[d, "\psi"] \\
+I \arrow[r, "u"] \arrow[d, "\psi \circ u"{left}] \& J \arrow[d, "\psi"] \\
 Y \arrow[r, equal] \& Y
 \end{tikzcd}
-\end{pmatrix}
 \end{align}
 is a Cartesian lift of \(u\).
 Indeed, consider a situation as in the following commutative diagram of solid arrows.
@@ -133,12 +131,10 @@ Then a straightforward modification of the proof of \partref{1}{1}{8}{ii} shows 
 \end{pmatrix}
 \end{tikzcd}&& \text{i.e.,}
 &&
-\begin{pmatrix}
 \begin{tikzcd}[ampersand replacement=\&, column sep=small]
-X \arrow[rr, "u"] \arrow[dr, "\psi \circ u"] \& \& J \arrow[dl, "\psi"] \\
+X \arrow[rr, "u"] \arrow[dr, "\psi \circ u"{below left}] \& \& J \arrow[dl, "\psi"] \\
 \& I
 \end{tikzcd}
-\end{pmatrix}
 \end{align*}
 is a Cartesian lift of \(u\), and hence \(\dom_I : \cat{B} / I \to \cat{B}\) is a fibration.
 \end{partsolution}
