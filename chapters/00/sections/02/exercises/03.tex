@@ -1,3 +1,41 @@
 \begin{exercise}
 Show that the equality functor \(\Eq : \Sets \to \Rel\) also has a right adjoint.
 \end{exercise}
+
+\begin{solution}
+Define the functor
+\begin{equation*}
+F : \Rel \to \Sets
+\end{equation*}
+on objects by
+\begin{equation*}
+F(I, R) = \{i \in I : (i, i) \in R\}
+\end{equation*}
+and on morphisms by
+\begin{equation*}
+F\left((I, R) \overset{u}{\to} (J, S)\right)
+= u|_{F(I, R)}.
+\end{equation*}
+Note that \(F\) is well-defined on morphisms since if \(u : (I, R) \to (J, S)\) is a morphism in \(\Rel\) and \(i \in L(I, R)\), then \((i, i) \in R\), so \((u(i), u(i)) \in S\), and hence \(u(i) \in F(J, S)\).
+We claim that \(\Eq \dashv F\).
+Fix an object \(I\) in \(\Sets\) and an object \((J, S)\) in \(\Rel\).
+Define functions
+\begin{align*}
+f &: \Rel(\Eq(I), (J, S)) \to \Sets(I, F(J, S)) \\
+g &: \Sets(I, F(J, S)) \to \Rel(\Eq(I), (J, S))
+\end{align*}
+by
+\begin{align*}
+f\left(\Eq(I) \overset{u}{\to} (J, S)\right)
+&= u &
+g\left(I \overset{u}{\to} F(J, S)\right)
+&= u.
+\end{align*}
+Note that \(f\) is well-defined since if \(u : \Eq(I) \to (J, S)\) is a morphism in \(\Rel\) and \(i \in I\), then \((i, i) \in \Eq(I)\), so \((u(i), u(i)) \in S\), and hence \(u(i) \in F(J, S)\).
+Similarly, note that \(g\) is well-defined since if \(u : I \to F(J, S)\) is a morphism in \(\Sets\) and \(i \in I\), then \(u(i) \in F(J, S)\), so \((u(i), u(i)) \in S\).
+Thus, \(f\) and \(g\) are mutual inverses, so we have
+\begin{equation*}
+\Rel(\Eq(I), (J, S)) \cong \Sets(I, F(J, S)).
+\end{equation*}
+We omit the proof of naturality of this bijection and conclude that \(\Eq \dashv F\).
+\end{solution}
