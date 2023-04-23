@@ -2,3 +2,53 @@
 Check that the operation \((I, X) \mapsto \{I \mid X\}\) yields a functor \(\Fam(\Sets) \to \Sets\), and show that it is right adjoint to the terminal object functor \(\Sets \to \Fam(\Sets)\), mapping a set \(J\) to the family of singletons \((\{*\})_{j \in J}\).
 Describe the unit and counit of the adjunction explicitly.
 \end{exercise}
+
+\begin{solution}
+Define the functor \(R : \Fam(\Sets) \to \Sets\) on objects by
+\begin{equation*}
+R(I, X) = \{I \mid X\} = \sum_{i \in I} X_i = \big\{(i, x) : \text{\(i \in I\) and \(x \in X_i\)}\big\}
+\end{equation*}
+and on morphisms by
+\begin{equation*}
+R\left((I, X) \xrightarrow{(u, f)} (J, Y)\right)
+= \big((i, x) \mapsto (u(i), f_i(x))\big).
+\end{equation*}
+We claim that \(L \dashv R\), where \(L : \Sets \to \Fam(\Sets)\) is the ``terminal object functor,'' defined on objects by \(L(J) = \left(\{*\}\right)_{j \in J}\).
+It suffices to prove that there is an isomorphism
+\begin{equation*}
+\Fam(\Sets)\left(\left(\{*\}\right)_{j \in J}, (I, X)\right)
+\cong \Sets\left(J, \{I \mid X\}\right),
+\end{equation*}
+which is natural in \(J\) in \(\Sets\) and \((I, X)\) in \(\Fam(\Sets)\).
+Indeed, define
+\begin{equation*}
+\varphi : \Fam(\Sets)\left(\left(\{*\}\right)_{j \in J}, (I, X)\right)
+\to \Sets\left(J, \{I \mid X\}\right)
+\end{equation*}
+by
+\begin{equation*}
+\varphi\left(\left(\{*\}\right)_{j \in J} \xrightarrow{(u, f)} (I, X)\right)
+= \big(j \mapsto (u(j), f_j(*))\big).
+\end{equation*}
+One can verify that \(\varphi\) is a bijection, with
+\begin{equation*}
+\varphi^{-1}\left(J \overset{g}{\to} \{I \mid X\}\right)
+= \left(j \mapsto \fst (g(j)) , \big(* \mapsto \snd(g(j))\big)_{j \in J}\right),
+\end{equation*}
+and that \(\varphi\) is natural in \(J\) and \((I, X)\).
+Thus, it yields an adjunction \(L \dashv R\).
+The unit of this adjunction is then given by
+\begin{align*}
+\eta_J &= \varphi\left(\id_{\left(\{*\}\right)_{j \in J}}\right): J \to \sum_{j \in J} \{*\}, &
+\eta_J(j) &= (j, *),
+\end{align*}
+and the counit is given by
+\begin{align*}
+\varepsilon_{(I, X)}
+&= \varphi^{-1}\left(\id_{\{I \mid X\}}\right)
+: \left(\{*\}\right)_{(i, x) \in \{I \mid X\}} \to (I , X) \\
+\varepsilon_{(I, X)}
+&= \left((i, x) \mapsto i, \big(* \mapsto x\big)_{(i, x) \in \{I \mid X\}}\right).
+\qedhere
+\end{align*}
+\end{solution}
