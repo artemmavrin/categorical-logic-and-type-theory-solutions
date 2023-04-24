@@ -141,12 +141,13 @@ Also note that the diagram above is equivalent to the following one.
 \begin{equation*}
 \begin{tikzcd}
 C \arrow[rr, bend left, "r"]  \arrow[d, "\gamma"] \arrow[r, dashed, "p"] & A \arrow[dr, phantom, " "{pullback}, very near start] \arrow[r, "q"] \arrow[d, "\alpha"] & B \arrow[d, "\beta"] \\
-Z \arrow[r, "g"] \arrow[d, "\xi"] & X \arrow[r, "f"] \arrow[d, "\varphi"] & Y \arrow[d, "\psi"] \\
-K \arrow[r, "v"] & I \arrow[r, "u"] & J
+Z \arrow[r, "g"] \arrow[d, "\xi"] & X \arrow[r, "f"] \arrow[d, near end, "\varphi"] & Y \arrow[d, "\psi"] \\
+K \arrow[r, "v"] \arrow[rr, bend right, "w"{below}] & I \arrow[r, "u"] & J
+\arrow[from=ull, to=u, bend right, crossing over, near start, "h"{below}]
 \end{tikzcd}
 \end{equation*}
 Here the dashed arrow \(p : C \to A\) is the unique morphism in \(\cat{B}\) such that \(g \circ \gamma = \alpha \circ p\) and \(r = q \circ p\), by virtue of \(X \overset{\alpha}{\leftarrow} A \overset{q}{\rightarrow} B\) being a pullback of \(X \overset{f}{\to} Y \overset{\beta}{\leftarrow} B\).
 It follows that the unique filler for ``\(?\)'' in \eqref{eq:ex:1.1.9.diagram} is \(? = (v, g, p)\), so \((u, f, q)\) is a Cartesian lift of \((u, f)\), and hence the functor \(\cat{B}^{\rightarrow\rightarrow} \to \cat{B}^\rightarrow\) sending \(\overset{f}{\to}\overset{g}{\to}\) to \(\overset{g}{\to}\) is a fibration.
 
-Moreover, the composite \(B^{\rightarrow\rightarrow} \to \cat{B}^{\rightarrow} \to \cat{B}\) is also a fibration since the composition of two fibrations is again a fibration (cf. \cite[Proposition~8.1.12]{MR1313497}, \cite[Proposition~3.7]{MR2222646}, \cite[Proposition~3.1]{MR0213413} \cite[Proposition~9.1.10]{MR4261588}] and since the codomain functor \(\cod : \cat{B}^{\rightarrow} \to \cat{B}\) is a fibration when \(\cat{B}\) has pullbacks (cf. \cite[Proposition~1.1.6]{MR1674451}).
+Moreover, the composite \(B^{\rightarrow\rightarrow} \to \cat{B}^{\rightarrow} \to \cat{B}\) is also a fibration since the composition of two fibrations is again a fibration (cf. \cite[Proposition~8.1.12]{MR1313497}, \cite[Proposition~3.7]{MR2222646}, \cite[Proposition~3.1]{MR0213413} \cite[Proposition~9.1.10]{MR4261588}) and since the codomain functor \(\cod : \cat{B}^{\rightarrow} \to \cat{B}\) is a fibration when \(\cat{B}\) has pullbacks (cf. \cite[Proposition~1.1.6]{MR1674451}).
 \end{solution}
