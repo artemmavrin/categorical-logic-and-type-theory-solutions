@@ -187,7 +187,7 @@
 \newcommand\@sectiondir{}
 \newcommand\@exercisefilenoext{}
 \newcommand\@chapterlabel[1]{\label{ch:#1}}
-\newcommand\@sectionlabel[1]{\label{section:#1}}
+\newcommand\@sectionlabel[1]{\label{section:\arabic{chapter}#1}}
 \newcommand{\GenerateSolutions}{
     % Loop over chapters
     \foreach \@c in {0,1,...,\@MAXCHAPTERS}{%
