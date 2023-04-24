@@ -1,3 +1,52 @@
 \begin{exercise}
 Prove that a morphism \(\left(u,\left(f_i\right)_{i \in I}\right)\) in \(\Fam(\cat{C})\) is Cartesian if and only if each \(f_i\) is an isomorphism in \(\cat{C}\).
 \end{exercise}
+
+\begin{solution}
+(\(\Longrightarrow\))
+Suppose
+\begin{equation*}
+\left(u,\left(f_i\right)_{i \in I}\right) : \left(X_i\right)_{i \in I} \to \left(Y_j\right)_{j \in J}
+\end{equation*}
+is a Cartesian morphism in \(\Fam(\cat{C})\) over a morphism \(u : I \to J\) in \(\cat{C}\).
+We also know that
+\begin{equation*}
+\left(u, \left(\id_{Y_{u(i)}}\right)_{i \in I}\right) : \left(Y_{u(i)}\right)_{i \in I} \to \left(Y_j\right)_{j \in J}
+\end{equation*}
+is another Cartesian lift of \(u\) (cf. \cite[preceding Definition~1.2.1]{MR1674451}).
+Thus, by \expartref{1}{1}{1}{i}, there is a unique vertical isomorphism
+\begin{equation*}
+\left(\id_I, \left(X_i \overset{g_i}{\to} Y_{u(i)}\right)_{i \in I}\right) : \left(X_i\right)_{i \in I} \to \left(Y_{u(i)}\right)_{i \in I}
+\end{equation*}
+such that
+\begin{equation*}
+\left(u,\left(f_i\right)_{i \in I}\right)
+= \left(u, \left(\id_{Y_{u(i)}}\right)_{i \in I}\right) \circ \left(\id_I, \left(g_i\right)_{i \in I}\right)
+\end{equation*}
+in \(\Fam(\cat{C})\).
+In particular, \(f_i = \id_{Y_{u(i)}} \circ g_i = g_i\) for all \(i \in I\), so each \(f_i\) is an isomorphism.
+
+(\(\Longleftarrow\))
+Conversely, suppose
+\begin{equation*}
+\left(u,\left(f_i\right)_{i \in I}\right) : \left(X_i\right)_{i \in I} \to \left(Y_j\right)_{j \in J}
+\end{equation*}
+is a morphism in \(\Fam(\cat{C})\) over a morphism \(u : I \to J\) in \(\cat{C}\) such that each \(f_i : X_i \to Y_{u(i)}\) is an isomorphism.
+We claim that \(\left(u,\left(f_i\right)_{i \in I}\right)\) is Cartesian.
+Suppose \(v : K \to I\) is another morphism in \(\cat{C}\) and
+\begin{equation*}
+\left(u \circ v, \left(g_k\right)_{k \in K}\right) : \left(Z_k\right)_{k \in K} \to \left(Y_j\right)_{j \in J}
+\end{equation*}
+is a morphism in \(\Fam(\cat{C})\) over \(u \circ v\), as in the following diagram.
+\begin{equation*}
+\begin{tikzcd}[row sep=small]
+\left(Z_k\right)_{k \in K} \arrow[rrd, bend left, "{\left(u \circ v, \left(g_k\right)_{k \in K}\right)}"] \arrow[dr, dashed, "?"] \arrow[dd, -Triangle] \\
+& \left(X_i\right)_{i \in I} \arrow[r, "{\left(u, \left(f_i\right)_{i \in I}\right)}"] \arrow[dd, -Triangle]
+& \left(Y_j\right)_{j \in J} \arrow[dd, -Triangle] \\
+K \arrow[dr, "v"{below left}]\\
+& I \arrow[r, "u"]
+& J
+\end{tikzcd}
+\end{equation*}
+Then the unique filler of the dashed ``\(?\)'' morphism in this diagram is \(? = \left(v, \left(f_{v(k)}^{-1} \circ g_k\right)_{k \in K}\right)\), so \(\left(u,\left(f_i\right)_{i \in I}\right)\) is Cartesian.
+\end{solution}
