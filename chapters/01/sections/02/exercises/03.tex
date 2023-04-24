@@ -1,0 +1,14 @@
+\begin{exercise}
+For an arbitrary category \(\cat{B}\), let \(\cat{B}_{\bullet}^{\rightarrow}\) be the category with \textbf{pointed families} as objects;
+these are pairs \(\left\langle\begin{pmatrix}\begin{tikzcd}[row sep=small] X \arrow[d, "\varphi"] \\ I\end{tikzcd}\end{pmatrix}, s\right\rangle\) where \(s\) is a section of \(\varphi\)
+(\emph{i.e.} a map \(s : I \to X\) with \(\varphi \circ s = \id\)).
+A morphism \(\left\langle\begin{pmatrix}\begin{tikzcd}[row sep=small] X \arrow[d, "\varphi"] \\ I\end{tikzcd}\end{pmatrix}, s\right\rangle \to \left\langle\begin{pmatrix}\begin{tikzcd}[row sep=small] Y \arrow[d, "\psi"] \\ J\end{tikzcd}\end{pmatrix}, t\right\rangle\) in \(\cat{B}_{\bullet}^{\rightarrow}\) consists of a pair of morphisms \(u : I \to J\), \(f : X \to Y\) in \(\cat{B}\) with \(\psi \circ f = u \circ \varphi\) and also \(f \circ s = t \circ u\).
+Thus morphisms of pointed families preserve the points (\emph{i.e.} sections) of the families.
+Prove that
+\begin{parts}
+\part
+if the category \(\cat{B}\) has pullbacks then the functor \(\cat{B}_{\bullet}^{\rightarrow}\) sending \(\left\langle\begin{pmatrix}\begin{tikzcd}[row sep=small] X \arrow[d, "\varphi"] \\ I\end{tikzcd}\end{pmatrix}, s\right\rangle\) to the index set \(I\) is a fibration;
+\part
+for \(\cat{B} = \Sets\), there is an equivalence of categories \(\Fam(\Sets_{\bullet}) \xrightarrow{\simeq} \cat{B}_{\bullet}^{\rightarrow}\) like in Proposition~1.2.2, where \(\Sets_{\bullet}\) is the category of \textbf{pointed sets}: objects are sets containing a distinguished base point, morphisms are functions preserving such points.
+\end{parts}
+\end{exercise}
