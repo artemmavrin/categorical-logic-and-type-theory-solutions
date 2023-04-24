@@ -2,3 +2,35 @@
 Consider a map \(f = \left(f_i : X_i \to Y_i\right)_{i \in I}\) in the fibre \(\Fam(\cat{C})_I = \cat{C}^I\) over \(I \in \Sets\).
 Prove that \(f\) is a mono in this fibre if and only if each \(f_i\) is a mono in \(\cat{C}\).
 \end{exercise}
+
+\begin{solution}
+(\(\Longrightarrow\))
+Suppose \(f = \left(f_i : X_i \to Y_i\right)_{i \in I}\) is monic in \(\cat{C}^I\), and fix \(i \in I\).
+Suppose \(g, h : Z \to X_i\) are arrows in \(\cat{C}\) such that \(f_i \circ g = f_i \circ h\).
+We claim that \(h = g\), which will show that \(f_i\) is monic.
+Define a family of object \(\left(Z_j\right)_{j \in I}\) in \(\cat{C}^I\), where
+\begin{equation*}
+Z_j = \begin{cases}
+Z & \text{if \(i = j\)} \\
+X_j & \text{otherwise,}
+\end{cases}
+\end{equation*}
+and define morphisms \(g^\prime = \left(g_j^\prime : Z_j \to X_j\right)_{j \in I} : \left(Z_j\right)_{j \in I} \to \left(X_j\right)_{j \in I}\) and \(h^\prime = \left(h_j^\prime : Z_j \to X_j\right)_{j \in I} : \left(Z_j\right)_{j \in I} \to \left(X_j\right)_{j \in I}\) in \(\cat{C}^I\), where
+\begin{align*}
+g_j^\prime &= \begin{cases}
+g & \text{if \(i = j\)} \\
+\id_{X_j} & \text{otherwise,}
+\end{cases} &
+h_j^\prime &= \begin{cases}
+h & \text{if \(i = j\)} \\
+\id_{X_j} & \text{otherwise,}
+\end{cases}
+\end{align*}
+Then we have \(f \circ g^\prime = f \circ h^\prime\), so \(g^\prime = h^\prime\), and in particular \(g = g^\prime_i = h^\prime_i = h\).
+
+(\(\Longleftarrow\))
+Suppose \(f = \left(f_i : X_i \to Y_i\right)_{i \in I}\) is a morphism in \(\cat{C}^I\) and \(f_i\) is monic in \(\cat{C}\) for each \(i \in I\).
+Consider morphisms \(g = \left(g_j : Z_j \to X_j\right)_{j \in I} : \left(Z_j\right)_{j \in I} \to \left(X_j\right)_{j \in I}\) and \(h = \left(h_j : Z_j \to X_j\right)_{j \in I} : \left(Z_j\right)_{j \in I} \to \left(X_j\right)_{j \in I}\) in \(\cat{C}^I\) such that \(f \circ g = f \circ h\).
+In particular, \(f_i \circ g_i = f_i \circ h_i\) for each \(i \in I\), so \(g_i = h_i\) (since \(f_i\) is monic) for each \(i \in I\).
+Therefore, \(g = h\), and hence \(f\) is monic.
+\end{solution}
