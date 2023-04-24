@@ -279,3 +279,5 @@
 
 % For timestamp
 \RequirePackage[style=iso]{datetime2}
+
+\RequirePackage{fontawesome}
