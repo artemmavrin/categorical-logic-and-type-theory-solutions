@@ -1,8 +1,33 @@
 \begin{exercise}
 Let \(\Fld\) be the category of fields and field homomorphisms; \(\Vect\) is the category of vector spaces: objects are triples \((K, V, \cdot)\) where \(K\) is a field of scalars, \(V\) is an Abelian group of vectors and \(\cdot : K \times V \to V\) is an action of scalar multiplication (which distributes both over scalar and over vector addition).
-A morphism (\(K, V, \cdot) \to (L, W, \cdot)\) in \(\Vect\) is a pair \((u, f)\) where \(u : K \to L\) is a field homomorphism and \(f : V \to W\) a group homomorphism such that \(f(a \cdot x) = u(a) f(x)\) for all \(a \in K\) and \(x \in V\).
+A morphism (\(K, V, \cdot) \to (L, W, \cdot)\) in \(\Vect\) is a pair \((u, f)\) where \(u : K \to L\) is a field homomorphism and \(f : V \to W\) a group homomorphism such that \(f(a \cdot x) = u(a) \cdot f(x)\) for all \(a \in K\) and \(x \in V\).
 
 Check that the obvious forgetful functor \(\Vect \to \Fld\) is a fibration.
 What are the fibres?
 Which maps are Cartesian?
 \end{exercise}
+
+\begin{solution}
+First, the fibres of \(\Vect \to \Fld\) are the categories of vector spaces over a fixed field \(K\), with morphisms being ordinary \(K\)-linear maps.
+
+Next, we show that \(\Vect \to \Fld\) is a fibration.
+Let \(u : K \to L\) be a field homomorphism, and let \((L, V, \cdot)\) be an object of \(\Vect\) over \(L\).
+Then we claim that \((u, \id_V)\) is a Cartesian lift of \(u\).
+Indeed, suppose \(v : F \to K\) is another field homomorphism and \((w, g) : (F, W, \cdot) \to (L, V, \cdot)\) be a morphism in \(\Vect\) over \(u \circ v\) such that the following diagram commutes.
+\begin{equation*}
+\begin{tikzcd}[row sep=small]
+(F, W, \cdot) \arrow[dd, -Triangle] \arrow[dr, dashed, "?"] \arrow[drr, bend left, "{(w, g)}"] \\
+& (K, V, \cdot) \arrow[dd, -Triangle] \arrow[r, "{(u, \id_V)}"] & (L, V, \cdot) \arrow[dd, -Triangle] \\
+F \arrow[dr, "v"] \\
+& K \arrow[r, "u"] & L
+\end{tikzcd}
+\end{equation*}
+The unique filler of the dashed ``\(?\)'' morphism in this diagram is \(? = (v, g)\), so \((u, \id_V)\) is Cartesian, and hence \(\Vect \to \Fld\) is Cartesian.
+
+Finally, we claim that a morphism \((u, f) : (K, V, \cdot) \to (L, W, \cdot)\) is Cartesian if and only if \(f : V \to W\) is an abelian group isomorphism.
+To show that abelian group isomorphisms induce Cartesian morphisms, mimic the proof above that showed that \((u, \id_V)\) is a Cartesian lift of \(u : K \to L\) whenever \((L, V, \cdot)\) is an object in \(\Vect\) above \(L\). 
+Conversely, suppose \((u, f) : (K, V, \cdot) \to (L, W, \cdot)\) is a Cartesian morphism in \(\Vect\) above a field homomorphism \(u : K \to L\).
+We claim that \(f : V \to W\) is an abelian group isomorphism.
+We already showed that in this case \((u, \id_W) : (K, W, \cdot) \to (L, W, \cdot)\) is a Cartesian lift of \(u\), so by \expartref{1}{1}{1}{i}, there exists a unique isomorphism \((w, g) : (K, V, \cdot) \to (K, W, \cdot)\) in \(\Vect\) such that \((u, f) = (u, \id_W) \circ (w, g)\).
+In particular, \(g\) is an abelian group isomorphism and \(f = \id_W \circ g = g\), so \(f\) is an abelian group isomorphism.
+\end{solution}
