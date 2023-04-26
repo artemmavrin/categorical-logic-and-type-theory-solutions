@@ -242,7 +242,7 @@ F\left(\left(X_i, x_i\right)_{i \in I}\right)
 \begin{tikzcd}[row sep=small]
 \sum_{i \in I} X_i \arrow[d, "\fst"] \\ I
 \end{tikzcd}
-\end{pmatrix}, i \mapsto x_i\right\rangle
+\end{pmatrix}, i \mapsto (i, x_i)\right\rangle
 \end{equation*}
 and
 \begin{equation*}
@@ -282,10 +282,13 @@ Y \arrow[d, "\psi"] \\ J
 = \left(u, \left(f|_{\varphi^{-1}(\{i\})}\right)_{i \in I}\right).
 \end{equation*}
 Then we have
-\begin{align*}
+\begin{equation*}
 G\left(F\left(\left(X_i, x_i\right)_{i \in I}\right)\right)
-&= \big(\{i\} \times X_i, x_i\big)_{i \in I}
-\cong \left(X_i, x_i\right)_{i \in I}, \\
+= \big(\{i\} \times X_i, x_i\big)_{i \in I}
+\cong \left(X_i, x_i\right)_{i \in I}
+\end{equation*}
+in \(\Fam(\Sets_{\bullet})\) and
+\begin{align*}
 F\left(G\left(\left\langle
 \begin{pmatrix}
 \begin{tikzcd}[row sep=small]
@@ -298,15 +301,16 @@ X \arrow[d, "\varphi"] \\ I
 \begin{tikzcd}[row sep=small]
 \sum_{i\in I} \varphi^{-1}(\{i\}) \arrow[d, "\fst"] \\ I
 \end{tikzcd}
-\end{pmatrix}, s
-\right\rangle
-\cong \left\langle
+\end{pmatrix}, i \mapsto (i, s(i))
+\right\rangle \\
+&\cong \left\langle
 \begin{pmatrix}
 \begin{tikzcd}[row sep=small]
 X \arrow[d, "\varphi"] \\ I
 \end{tikzcd}
 \end{pmatrix}, s
-\right\rangle.
+\right\rangle
 \end{align*}
+in \(\Sets_{\bullet}^{\rightarrow}\).
 We omit the proofs of the  naturality of these isomorphisms, and conclude that \(G \circ F \cong \id_{\Fam(\Sets_{\bullet})}\) and \(F \circ G \cong \id_{\Sets_{\bullet}^{\rightarrow}}\), and that, in particular, there is an equivalence of categories \(F : \Fam(\Sets_{\bullet}) \xrightarrow{\simeq} \Sets_{\bullet}^{\rightarrow}\)
 \end{partsolution}
