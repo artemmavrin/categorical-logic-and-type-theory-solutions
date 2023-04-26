@@ -228,3 +228,85 @@ K \arrow[r, "v"]
 It follows that one choice of ``\(?\)'' filler in \eqref{eq:ex:1.2.3.i:cartesian} is \(? = (v, h)\), and its uniqueness follows from the uniqueness of \(h\) since \(I \xleftarrow{\varphi} X \xrightarrow{f} Y\) is a pullback.
 Thus, \eqref{eq:ex:1.2.3.i.lift} is Cartesian, and hence \(\cat{B}_{\bullet}^{\rightarrow} \to \cat{B}\) is a fibration.
 \end{partsolution}
+
+\begin{partsolution}{ii}
+We define functors
+\begin{align*}
+F &: \Fam(\Sets_{\bullet}) \to \Sets_{\bullet}^{\rightarrow}, &
+G &: \Sets_{\bullet}^{\rightarrow} \to \Fam(\Sets_{\bullet})
+\end{align*}
+on objects by
+\begin{equation*}
+F\left(\left(X_i, x_i\right)_{i \in I}\right)
+= \left\langle\begin{pmatrix}
+\begin{tikzcd}[row sep=small]
+\sum_{i \in I} X_i \arrow[d, "\fst"] \\ I
+\end{tikzcd}
+\end{pmatrix}, i \mapsto x_i\right\rangle
+\end{equation*}
+and
+\begin{equation*}
+G\left(\left\langle
+\begin{pmatrix}
+\begin{tikzcd}[row sep=small]
+X \arrow[d, "\varphi"] \\ I
+\end{tikzcd}
+\end{pmatrix}, s
+\right\rangle\right)
+= \left(\varphi^{-1}(\{i\}), s(i)\right)_{i \in I}
+\end{equation*}
+and on morphisms by
+\begin{equation*}
+F\left(\left(X_i, x_i\right)_{i \in I} \xrightarrow{(u, f)} \left(Y_j, y_j\right)_{j \in J}\right)
+= \big(u, (i, x) \mapsto (u(i), f_i(x))\big)
+\end{equation*}
+and
+\begin{equation*}
+G\left(
+\left\langle
+\begin{pmatrix}
+\begin{tikzcd}[row sep=small]
+X \arrow[d, "\varphi"] \\ I
+\end{tikzcd}
+\end{pmatrix}, s
+\right\rangle
+\xrightarrow{(u, f)}
+\left\langle
+\begin{pmatrix}
+\begin{tikzcd}[row sep=small]
+Y \arrow[d, "\psi"] \\ J
+\end{tikzcd}
+\end{pmatrix}, t
+\right\rangle
+\right)
+= \left(u, \left(f|_{\varphi^{-1}(\{i\})}\right)_{i \in I}\right).
+\end{equation*}
+Then we have
+\begin{align*}
+G\left(F\left(\left(X_i, x_i\right)_{i \in I}\right)\right)
+&= \big(\{i\} \times X_i, x_i\big)_{i \in I}
+\cong \left(X_i, x_i\right)_{i \in I}, \\
+F\left(G\left(\left\langle
+\begin{pmatrix}
+\begin{tikzcd}[row sep=small]
+X \arrow[d, "\varphi"] \\ I
+\end{tikzcd}
+\end{pmatrix}, s
+\right\rangle\right)\right)
+&= \left\langle
+\begin{pmatrix}
+\begin{tikzcd}[row sep=small]
+\sum_{i\in I} \varphi^{-1}(\{i\}) \arrow[d, "\fst"] \\ I
+\end{tikzcd}
+\end{pmatrix}, s
+\right\rangle
+\cong \left\langle
+\begin{pmatrix}
+\begin{tikzcd}[row sep=small]
+X \arrow[d, "\varphi"] \\ I
+\end{tikzcd}
+\end{pmatrix}, s
+\right\rangle.
+\end{align*}
+We omit the proofs of the  naturality of these isomorphisms, and conclude that \(G \circ F \cong \id_{\Fam(\Sets_{\bullet})}\) and \(F \circ G \cong \id_{\Sets_{\bullet}^{\rightarrow}}\), and that, in particular, there is an equivalence of categories \(F : \Fam(\Sets_{\bullet}) \xrightarrow{\simeq} \Sets_{\bullet}^{\rightarrow}\)
+\end{partsolution}
