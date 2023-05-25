@@ -16,21 +16,15 @@ there is a bijective correspondence between partial equivalence relations on \(I
 For a set \(I\), let \(\mathrm{PPart}(I)\) and \(\mathrm{PER}(I)\) denote the sets of partial partitions on \(I\) and partial equivalence relations on \(I\), respectively.
 Within these, let \(\mathrm{Part}(I) \subseteq \mathrm{PPart}(I)\) and \(\mathrm{ER}(I) \subseteq \mathrm{PER}(I)\) denote the sets of (total) partitions on \(I\) and (total) equivalence relations on \(I\), respectively.
 Define
-\begin{equation*}
-f : \mathrm{PPart}(I) \to \mathrm{PER}(I)
-\end{equation*}
+\begin{align*}
+f &: \mathrm{PPart}(I) \to \mathrm{PER}(I), &
+g &: \mathrm{PER}(I) \to \mathrm{PPart}(I)
+\end{align*}
 by
-\begin{equation*}
-f(Q) = \big\{(x, y) \in I^2 : \text{there exists \(a \in Q\) such that \(x, y \in a\)}\big\}.
-\end{equation*}
-Similarly, define
-\begin{equation*}
-g : \mathrm{PER}(I) \to \mathrm{PPart}(I)
-\end{equation*}
-by
-\begin{equation*}
-g(R) = \big\{\text{equivalence classes of \(R\)}\big\}.
-\end{equation*}
+\begin{align*}
+f(Q) &= \big\{(x, y) \in I^2 : \text{there exists \(a \in Q\) such that \(x, y \in a\)}\big\}, \\
+g(R) &= \big\{\text{equivalence classes of \(R\)}\big\}.
+\end{align*}
 A routine verification shows that \(f\) and \(g\) are mutual inverses, and furthermore they restrict to mutually inverse bijections between \(\mathrm{Part}(I)\) and \(\mathrm{ER}(I)\).
 \end{partsolution}
 
