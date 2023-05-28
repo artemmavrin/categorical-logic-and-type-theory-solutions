@@ -1,4 +1,21 @@
 \begin{exercise}
 Notice that for \(R \in \PER\), the ``global sections'' or ``global elements'' homset \(\PER(1, R)\) is isomorphic to the quotient \(\mathbb{N} / R\).
-And also that all homsets in \(\PER\) and in \(\omega\text{-}\Sets\) are countable.
+And also that all homsets in \(\PER\) and in \(\omegaSets\) are countable.
 \end{exercise}
+
+\begin{proof}
+First, fix \(R \in \PER\). For a terminal object \(1\) in \(\PER\), choose \(1 = \{(0, 0)\}\), and denote \(\mathbb{N} / 1 = \{[0]_1\} = *\).
+Define \(\varphi : \PER(1, R) \to \mathbb{N} / R\) by
+\begin{equation*}
+\varphi\left(* \xrightarrow{f} \mathbb{N} / R\right)
+= f([0]_1).
+\end{equation*}
+Then \(\varphi\) is injective (since \([0]_1\) is the only element of \(*\)).
+Moreover, take an equivalence class \([n]_R \in \mathbb{N} / R\) for some \(n \in |R|\).
+Let \(e \in \mathbb{N}\) be the code of the constant total recursive function \(\mathbb{N} \to \mathbb{N}\), \(\_ \mapsto n\).
+Then define \(f : * \to \mathbb{N} / R\) by \(f([0]_1) = [n]_R\), and note that \(f\) is tracked by \(e\), so \(f \in \PER(1, R)\).
+Then we have \(\varphi(f) = [n]_R\), so \(\varphi\) is surjective.
+Thus, \(\varphi\) is an isomorphism (in \(\Sets\)) between \(\PER(1, R)\) and \(\mathbb{N} / R\).
+
+Lastly, to see that all homsets in \(\PER\) and \(\omegaSets\) are countable, note that all the morphisms in these two categories are tracked by partial recursive functions, and there are only countably many partially recursive functions.
+\end{proof}
