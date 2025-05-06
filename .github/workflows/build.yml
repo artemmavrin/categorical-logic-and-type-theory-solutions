@@ -29,7 +29,7 @@ jobs:
           echo "<html><body><meta http-equiv=\"refresh\" content=\"0; url=./solutions.pdf\" /></body></html>" > html/index.html
       - name: Deploy PDF
         if: ${{ github.ref == 'refs/heads/main' }}
-        uses: JamesIves/github-pages-deploy-action@v4.4.3
+        uses: JamesIves/github-pages-deploy-action@v4.7.3
         with:
           branch: gh-pages
           folder: html
