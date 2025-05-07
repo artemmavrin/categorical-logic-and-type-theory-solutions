@@ -1,0 +1,45 @@
+\begin{exercise}
+Write down a (single-typed) signature for groups and also a (many-typed) signature for vector spaces.
+\end{exercise}
+
+\begin{solution}[Solution, groups]
+A possible single-typed signature for groups is given by a basic type \(\mathsf{G}\) and function symbols
+\begin{align*}
+\cdot &: \mathsf{G},\, \mathsf{G} \to \mathsf{G}, \\
+\mathsf{id} &: () \to \mathsf{G}, \\
+\left(-\right)^{-1} &: \mathsf{G} \to \mathsf{G},
+\end{align*}
+representing the group operation, unit element, and inversion, respectively.
+\end{solution}
+
+\begin{solution}[Solution, vector spaces]
+It is not clear how to represent multiplicative inversion in a field---which is a partial function---so we will cheat and model (left) modules over a ring instead.
+A possible multi-typed signature for modules is given by two basic types \(\mathsf{R}\) (the ring) and \(\mathsf{M}\) (the abelian group on which the ring acts) and function symbols taken from the following collections.
+\begin{enumerate}
+\item
+Function symbols representing the intrinsic ring attributes
+\begin{align*}
+\mathsf{+_{\mathsf{R}}} &: \mathsf{R},\, \mathsf{R} \to \mathsf{R}, \\
+\mathsf{\cdot_{\mathsf{R}}} &: \mathsf{R},\, \mathsf{R} \to \mathsf{R}, \\
+\mathsf{\mathsf{0}_{\mathsf{R}}} &: () \to \mathsf{R}, \\
+\mathsf{\mathsf{1}_{\mathsf{R}}} &: () \to \mathsf{R}, \\
+-_{\mathsf{R}}\left(-\right) &: \mathsf{R} \to \mathsf{R}
+\end{align*}
+(respectively, addition, multiplication, zero, one, and negation).
+\item
+Function symbols representing the intrinsic abelian group attributes
+\begin{align*}
+\mathsf{+_{\mathsf{M}}} &: \mathsf{M},\, \mathsf{M} \to \mathsf{M}, \\
+\mathsf{\mathsf{0}_{\mathsf{M}}} &: () \to \mathsf{M}, \\
+-_{\mathsf{M}}\left(-\right) &: \mathsf{M} \to \mathsf{M}
+\end{align*}
+(respectively, addition, zero, and negation).
+\item
+A single function symbol
+\begin{equation*}
+\cdot_{\mathsf{M}} : \mathsf{R},\,\mathsf{M} \to \mathsf{M}
+\end{equation*}
+representing the action of the ring on the abelian group.
+\qedhere
+\end{enumerate}
+\end{solution}
