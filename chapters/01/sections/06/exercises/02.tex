@@ -1,0 +1,41 @@
+\begin{exercise}
+A many-typed signature is called \textbf{finite} if it has only finitely many types and
+function symbols.
+Define the subcategory of \(\FinSign \hookrightarrow \Sign\) consisting of finite signatures by change-of-base.
+\end{exercise}
+
+\begin{solution}
+Recall that \(\Sign\) can be defined via the change-of-base situation in the bottom right square of the following commutative diagram in \(\Cat\).
+\begin{equation*}
+\begin{tikzcd}
+& & \FinFam(\Sets) \arrow[d, hookrightarrow] \\
+& \Sign \arrow[dr, phantom, " "{pullback}, very near start] \arrow[r] \arrow[d]
+& \Fam(\Sets) \arrow[d] \\
+\FinSets \arrow[r, hookrightarrow]
+& \Sets \arrow[r, "T \mapsto T^* \times T"{below}] & \Sets
+\end{tikzcd}
+\end{equation*}
+This situation can be completed by pullbacks in \(\Cat\) as follows (noting that pullbacks of monic morphisms are monic; cf., e.g., \cite[Proposition 2.5.3]{MR1291599}).
+\begin{equation*}
+\begin{tikzcd}
+\FinSign \arrow[dr, phantom, " "{pullback}, very near start] \arrow[d, hookrightarrow]  \arrow[r, hookrightarrow]
+& \_ \arrow[dr, phantom, " "{pullback}, very near start] \arrow[d, hookrightarrow] \arrow[r, hookrightarrow]
+& \FinFam(\Sets) \arrow[d, hookrightarrow] \\
+\_ \arrow[dr, phantom, " "{pullback}, very near start] \arrow[d] \arrow[r, hookrightarrow]
+& \Sign \arrow[dr, phantom, " "{pullback}, very near start] \arrow[r] \arrow[d]
+& \Fam(\Sets) \arrow[d] \\
+\FinSets \arrow[r, hookrightarrow]
+& \Sets \arrow[r, "T \mapsto T^* \times T"{below}] & \Sets
+\end{tikzcd}
+\end{equation*}
+This presentation recovers \(\FinSign\) as a subcategory of \(\Sign\), and the outer square is a pullback by \exref{1}{1}{5}, which simplifies to the following change-of-base situation.
+\begin{equation*}
+\begin{tikzcd}
+\FinSign \arrow[dr, phantom, " "{pullback}, very near start] \arrow[r] \arrow[d]
+& \FinFam(\Sets) \arrow[d] \\
+\FinSets \arrow[r, "T \mapsto T^* \times T"{below}]
+& \Sets
+\end{tikzcd}
+\qedhere
+\end{equation*}
+\end{solution}
