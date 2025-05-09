@@ -1,0 +1,27 @@
+\begin{exercise}
+Many-typed signatures are sometimes defined (like in [343] or in [282, 2.2.1]) as objects of the category \(\Sign^\prime\) which arises in the following change-of-base situation.
+\begin{equation*}
+\begin{tikzcd}
+\Sign^\prime \arrow[dr, phantom, " "{pullback}, very near start] \arrow[r] \arrow[d]
+& \Sets^{\rightarrow} \arrow[d, "\cod"{right}] \\
+\Sets \arrow[r, "T \mapsto T^* \times T"{below}]
+& \Sets
+\end{tikzcd}
+\qedhere
+\end{equation*}
+\begin{parts}
+\part
+Describe the category \(\Sign^\prime\) in elementary terms.
+\part
+Show that the categories \(\Sign\) and \(\Sign^\prime\) are equivalent.
+\item
+One often prefers \(\Sign\) to \(\Sign^\prime\) because signatures in \(\Sign\) allow \textbf{overloading} of function symbols: for example the use of \(+\) both for addition
+of integers and for addition of reals.
+Explain.
+\end{parts}
+[Another advantage of \(\Sign\) is that
+\begin{tikzcd}[row sep=small]
+\Sign \arrow[d] \\ \Sets
+\end{tikzcd}
+is a \emph{split} fibration.]
+\end{exercise}
