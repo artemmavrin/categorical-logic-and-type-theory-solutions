@@ -7,7 +7,6 @@ Many-typed signatures are sometimes defined (like in [343] or in [282, 2.2.1]) a
 \Sets \arrow[r, "T \mapsto T^* \times T"{below}]
 & \Sets
 \end{tikzcd}
-\qedhere
 \end{equation*}
 \begin{parts}
 \part
@@ -25,3 +24,25 @@ Explain.
 \end{tikzcd}
 is a \emph{split} fibration.]
 \end{exercise}
+
+\begin{partsolution}{i}
+Objects in \(\Sign^\prime\) are ``display-indexed'' families
+\begin{equation*}
+\mathcal{F} : X \to T^* \times T,
+\end{equation*}
+where \(T\) is an ordinary set of \textbf{basic types} and \(X\) is the total space of \textbf{function symbols}.
+The fibre \(\mathcal{F}^{-1}\left(\left\langle\left\langle\sigma_0,\ldots,\sigma_{n-1}\right\rangle,\sigma_n\right\rangle\right) \subseteq X\) over an index \(\left\langle\left\langle\sigma_0,\ldots,\sigma_{n-1}\right\rangle,\sigma_n\right\rangle \in T^* \times T\) is the set of function symbols with \(n\) inputs of types \(\sigma_0, \ldots, \sigma_{n-1}\), respectively, and an output of type \(\sigma_n\).
+
+A morphism in \(\Sign^\prime\) between \(\mathcal{F} : X \to T^* \times T\) and \(\mathcal{G} : Y \to S^* \times S\) is a pair \((u, f)\) where \(u : T \to S\) and \(f : X \to Y\) are functions such that the following diagram commutes
+\begin{equation*}
+\begin{tikzcd}
+X \arrow[r, "f"] \arrow[d, "\mathcal{F}"{left}]
+& Y \arrow[d, "\mathcal{G}"{right}] \\
+T^* \times T \arrow[r, "u^* \times u"]
+& S^* \times S
+\end{tikzcd}
+\qedhere
+\end{equation*}
+
+
+\end{partsolution}
