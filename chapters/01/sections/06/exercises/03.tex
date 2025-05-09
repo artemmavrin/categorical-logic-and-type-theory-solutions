@@ -26,23 +26,39 @@ is a \emph{split} fibration.]
 \end{exercise}
 
 \begin{partsolution}{i}
-Objects in \(\Sign^\prime\) are ``display-indexed'' families
+The category \(\Sign^\prime\) has
+\begin{description}
+\item[objects]
+Pairs \(\Sigma = (T, \mathcal{F})\), where \(T\) is an ordinary set of \textbf{basic types} and
 \begin{equation*}
 \mathcal{F} : X \to T^* \times T,
 \end{equation*}
-where \(T\) is an ordinary set of \textbf{basic types} and \(X\) is the total space of \textbf{function symbols}.
-The fibre \(\mathcal{F}^{-1}\left(\left\langle\left\langle\sigma_0,\ldots,\sigma_{n-1}\right\rangle,\sigma_n\right\rangle\right) \subseteq X\) over an index \(\left\langle\left\langle\sigma_0,\ldots,\sigma_{n-1}\right\rangle,\sigma_n\right\rangle \in T^* \times T\) is the set of function symbols with \(n\) inputs of types \(\sigma_0, \ldots, \sigma_{n-1}\), respectively, and an output of type \(\sigma_n\).
-
-A morphism in \(\Sign^\prime\) between \(\mathcal{F} : X \to T^* \times T\) and \(\mathcal{G} : Y \to S^* \times S\) is a pair \((u, f)\) where \(u : T \to S\) and \(f : X \to Y\) are functions such that the following diagram commutes
+is a ``display-indexed'' family of function symbols with total space \(X\).
+If \(f \in X\) and \(\mathcal{F}(f) = \left\langle\left\langle\sigma_0,\ldots,\sigma_{n-1}\right\rangle,\sigma_n\right\rangle \in T^* \times T\), then \(f\) is a function symbol with \(n\) inputs of types \(\sigma_0, \ldots, \sigma_{n-1}\) and an output of type \(\sigma_n\); this is written
+\begin{equation*}
+f : \sigma_0,\,\ldots,\,\sigma_{n-1} \to \sigma_n.
+\end{equation*}
+The fibre \(\mathcal{F}^{-1}\left(\left\langle\left\langle\sigma_0,\ldots,\sigma_{n-1}\right\rangle,\sigma_n\right\rangle\right)\) over the index \(\left\langle\left\langle\sigma_0,\ldots,\sigma_{n-1}\right\rangle,\sigma_n\right\rangle\) is the set of all such function symbols.
+\item[morphisms]
+Given signatures \(\Sigma = (T, \mathcal{F})\) and \(\Sigma^\prime = (S, \mathcal{G})\) in \(\Sign^\prime\), where 
+\begin{align*}
+\mathcal{F} &: X \to T^* \times T, &
+\mathcal{G} &: Y \to S^* \times S,
+\end{align*}
+a morphism from \(\Sigma\) to \(\Sigma^\prime\) is a pair \((u, \varphi)\) where \(u : T \to S\) and \(\varphi : X \to Y\) are functions such that the following diagram commutes
 \begin{equation*}
 \begin{tikzcd}
-X \arrow[r, "f"] \arrow[d, "\mathcal{F}"{left}]
+X \arrow[r, "\varphi"] \arrow[d, "\mathcal{F}"{left}]
 & Y \arrow[d, "\mathcal{G}"{right}] \\
 T^* \times T \arrow[r, "u^* \times u"]
 & S^* \times S
 \end{tikzcd}
-\qedhere
 \end{equation*}
-
-
+That is, if \(f \in X\) with \(f : \sigma_1,\,\ldots,\,\sigma_{n-1}\to\sigma_n\) (in \(\Sigma\)), then
+\begin{align*}
+\varphi(f) &: u(\sigma_1),\, \ldots,\, u(\sigma_{n-1}) \to u(\sigma_n)
+&&\text{(in \(\Sigma^\prime\))}
+\qedhere
+\end{align*}
+\end{description}
 \end{partsolution}
