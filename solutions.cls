@@ -289,13 +289,24 @@
 % https://tex.stackexchange.com/questions/455396
 \RequirePackage{xstring}
 \RequirePackage{catchfile}
-\CatchFileDef{\githeadfull}{.git/HEAD}{}
-\StrGobbleRight{\githeadfull}{1}[\githead]
-\IfSubStr{\githead}{ref: refs/heads/}{%
-    \StrBehind[2]{\githead}{/}[\gitbranch]%
-    \CatchFileDef{\gitcommit}{.git/refs/heads/\gitbranch}{}}{%
-    \def\gitbranch{detached}%
-    \def\gitcommit{\githead}%
-}
-\StrGobbleRight{\gitcommit}{1}[\gitcommithash]
+\IfFileExists{.git/HEAD}{%
+    \CatchFileDef{\githeadfull}{.git/HEAD}{}%
+    \StrGobbleRight{\githeadfull}{1}[\githead]%
+    \IfSubStr{\githead}{ref: refs/heads/}{%
+        \StrBehind[2]{\githead}{/}[\gitbranch]%
+        \IfFileExists{.git/refs/heads/\gitbranch}{%
+            \CatchFileDef{\gitcommit}{.git/refs/heads/\gitbranch}{}%
+        }{%
+            \def\gitcommit{unknown}%
+        }%
+    }{%
+        \def\gitbranch{detached}%
+        \def\gitcommit{\githead}%
+    }%
+    \StrGobbleRight{\gitcommit}{1}[\gitcommithash]%
+}{%
+    \def\gitbranch{unknown}%
+    \def\gitcommit{unknown}%
+    \def\gitcommithash{unknown}%
+}%
 \newcommand\gitreponame{artemmavrin/categorical-logic-and-type-theory-solutions}
