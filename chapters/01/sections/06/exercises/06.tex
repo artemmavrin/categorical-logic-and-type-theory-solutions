@@ -1,0 +1,20 @@
+\begin{exercise}
+Let \(\Sigma\) be a signature and \(T = |\Sigma|\) its set of types.
+We write \(\SModel(\Sigma)\) for the fibre category over \(\Sigma\) of the fibration
+\begin{tikzcd}[row sep=small]
+\SModel \arrow[d] \\ \Sign
+\end{tikzcd}.
+This is the category of \(\Sigma\)-models.
+\begin{parts}
+\part
+Show that the assignment
+\begin{equation*}
+X = \left(X_\sigma\right)_{\sigma \in T}
+\mapsto \big(\Terms_\tau(X)\big)_{\tau \in T}
+\end{equation*}
+extends to a functor from the category \(\Fam\left(\Sets\right)_T = \Sets^T\) of \(T\)-indexed families of sets to \(\SModel(\Sigma)\).
+\part
+Assume \(\left(\left(A_\sigma\right)_{\sigma \in T},\left\llbracket\_\right\rrbracket\right)\) is a \(\Sigma\)-model.
+Verify that an interpretation \(\left\llbracket\_\right\rrbracket_\rho^\tau : \Terms_\tau(X) \to A_\tau\) is a morphism of \(\Sigma\)-models.
+\end{parts}
+\end{exercise}
