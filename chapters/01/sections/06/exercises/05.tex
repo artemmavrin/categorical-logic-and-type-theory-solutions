@@ -1,0 +1,43 @@
+\begin{exercise}
+The category \(\Sign\) captures signatures of functions.
+A \textbf{signature of predicates} consists of a set of types \(T\) together with predicate symbols \(R : \sigma_1,\,\ldots,\,\sigma_n\) where each \(\sigma_i\) is a type (element of \(T\)).
+Define an appropriate category of such signatures of predicates by change-of-base.
+Define also a category with both function and predicate symbols by change-of-base.
+[Such a category will be introduced in Definition~4.1.1.]
+\end{exercise}
+
+\begin{solution}
+Recall that the category \(\Sign\) of multi-typed function signatures can be defined by the following change of base situation.
+\begin{equation*}
+\begin{tikzcd}
+\Sign \arrow[r] \arrow[d] \arrow[rd, ""{pullback}, very near start, phantom]
+& \Fam(\Sets) \arrow[d] \\
+\Sets \arrow[r, "T \mapsto T^* \times T"] &
+\Sets
+\end{tikzcd}
+\end{equation*}
+In this case, the key for modeling function symbols is the functor \(T \mapsto T^* \times T\) which represents a template for constructing function signatures with a finite list of inputs (\(T^*\)) and one output (\(T\)) out of a set \(T\) of basic types.
+
+The analogous functors generating predicate signatures and function-and-predicate signatures, repsectively, are
+\begin{align*}
+T & \mapsto T^* &
+T & \mapsto T^* \times (T + 1) \cong (T^* \times T) + T^*.
+\end{align*}
+These yield change-of-base situations that define categories \(\Sign^\prime\) and \(\Sign^{\prime\prime}\) of multi-typed signatures of predicates and multi-typed signatures of functions and predicates, as follows.
+\begin{equation*}
+\begin{tikzcd}
+{\Sign^\prime} \arrow[r] \arrow[d] \arrow[rd, ""{pullback}, very near start, phantom]
+& \Fam(\Sets) \arrow[d] \\
+\Sets \arrow[r, "T \mapsto T^*"] &
+\Sets
+\end{tikzcd}
+\qquad
+\begin{tikzcd}
+{\Sign^{\prime\prime}} \arrow[r] \arrow[d] \arrow[rd, ""{pullback}, very near start, phantom]
+& \Fam(\Sets) \arrow[d] \\
+\Sets \arrow[r, "T \mapsto T^* \times (T + 1)"] &
+\Sets
+\end{tikzcd}
+\qedhere
+\end{equation*}
+\end{solution}
