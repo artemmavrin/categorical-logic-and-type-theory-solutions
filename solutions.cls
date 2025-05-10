@@ -284,3 +284,14 @@
 
 % "symbols for theoretical computer science"
 \RequirePackage{stmaryrd}
+
+% Get current git commit and branch
+% https://tex.stackexchange.com/questions/455396
+\RequirePackage{xstring}
+\RequirePackage{catchfile}
+\CatchFileDef{\githeadfull}{.git/HEAD}{}
+\StrGobbleRight{\githeadfull}{1}[\githead]
+\StrBehind[2]{\githead}{/}[\gitbranch]
+\CatchFileDef{\gitcommit}{.git/refs/heads/\gitbranch}{}
+\StrGobbleRight{\gitcommit}{1}[\gitcommithash]
+\newcommand\gitreponame{artemmavrin/categorical-logic-and-type-theory-solutions}
