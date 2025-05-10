@@ -34,4 +34,4 @@ clean:
 	$(LATEXMK) -C
 	$(RM) *.bbl
 	$(RM) *.run.xml
-	$(RM) *.synctex(busy)
+	$(RM) *-SAVE-ERROR
