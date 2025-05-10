@@ -27,7 +27,7 @@ pdf: $(MAIN).pdf
 $(MAIN).pdf: $(MAIN).tex $(CLS) $(BIB) $(TEX)
 	$(LATEXMK) $(LATEXMKFLAGS) -pdflatex="$(LATEX) $(LATEXFLAGS) %O %S" $<
 
-continuous: $(MAIN).tex
+continuous: $(MAIN).tex $(CLS) $(BIB) $(TEX)
 	$(LATEXMK) $(LATEXMKFLAGS) $(CONTINUOUS) -pdflatex="$(LATEX) $(LATEXFLAGS) $(NONSTOP) %O %S" $<
 
 clean:
