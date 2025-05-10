@@ -13,7 +13,7 @@ Many-typed signatures are sometimes defined (like in [343] or in [282, 2.2.1]) a
 Describe the category \(\Sign^\prime\) in elementary terms.
 \part
 Show that the categories \(\Sign\) and \(\Sign^\prime\) are equivalent.
-\item
+\part
 One often prefers \(\Sign\) to \(\Sign^\prime\) because signatures in \(\Sign\) allow \textbf{overloading} of function symbols: for example the use of \(+\) both for addition
 of integers and for addition of reals.
 Explain.
@@ -29,7 +29,7 @@ is a \emph{split} fibration.]
 The category \(\Sign^\prime\) has
 \begin{description}
 \item[objects]
-Pairs \(\Sigma = (T, \mathcal{F})\), where \(T\) is an ordinary set of \textbf{basic types} and
+Pairs \(\Sigma = \langle T, \mathcal{F}\rangle\), where \(T\) is an ordinary set of \textbf{basic types} and
 \begin{equation*}
 \mathcal{F} : X \to T^* \times T,
 \end{equation*}
@@ -40,12 +40,12 @@ f : \sigma_0,\,\ldots,\,\sigma_{n-1} \to \sigma_n.
 \end{equation*}
 The fibre \(\mathcal{F}^{-1}\left(\left\langle\left\langle\sigma_0,\ldots,\sigma_{n-1}\right\rangle,\sigma_n\right\rangle\right)\) over the index \(\left\langle\left\langle\sigma_0,\ldots,\sigma_{n-1}\right\rangle,\sigma_n\right\rangle\) is the set of all such function symbols.
 \item[morphisms]
-Given signatures \(\Sigma = (T, \mathcal{F})\) and \(\Sigma^\prime = (S, \mathcal{G})\) in \(\Sign^\prime\), where 
+Given signatures \(\Sigma = \langle T, \mathcal{F}\rangle\) and \(\Sigma^\prime = \langle S, \mathcal{G}\rangle\) in \(\Sign^\prime\), where 
 \begin{align*}
 \mathcal{F} &: X \to T^* \times T, &
 \mathcal{G} &: Y \to S^* \times S,
 \end{align*}
-a morphism from \(\Sigma\) to \(\Sigma^\prime\) is a pair \((u, \varphi)\) where \(u : T \to S\) and \(\varphi : X \to Y\) are functions such that the following diagram commutes
+a morphism from \(\Sigma\) to \(\Sigma^\prime\) is a pair \(\langle u, \varphi\rangle\) where \(u : T \to S\) and \(\varphi : X \to Y\) are functions such that the following diagram commutes
 \begin{equation*}
 \begin{tikzcd}
 X \arrow[r, "\varphi"] \arrow[d, "\mathcal{F}"{left}]
@@ -61,4 +61,12 @@ That is, if \(f \in X\) with \(f : \sigma_1,\,\ldots,\,\sigma_{n-1}\to\sigma_n\)
 \qedhere
 \end{align*}
 \end{description}
+\end{partsolution}
+
+\begin{partsolution}{ii}
+The argument is nearly identical to the discussion preceding \cite[Proposition~1.2.2]{MR1674451} or the proof of \expartref{1}{2}{3}{ii}.
+\end{partsolution}
+
+\begin{partsolution}{iii}
+In \(\Sign\), function symbols are pointwise-indexed, so every index (i.e., finite list of input types together with an output type) has its own ``namespace'' of function symbols from which to choose, and the same function symbol can occur in the namespaces of multiple indices. In contrast, the function symbols in \(\Sign^\prime\) are taken from a global set and partitioned by index, so no function symbol can be assigned to more than one index.
 \end{partsolution}
