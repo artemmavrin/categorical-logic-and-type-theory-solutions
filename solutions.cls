@@ -281,3 +281,6 @@
 \RequirePackage[style=iso]{datetime2}
 
 \RequirePackage{fontawesome}
+
+% "symbols for theoretical computer science"
+\RequirePackage{stmaryrd}

@@ -1,3 +1,57 @@
 \begin{exercise}
 Describe the category \(\SModel_{\ST}\) of models of single-typed signatures in detail.
 \end{exercise}
+
+\begin{solution}
+Recall (\cite[Definition~1.6.7]{MR1674451}) that the category \(\SModel_{\ST}\) arises from the following stacked change-of-base situations.
+\begin{equation*}
+\begin{tikzcd}[column sep=small]
+\SModel_{\ST} \arrow[drr, phantom, ""{pullback}, very near start] \arrow[rr, hookrightarrow] \arrow[d]
+& & \SModel \arrow[d]
+& \left(\Sigma, \left(A_\sigma\right)_{\sigma \in |\Sigma|}, \left\llbracket\_\right\rrbracket\right) \arrow[d, mapsto] \\
+\Sign_{\ST} \arrow[drr, phantom, ""{pullback}, very near start] \arrow[rr, hookrightarrow] \arrow[d]
+& & \Sign \arrow[d]
+& \Sigma \arrow[d, mapsto] \\
+1 \arrow[rr, "\_ \mapsto 1", hookrightarrow]
+& & \Sets
+& {|\Sigma|}
+\end{tikzcd}
+\end{equation*}
+For the ``single-typed'' left side of this diagram, choose a basic type \(*\)\footnote{%
+This is essentially the same as working in an ``untyped'' system; see \cite[Section~2.5]{MR1674451} or \cite[Section~21.4]{Harper2016}.}.
+
+A single-typed signature \(\Sigma\) (in \(\Sign_{\ST}\)) is then just a pointwise-indexed family of sets \(\left(F_n\right)_{n \in \mathbb{N}}\), where each \(F_n\) is the set of function symbols with \(n\) inputs and one output (all having type \(*\)).
+That is, for \(f \in F_n\) we have
+\begin{equation*}
+f : \underbrace{*,\,\ldots,\,*}_{\text{\(n\) times}} \to *.
+\end{equation*}
+A morphism from \(\Sigma = \left(F_n\right)_{n \in \mathbb{N}}\) to \(\Sigma^\prime = \left(F_n^\prime\right)_{n\in\mathbb{N}}\) in \(\Sign_{\ST}\) is an \(\mathbb{N}\)-indexed family of functions \(\left(\varphi_n : F_n \to F_n^\prime\right)_{n \in \mathbb{N}}\), so that a function symbol with \(n\) inputs in \(\Sigma\) yields a function symbol \(\varphi_n(f)\) with \(n\) inputs in \(\Sigma^\prime\).
+
+Finally, the category \(\SModel_{\ST}\) of (set-theoretic) models of single-typed signatures consists of the following data.
+\begin{description}
+\item[objects]
+Triples of the form \(\left(\Sigma, A, \left\llbracket\_\right\rrbracket\right)\), where \(\Sigma = \left(F_n\right)_{n \in \mathbb{N}}\) is a single-typed signature, \(A\) is the \textbf{carrier set} for the basic type \(*\), and for each \(n \in \mathbb{N}\) and function symbol \(f \in F_n\),
+\begin{equation*}
+\left\llbracket f \right\rrbracket : A^n \to A.
+\end{equation*}
+\item[morphisms]
+A morphism
+\begin{equation*}
+\left(\varphi, H\right) : \left(\Sigma, A, \left\llbracket\_\right\rrbracket\right) \to \left(\Sigma^\prime, A^\prime, \left\llbracket\_\right\rrbracket^\prime\right)
+\end{equation*}
+in \(\SModel_{\ST}\) consists of a morphism of (single-typed) signatures \(\varphi : \Sigma \to \Sigma^\prime\) and a function \(H : A \to A^\prime\) such that the following diagram commutes for each \(n\)-ary function symbol \(f\) in \(\Sigma\).
+\begin{equation*}
+\begin{tikzcd}
+A^n \arrow[r, "H^n"] \arrow[d, "\left\llbracket f\right\rrbracket"{left}]
+& \left(A^\prime\right)^n \arrow[d, "\left\llbracket \varphi(f)\right\rrbracket^\prime"{right}] \\
+A \arrow[r, "H"] & A^\prime
+\end{tikzcd}
+\end{equation*}
+That is, for all \(a_0, \ldots, a_{n-1} \in A\) we have
+\begin{equation*}
+H\left(\left\llbracket f\right\rrbracket\left(a_0, \ldots, a_{n-1}\right)\right)
+= \left\llbracket\varphi(f)\right\rrbracket^\prime\left(H(a_0), \ldots, H(a_{n-1})\right).
+\qedhere
+\end{equation*}
+\end{description}
+\end{solution}
