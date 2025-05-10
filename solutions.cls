@@ -291,7 +291,11 @@
 \RequirePackage{catchfile}
 \CatchFileDef{\githeadfull}{.git/HEAD}{}
 \StrGobbleRight{\githeadfull}{1}[\githead]
-\StrBehind[2]{\githead}{/}[\gitbranch]
-\CatchFileDef{\gitcommit}{.git/refs/heads/\gitbranch}{}
+\IfSubStr{\githead}{ref: refs/heads/}{%
+    \StrBehind[2]{\githead}{/}[\gitbranch]%
+    \CatchFileDef{\gitcommit}{.git/refs/heads/\gitbranch}{}}{%
+    \def\gitbranch{detached}%
+    \def\gitcommit{\githead}%
+}
 \StrGobbleRight{\gitcommit}{1}[\gitcommithash]
 \newcommand\gitreponame{artemmavrin/categorical-logic-and-type-theory-solutions}
