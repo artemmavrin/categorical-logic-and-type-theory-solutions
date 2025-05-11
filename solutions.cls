@@ -69,6 +69,7 @@
     headpunct={.},
     postheadhook={%
         \@exerciselabel{\arabic{chapter}}{\arabic{section}}{\arabic{exercise}}%
+        \phantomsection%
         \addcontentsline{toc}{subsection}{\arabic{chapter}.\arabic{section}.\arabic{exercise}}%
     },
     spacebelow=\parsep,
