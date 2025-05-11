@@ -18,3 +18,48 @@ Assume \(\left(\left(A_\sigma\right)_{\sigma \in T},\left\llbracket\_\right\rrbr
 Verify that an interpretation \(\left\llbracket\_\right\rrbracket_\rho^\tau : \Terms_\tau(X) \to A_\tau\) is a morphism of \(\Sigma\)-models.
 \end{parts}
 \end{exercise}
+
+\begin{partsolution}{i}
+We will define a ``term model'' functor
+\begin{equation*}
+\Terms : \Sets^T \to \SModel(\Sigma)
+\end{equation*}
+First, consider the following ``pre-functorial'' data (assignments of objects and morphisms in \(\Sets^T\) to objects and morphisms in \(\SModel(\Sigma)\)).
+\begin{description}
+\item[objects]
+For a \(T\)-indexed family of sets \(X = \left(X_\sigma\right)_{\sigma \in T}\) (viewed as a set of variables for each of the basic types in \(T\)),
+\begin{align*}
+X \mapsto & \left(\left(\Terms_\tau(X)\right)_{\tau \in T}, \left\llbracket\_\right\rrbracket_X\right) \\
+&= \text{the \textbf{term model} of \(\Sigma\) with variables from \(X\)}.
+\end{align*}
+That is, the right-hand side is the model of \(\Sigma\) whose \textbf{carrier sets} are \(\left(\Terms_\tau(X)\right)_{\tau \in T}\) and whose \textbf{interpretation function} \(\left\llbracket\_\right\rrbracket_X\) is given, for a function symbol \(F : \tau_0,\,\ldots,\,\tau_{n-1} \to \tau_n\) in \(\Sigma\), by
+\begin{gather*}
+\left\llbracket F \right\rrbracket_X : \Terms_{\tau_0}(X) \times \cdots \times \Terms_{\tau_{n-1}}(X) \to \Terms_{\tau_n}(X) \\
+(M_0, \ldots, M_{n-1}) \mapsto F (M_0, \ldots, M_{n-1}).
+\end{gather*}
+\item[morphisms]
+Consider a morphism \(f = \left(f_\sigma : X_\sigma \to Y_\sigma\right)_{\sigma \in T} : X \to Y\) in \(\Sets^T\).
+Viewing \(X\) as a set of variables used to interpret the term model \(\left(\left(\Terms_\tau(Y)\right)_{\tau \in T}, \left\llbracket\_\right\rrbracket_Y\right)\), we define a \textbf{valuation}
+\begin{align*}
+\rho(f) &\coloneq \left(\rho_\sigma(f) : X_\sigma \to \Terms_\sigma(Y)\right)_{\tau \in T} \\
+\rho_\sigma(f) &\coloneq x \mapsto f_\sigma(x) \qquad\text{(as a term in \(\Terms_\sigma(Y)\))}.
+\end{align*}
+This yields an \textbf{interpretation}
+\begin{align*}
+\left\llbracket\_\right\rrbracket_f
+\coloneq \left(\left\llbracket\_\right\rrbracket_{\rho(f)}^\tau : \Terms_\tau(X) \to \Terms_\tau(Y)\right)_{\tau \in T},
+\end{align*}
+which is defined by induction on the structure of terms by
+\begin{align*}
+\left\llbracket x \right\rrbracket_{\rho(f)}^\tau &\coloneq \rho_\tau(f)(x) = f_\sigma(x) &\text{for \(x \in X_\tau\)}
+\end{align*}
+and, for a function symbol \(F : \tau_0,\,\ldots,\,\tau_{n-1} \to \tau_n\) in \(\Sigma\) and terms \(M_0 \in \Terms_{\tau_0}(X), \ldots, M_{n-1} \in \Terms_{\tau_{n-1}}(X)\),
+\begin{align*}
+\left\llbracket F(M_0,\ldots,M_{n-1}) \right\rrbracket_{\rho(f)}^{\tau_n}
+&\coloneq \left\llbracket F \right\rrbracket_Y\left(\left\llbracket M_0 \right\rrbracket_{\rho(f)}^{\tau_0}, \ldots, \left\llbracket M_{n-1} \right\rrbracket_{\rho(f)}^{\tau_{n-1}}\right) \\
+&= F \left(\left\llbracket M_0 \right\rrbracket_{\rho(f)}^{\tau_0}, \ldots, \left\llbracket M_{n-1} \right\rrbracket_{\rho(f)}^{\tau_{n-1}}\right).
+\end{align*}
+% TODO: verify that [[_]]_f is a morphism of \Sigma-models
+\end{description}
+% TODO: verify that the above data are functorial
+\end{partsolution}
