@@ -63,3 +63,42 @@ and, for a function symbol \(F : \tau_0,\,\ldots,\,\tau_{n-1} \to \tau_n\) in \(
 \end{description}
 % TODO: verify that the above data are functorial
 \end{partsolution}
+
+\begin{partsolution}{ii}
+Let \(\left(\left(A_\sigma\right)_{\sigma\in T}, \left\llbracket\_\right\rrbracket\right)\) be a \(\Sigma\)-model, \(X = \left(X_\sigma\right)_{\sigma \in T}\) a \(T\)-indexed family of sets (viewed as sets of variables for the basic types in \(T\)), and \(\rho = \left(\rho_\sigma : X_\sigma \to A_\sigma\right)_{\sigma \in T}\) a valuation.
+Then \(\rho\) induces an \textbf{interpretation}
+\begin{equation*}
+\left\llbracket\_\right\rrbracket_\rho
+\coloneq \left(\left\llbracket\_\right\rrbracket_\rho^\tau : \Terms_\tau(X) \to A_\tau\right)_{\tau \in T},
+\end{equation*}
+which is defined by induction on the structure of terms by
+\begin{equation*}
+\left\llbracket x \right\rrbracket_\rho^\tau \coloneq \rho_\tau(x)
+\end{equation*}
+for \(x \in X_\tau\) and
+\begin{equation}
+\label{eq:1.6.6:interpretation-definition}
+\left\llbracket F(M_0,\ldots,M_{n-1}) \right\rrbracket_\rho^{\tau_n}
+\coloneq \left\llbracket F \right\rrbracket \left(\left\llbracket M_0 \right\rrbracket_\rho^{\tau_0}, \ldots, \left\llbracket M_{n-1} \right\rrbracket_\rho^{\tau_{n-1}}\right)
+\end{equation}
+for function symbols \(F : \tau_0,\,\ldots,\,\tau_{n-1} \to \tau_n\) in \(\Sigma\) and terms \(M_i \in \Terms_{\tau_i}(X)\) (\(i \in \{0, \ldots, n - 1\}\)).
+In fact, \eqref{eq:1.6.6:interpretation-definition} immediately yields
+\begin{align*}
+\left\llbracket F\right\rrbracket\left(\left\llbracket M_0\right\rrbracket_\rho^{\tau_0},\ldots,\left\llbracket M_{n-1}\right\rrbracket_\rho^{\tau_{n-1}}\right)
+&= \left\llbracket F(M_0,\ldots,M_{n-1}) \right\rrbracket_\rho^{\tau_n} \\
+&= \left\llbracket \left\llbracket F\right\rrbracket_X(M_0,\ldots,M_{n-1}) \right\rrbracket_\rho^{\tau_n}.
+\end{align*}
+In other words, the following diagram commutes for every function symbol \(F : \tau_0,\,\ldots,\,\tau_{n-1} \to \tau_n\) in \(\Sigma\), whence \(\left\llbracket\_\right\rrbracket_\rho\) is a morphism of \(\Sigma\)-models from the term model \(\left(\left(\Terms_\tau(X)\right)_{\tau \in T}, \left\llbracket\_\right\rrbracket_X\right)\) to \(\left(\left(A_\sigma\right)_{\sigma\in T}, \left\llbracket\_\right\rrbracket\right)\).
+\begin{equation*}
+\begin{tikzcd}
+\Terms_{\tau_0}(X) \times\cdots\times \Terms_{\tau_{n-1}}(X)
+\arrow[d, "\left\llbracket F\right\rrbracket_X"{left}]
+\arrow[rr, "\left\llbracket\_\right\rrbracket_\rho^{\tau_0} \times\cdots\times \left\llbracket\_\right\rrbracket_\rho^{\tau_{n-1}}"]
+&& A_{\tau_0} \times\cdots\times A_{\tau_{n-1}}
+\arrow[d, "\left\llbracket F\right\rrbracket"{right}] \\
+\Terms_{\tau_n}(X) \arrow[rr, "\left\llbracket\_\right\rrbracket_\rho^{\tau_n}"]
+&& A_{\tau_n}
+\end{tikzcd}
+\qedhere
+\end{equation*}
+\end{partsolution}
