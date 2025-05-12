@@ -43,3 +43,22 @@ Next, if \(\tau_0,\ldots,\tau_n\in T\), \(M_0 \in \Terms_{\tau_0}(X), \ldots, M_
 \qedhere
 \end{align*}
 \end{partsolution}
+
+\begin{partsolution}{ii}
+Let \(\left(\left(A_\sigma\right)_{\sigma\in T},\left\llbracket\_\right\rrbracket_A\right)\) and \(\left(\left(B_\sigma\right)_{\sigma\in T},\left\llbracket\_\right\rrbracket_B\right)\) be \(\Sigma\)-models, and let \(H = \left(H_\sigma : A_\sigma \to B_\sigma\right)_{\sigma \in T}\) be a morphism of \(\Sigma\)-models.
+If \(\tau\in T\) and \(x \in X_\tau\), then
+\begin{equation*}
+H_\tau\left(\left\llbracket x \right\rrbracket_{A,\,\rho}^\tau\right)
+=H_\tau\left(\rho_\tau(x)\right)
+=\left\llbracket x \right\rrbracket_{B,\,H \circ \rho}^\tau.
+\end{equation*}
+Next, if \(\tau_0,\ldots,\tau_n\in T\), \(M_0 \in \Terms_{\tau_0}(X), \ldots, M_{n-1} \in \Terms_{\tau_{n-1}}(X)\), and \(F : \tau_0,\,\ldots,\,\tau_{n-1} \to \tau_n\) is a function symbol in \(\Sigma\), then, by induction,
+\begin{align*}
+&H_{\tau_n}\left(\left\llbracket F\left(M_0,\ldots,M_{n-1}\right)\right\rrbracket_{A,\,\rho}^{\tau_n}\right) \\
+&\qquad= H_{\tau_n}\left(\left\llbracket F\right\rrbracket_A\left(\left\llbracket M_0\right\rrbracket_{A,\,\rho}^{\tau_0},\ldots,\left\llbracket M_{n-1}\right\rrbracket_{A,\,\rho}^{\tau_{n-1}}\right)\right) \\
+&\qquad= \left\llbracket F\right\rrbracket_B\left(H_{\tau_0}\left(\left\llbracket M_0\right\rrbracket_{A,\,\rho}^{\tau_0}\right),\ldots,H_{\tau_{n-1}}\left(\left\llbracket M_{n-1}\right\rrbracket_{A,\,\rho}^{\tau_{n-1}}\right)\right) \\
+&\qquad= \left\llbracket F\right\rrbracket_B\left(\left\llbracket M_0\right\rrbracket_{B,\,H\circ\rho}^{\tau_0},\ldots,\left\llbracket M_{n-1}\right\rrbracket_{B,\,H\circ\rho}^{\tau_{n-1}}\right) \\
+&\qquad=\left\llbracket F\left(M_0,\ldots,M_{n-1}\right) \right\rrbracket_{B,\,H \circ \rho}^{\tau_n}.
+\qedhere
+\end{align*}
+\end{partsolution}
