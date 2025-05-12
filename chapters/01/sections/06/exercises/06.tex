@@ -38,30 +38,58 @@ That is, the right-hand side is the model of \(\Sigma\) whose \textbf{carrier se
 (M_0, \ldots, M_{n-1}) \mapsto F (M_0, \ldots, M_{n-1}).
 \end{gather*}
 \item[morphisms]
-Consider a morphism \(f = \left(f_\sigma : X_\sigma \to Y_\sigma\right)_{\sigma \in T} : X \to Y\) in \(\Sets^T\).
-Viewing \(X\) as a set of variables used to interpret the term model \(\left(\left(\Terms_\tau(Y)\right)_{\tau \in T}, \left\llbracket\_\right\rrbracket_Y\right)\), we define a \textbf{valuation}
+For a morphism \(f = \left(f_\sigma : X_\sigma \to Y_\sigma\right)_{\sigma \in T} : X \to Y\) in \(\Sets^T\),
+\begin{equation*}
+f \mapsto \left\llbracket\_\right\rrbracket_f : \left(\left(\Terms_\tau(X)\right)_{\tau \in T}, \left\llbracket\_\right\rrbracket_X\right) \to \left(\left(\Terms_\tau(Y)\right)_{\tau \in T}, \left\llbracket\_\right\rrbracket_Y\right)
+\end{equation*}
+defined as follows.
+Viewing \(X\) as a set of variables used to interpret the term model \(\left(\left(\Terms_\tau(Y)\right)_{\tau \in T}, \left\llbracket\_\right\rrbracket_Y\right)\), define a \textbf{valuation}
 \begin{align*}
 \rho(f) &\coloneq \left(\rho_\sigma(f) : X_\sigma \to \Terms_\sigma(Y)\right)_{\sigma \in T} \\
 \rho_\sigma(f) &\coloneq x \mapsto f_\sigma(x) \qquad\text{(as a term in \(\Terms_\sigma(Y)\))}.
 \end{align*}
-This yields an \textbf{interpretation}
+This yields an interpretation
 \begin{align*}
 \left\llbracket\_\right\rrbracket_f
-\coloneq \left(\left\llbracket\_\right\rrbracket_{\rho(f)}^\tau : \Terms_\tau(X) \to \Terms_\tau(Y)\right)_{\tau \in T},
+\coloneq \left\llbracket\_\right\rrbracket_{\rho(f)}
+= \left(\left\llbracket\_\right\rrbracket_{\rho(f)}^\tau : \Terms_\tau(X) \to \Terms_\tau(Y)\right)_{\tau \in T},
 \end{align*}
-which is defined by induction on the structure of terms by
-\begin{align*}
-\left\llbracket x \right\rrbracket_{\rho(f)}^\tau &\coloneq \rho_\tau(f)(x) = f_\tau(x) &\text{for \(x \in X_\tau\)}
-\end{align*}
-and, for a function symbol \(F : \tau_0,\,\ldots,\,\tau_{n-1} \to \tau_n\) in \(\Sigma\) and terms \(M_0 \in \Terms_{\tau_0}(X), \ldots, M_{n-1} \in \Terms_{\tau_{n-1}}(X)\),
-\begin{align*}
-\left\llbracket F(M_0,\ldots,M_{n-1}) \right\rrbracket_{\rho(f)}^{\tau_n}
-&\coloneq \left\llbracket F \right\rrbracket_Y\left(\left\llbracket M_0 \right\rrbracket_{\rho(f)}^{\tau_0}, \ldots, \left\llbracket M_{n-1} \right\rrbracket_{\rho(f)}^{\tau_{n-1}}\right) \\
-&= F \left(\left\llbracket M_0 \right\rrbracket_{\rho(f)}^{\tau_0}, \ldots, \left\llbracket M_{n-1} \right\rrbracket_{\rho(f)}^{\tau_{n-1}}\right).
-\end{align*}
-% TODO: verify that [[_]]_f is a morphism of \Sigma-models
+which is a morphism of \(\Sigma\)-models from \(\left(\left(\Terms_\tau(X)\right)_{\tau \in T}, \left\llbracket\_\right\rrbracket_X\right)\) to \(\left(\left(\Terms_\tau(Y)\right)_{\tau \in T}, \left\llbracket\_\right\rrbracket_Y\right)\) by \partref{1}{6}{6}{ii}.
 \end{description}
-% TODO: verify that the above data are functorial
+It remains to verify that these assignments are functorial.
+First, induction on the structure of terms shows that
+\begin{equation*}
+\left\llbracket t\right\rrbracket_{\rho(\id_X)}^\tau
+= t
+\end{equation*}
+for every term \(t \in \Terms_\tau(X)\) and every basic type \(\tau\), so that
+\begin{equation*}
+\left\llbracket\_\right\rrbracket_{\id_X}
+= \id_{\left(\left(\Terms_\tau(X)\right)_{\tau \in T}, \left\llbracket\_\right\rrbracket_X\right)}.
+\end{equation*}
+Second, for morphisms \(f : X \to Y\) and \(g : Y \to Z\) in \(\Sets^T\), we have
+\begin{align*}
+\left\llbracket x \right\rrbracket_{\rho(g \circ f)}^\tau
+&= \left(g \circ f\right)_\tau(x)
+= g_\tau\left(f_\tau(x)\right)
+= \left\llbracket \left\llbracket x \right\rrbracket_{\rho(f)}^\tau \right\rrbracket_{\rho(g)}^\tau
+&\text{for \(x \in X_\tau\)}
+\end{align*}
+and, by induction on terms, for a function symbol \(F : \tau_0,\,\ldots,\,\tau_{n-1} \to \tau_n\) in \(\Sigma\) and terms \(M_0 \in \Terms_{\tau_0}(X),\ldots,M_{n-1} \in \Terms_{\tau_{n-1}}(X)\),
+\begin{align*}
+\left\llbracket F(M_0,\ldots,M_{n-1}) \right\rrbracket_{\rho(g \circ f)}^{\tau_n}
+&= \left\llbracket F\right\rrbracket_Z\left(\left\llbracket M_0 \right\rrbracket_{\rho(g \circ f)}^{\tau_0},\ldots,\left\llbracket M_{n-1} \right\rrbracket_{\rho(g \circ f)}^{\tau_{n-1}}\right) \\
+&= \left\llbracket F\right\rrbracket_Z\left(\left\llbracket \left\llbracket M_0 \right\rrbracket_{\rho(f)}^{\tau_0} \right\rrbracket_{\rho(g)}^{\tau_0},\ldots,\left\llbracket \left\llbracket M_{n-1} \right\rrbracket_{\rho(f)}^{\tau_{n-1}} \right\rrbracket_{\rho(g)}^{\tau_{n-1}}\right) \\
+&= \left\llbracket F(\left\llbracket M_0 \right\rrbracket_{\rho(f)}^{\tau_0},\ldots,\left\llbracket M_{n-1}\right\rrbracket_{\rho(f)}^{\tau_{n-1}}) \right\rrbracket_{\rho(g)}^{\tau_n} \\
+&= \left\llbracket \left\llbracket F\right\rrbracket_Y(\left\llbracket M_0 \right\rrbracket_{\rho(f)}^{\tau_0},\ldots,\left\llbracket M_{n-1}\right\rrbracket_{\rho(f)}^{\tau_{n-1}}) \right\rrbracket_{\rho(g)}^{\tau_n} \\
+&= \left\llbracket \left\llbracket F(M_0,\ldots,M_{n-1})\right\rrbracket_{\rho(f)}^{\tau_n} \right\rrbracket_{\rho(g)}^{\tau_n}.
+\end{align*}
+We conclude that
+\begin{equation*}
+\left\llbracket\_\right\rrbracket_{g \circ f}
+= \left\llbracket\_\right\rrbracket_g \circ \left\llbracket\_\right\rrbracket_f
+\end{equation*}
+so \(\Terms : \Sets^T \to \SModel(\Sigma)\) is a functor.
 \end{partsolution}
 
 \begin{partsolution}{ii}
