@@ -16,3 +16,30 @@ H\left(\left\llbracket M \right\rrbracket_\rho\right)
 \end{equation*}
 \end{parts}
 \end{exercise}
+
+\begin{partsolution}{i}
+We proceed by induction on terms.
+First, for \(\tau\in T\), \(x, y \in X_\tau\), and \(N \in \Terms_\tau(X)\),
+\begin{align*}
+\left\llbracket y\left[N/x\right]\right\rrbracket_\rho^\tau
+&=\begin{cases}
+\left\llbracket N\right\rrbracket_\rho^\tau & \text{if \(y = x\)} \\
+\left\llbracket y\right\rrbracket_\rho^\tau & \text{otherwise}
+\end{cases} \\
+&=\begin{cases}
+\left\llbracket N\right\rrbracket_\rho^\tau & \text{if \(y = x\)} \\
+\rho_\tau(y) & \text{otherwise}
+\end{cases} \\
+&= \rho_\tau(x \mapsto \left\llbracket N\right\rrbracket_\rho^\tau)(y) \\
+&=\left\llbracket y\right\rrbracket_{\rho(x \mapsto \left\llbracket N\right\rrbracket_\rho^\tau)}^\tau.
+\end{align*}
+Next, if \(\tau_0,\ldots,\tau_n\in T\), \(M_0 \in \Terms_{\tau_0}(X), \ldots, M_{n-1} \in \Terms_{\tau_{n-1}}(X)\), and \(F : \tau_0,\,\ldots,\,\tau_{n-1} \to \tau_n\) is a function symbol in \(\Sigma\), then, by induction,
+\begin{align*}
+&\left\llbracket F(M_0,\ldots,M_{n-1})\left[N/x\right]\right\rrbracket_\rho^{\tau_n} \\
+&\qquad=\left\llbracket F(M_0\left[N/x\right],\ldots,M_{n-1}\left[N/x\right])\right\rrbracket_\rho^{\tau_n} \\
+&\qquad=\left\llbracket F\right\rrbracket\left(\left\llbracket M_0\left[N/x\right]\right\rrbracket_\rho^{\tau_0},\ldots,\left\llbracket M_{n-1}\left[N/x\right]\right\rrbracket_\rho^{\tau_{n-1}}\right) \\
+&\qquad=\left\llbracket F\right\rrbracket\left(\left\llbracket M_0\right\rrbracket_{\rho(x \mapsto \left\llbracket N\right\rrbracket_\rho^\tau)}^{\tau_0},\ldots,\left\llbracket M_{n-1}\right\rrbracket_{\rho(x \mapsto \left\llbracket N\right\rrbracket_\rho^\tau)}^{\tau_{n-1}}\right) \\
+&\qquad=\left\llbracket F(M_0,\ldots,M_{n-1})\right\rrbracket_{\rho(x \mapsto \left\llbracket N\right\rrbracket_\rho^\tau)}^{\tau_n}.
+\qedhere
+\end{align*}
+\end{partsolution}
