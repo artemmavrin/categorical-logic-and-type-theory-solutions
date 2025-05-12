@@ -1,0 +1,64 @@
+\begin{exercise}
+Let \(\left(\left(A_\sigma\right),\left\llbracket\_\right\rrbracket\right)\) be a \(\Sigma\)-model and \(\rho\) a valuation \(\left(X_\sigma \to A_\sigma\right)\).
+\begin{parts}
+\part
+Show that
+\begin{equation*}
+\left\llbracket M\left[N/x\right]\right\rrbracket_\rho
+= \left\llbracket M\right\rrbracket_{\rho(x \mapsto \left\llbracket N\right\rrbracket_\rho)}.
+\end{equation*}
+\part
+Let \(\left(\left(B_\sigma\right),\left\llbracket\_\right\rrbracket\right)\) be another \(\Sigma\)-model and \(H_\sigma : A_\sigma \to B_\sigma\) be a morphism of \(\Sigma\)-models (\emph{i.e.} a morphism in the fibre of \(\SModel\) over \(\Sigma\)).
+Show that
+\begin{equation*}
+H\left(\left\llbracket M \right\rrbracket_\rho\right)
+= \left\llbracket M \right\rrbracket_{H \circ \rho}.
+\end{equation*}
+\end{parts}
+\end{exercise}
+
+\begin{partsolution}{i}
+We proceed by induction on terms.
+First, for \(\tau\in T\), \(x, y \in X_\tau\), and \(N \in \Terms_\tau(X)\),
+\begin{align*}
+\left\llbracket y\left[N/x\right]\right\rrbracket_\rho^\tau
+&=\begin{cases}
+\left\llbracket N\right\rrbracket_\rho^\tau & \text{if \(y = x\)} \\
+\left\llbracket y\right\rrbracket_\rho^\tau & \text{otherwise}
+\end{cases} \\
+&=\begin{cases}
+\left\llbracket N\right\rrbracket_\rho^\tau & \text{if \(y = x\)} \\
+\rho_\tau(y) & \text{otherwise}
+\end{cases} \\
+&= \rho_\tau(x \mapsto \left\llbracket N\right\rrbracket_\rho^\tau)(y) \\
+&=\left\llbracket y\right\rrbracket_{\rho(x \mapsto \left\llbracket N\right\rrbracket_\rho^\tau)}^\tau.
+\end{align*}
+Next, if \(\tau_0,\ldots,\tau_n\in T\), \(M_0 \in \Terms_{\tau_0}(X), \ldots, M_{n-1} \in \Terms_{\tau_{n-1}}(X)\), and \(F : \tau_0,\,\ldots,\,\tau_{n-1} \to \tau_n\) is a function symbol in \(\Sigma\), then, by induction,
+\begin{align*}
+&\left\llbracket F(M_0,\ldots,M_{n-1})\left[N/x\right]\right\rrbracket_\rho^{\tau_n} \\
+&\qquad=\left\llbracket F(M_0\left[N/x\right],\ldots,M_{n-1}\left[N/x\right])\right\rrbracket_\rho^{\tau_n} \\
+&\qquad=\left\llbracket F\right\rrbracket\left(\left\llbracket M_0\left[N/x\right]\right\rrbracket_\rho^{\tau_0},\ldots,\left\llbracket M_{n-1}\left[N/x\right]\right\rrbracket_\rho^{\tau_{n-1}}\right) \\
+&\qquad=\left\llbracket F\right\rrbracket\left(\left\llbracket M_0\right\rrbracket_{\rho(x \mapsto \left\llbracket N\right\rrbracket_\rho^\tau)}^{\tau_0},\ldots,\left\llbracket M_{n-1}\right\rrbracket_{\rho(x \mapsto \left\llbracket N\right\rrbracket_\rho^\tau)}^{\tau_{n-1}}\right) \\
+&\qquad=\left\llbracket F(M_0,\ldots,M_{n-1})\right\rrbracket_{\rho(x \mapsto \left\llbracket N\right\rrbracket_\rho^\tau)}^{\tau_n}.
+\qedhere
+\end{align*}
+\end{partsolution}
+
+\begin{partsolution}{ii}
+Let \(\left(\left(A_\sigma\right)_{\sigma\in T},\left\llbracket\_\right\rrbracket_A\right)\) and \(\left(\left(B_\sigma\right)_{\sigma\in T},\left\llbracket\_\right\rrbracket_B\right)\) be \(\Sigma\)-models, and let \(H = \left(H_\sigma : A_\sigma \to B_\sigma\right)_{\sigma \in T}\) be a morphism of \(\Sigma\)-models.
+If \(\tau\in T\) and \(x \in X_\tau\), then
+\begin{equation*}
+H_\tau\left(\left\llbracket x \right\rrbracket_{A,\,\rho}^\tau\right)
+=H_\tau\left(\rho_\tau(x)\right)
+=\left\llbracket x \right\rrbracket_{B,\,H \circ \rho}^\tau.
+\end{equation*}
+Next, if \(\tau_0,\ldots,\tau_n\in T\), \(M_0 \in \Terms_{\tau_0}(X), \ldots, M_{n-1} \in \Terms_{\tau_{n-1}}(X)\), and \(F : \tau_0,\,\ldots,\,\tau_{n-1} \to \tau_n\) is a function symbol in \(\Sigma\), then, by induction,
+\begin{align*}
+&H_{\tau_n}\left(\left\llbracket F\left(M_0,\ldots,M_{n-1}\right)\right\rrbracket_{A,\,\rho}^{\tau_n}\right) \\
+&\qquad= H_{\tau_n}\left(\left\llbracket F\right\rrbracket_A\left(\left\llbracket M_0\right\rrbracket_{A,\,\rho}^{\tau_0},\ldots,\left\llbracket M_{n-1}\right\rrbracket_{A,\,\rho}^{\tau_{n-1}}\right)\right) \\
+&\qquad= \left\llbracket F\right\rrbracket_B\left(H_{\tau_0}\left(\left\llbracket M_0\right\rrbracket_{A,\,\rho}^{\tau_0}\right),\ldots,H_{\tau_{n-1}}\left(\left\llbracket M_{n-1}\right\rrbracket_{A,\,\rho}^{\tau_{n-1}}\right)\right) \\
+&\qquad= \left\llbracket F\right\rrbracket_B\left(\left\llbracket M_0\right\rrbracket_{B,\,H\circ\rho}^{\tau_0},\ldots,\left\llbracket M_{n-1}\right\rrbracket_{B,\,H\circ\rho}^{\tau_{n-1}}\right) \\
+&\qquad=\left\llbracket F\left(M_0,\ldots,M_{n-1}\right) \right\rrbracket_{B,\,H \circ \rho}^{\tau_n}.
+\qedhere
+\end{align*}
+\end{partsolution}
