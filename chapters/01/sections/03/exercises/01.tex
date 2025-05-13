@@ -1,0 +1,20 @@
+\begin{exercise}~ %
+\begin{parts}
+\part
+Show that in the total category \(\simple(\cat{B})\) of a simple fibration
+\begin{tikzcd}[row sep=small]
+\simple(\cat{B}) \arrow[d] \\ \cat{B}
+\end{tikzcd}
+a morphism \((u, f) : (I, X) \to (J, Y)\) is Cartesian if and only if there is an isomorphism \(h : I \times X \overset{\cong}{\to} I \times Y\) in \(\cat{B}\) such that \(\pi \circ h = \pi\) and \(\pi^\prime \circ h = f\).
+\part
+Show that the assignment \((I, X) \mapsto I^*(X) = \begin{pmatrix}
+\begin{tikzcd}[row sep=small]
+I \times X \arrow[d, "\pi"] \\ I
+\end{tikzcd}
+\end{pmatrix}\)
+extends to a full and faithful functor \(\simple(\cat{B}) \to \cat{B}^{\rightarrow}\).
+Prove that it maps Cartesian morphisms to pullback squares.
+
+[This functor restricts to a full and faithful functor \(\cat{B}\sslash I \to \cat{B} / I\).]
+\end{parts}
+\end{exercise}
