@@ -262,6 +262,10 @@
     [,\space\space] % separator
     [] % end
 
+% Include the table of contents in the table of contents
+% https://tex.stackexchange.com/questions/106093
+\RequirePackage{tocbibind}
+
 % Change appearance of chapter and section headings
 \RequirePackage{titlesec}
 \titleformat{\chapter}%
