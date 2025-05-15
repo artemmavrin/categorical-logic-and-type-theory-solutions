@@ -50,6 +50,69 @@ f \circ \left\langle f, g\right\rangle^{-1}
 \end{proof}
 
 \begin{partsolution}{i}
+(\(\Longrightarrow\))
+Suppose \((u, f) : (I, X) \to (J, Y)\) is Cartesian in \(\simple(\cat{B})\) over \(u : I \to J\).
+Consider the unique morphism \((\id, g) : (I, Y) \to (I, X)\) in \(\simple(\cat{B})\) over \(\id : I \to I\) such that the following diagram commutes.
+\begin{equation*}
+\begin{tikzcd}[row sep=small]
+{(I, Y)} \arrow[dd, -Triangle] \arrow[drr, bend left=20, near end, "{(u, \pi^\prime)}"{above right}] \arrow[dr, dashed, "{(\id, g)}"{above right}] \\
+& {(I, X)} \arrow[dd, -Triangle] \arrow[r, "{(u, f)}"{above}]
+& {(J, Y)} \arrow[dd, -Triangle] \\
+I \arrow[dr, "\id"{below left}] \\
+& I \arrow[r, "u"]
+& J
+\end{tikzcd}
+\end{equation*}
+In particular,
+\begin{equation*}
+\pi^\prime = f \circ \left\langle \pi, g\right\rangle.
+\end{equation*}
+We will show that \(\left\langle\pi, f\right\rangle : I \times X \to I \times Y\) is an isomorphism in \(\cat{B}\) by showing that \(\left\langle\pi, g\right\rangle : I \times Y \to I \times X\) is its inverse.
+On the one hand, we have
+\begin{align*}
+\left\langle\pi, f\right\rangle \circ \left\langle\pi, g\right\rangle
+&= \left\langle \pi \circ \left\langle\pi, g\right\rangle, f \circ \left\langle\pi, g\right\rangle\right\rangle \\
+&= \left\langle \pi, \pi^\prime\right\rangle \\
+&= \id.
+\end{align*}
+On the other hand, we have
+\begin{equation*}
+f = \pi^\prime \circ \left\langle\pi, f\right\rangle,
+\end{equation*}
+so the upper triangle in the following diagram commutes, which makes the whole diagram commute.
+\begin{equation*}
+\begin{tikzcd}[row sep=small]
+{(I, X)} \arrow[dd, -Triangle] \arrow[ddrrr, bend left, "{(u, f)}"{description}] \arrow[dr, "{\left(\id, f\right)}"{above right}] \\
+& {(I, Y)}  \arrow[dd, -Triangle] \arrow[drr, bend left=20, "{(u, \pi^\prime)}"{description}] \arrow[dr, "{(\id, g)}"{above right}] \\
+I \arrow[dr, "\id"{below left}]
+& & {(I, X)} \arrow[dd, -Triangle] \arrow[r, "{(u, f)}"{above}]
+& {(J, Y)} \arrow[dd, -Triangle] \\
+& I \arrow[dr, "\id"{below left}] \\
+& & I \arrow[r, "u"]
+& J
+\end{tikzcd}
+\end{equation*}
+Since \((u, f)\) is Cartesian, the morphism \((\id, g)\circ(\id, f)\) is the unique morphism \((I, X) \to (I, X)\) in \(\simple(\cat{B})\) over \(\id : I \to I\) such that
+\begin{equation*}
+(u, f) \circ (\id, g) \circ (\id, f)
+= (u, f),
+\end{equation*}
+but \(\id = (\id, \pi^\prime) : (I, X) \to (I, X)\) is another such morphism, so
+\begin{equation*}
+(\id, \pi^\prime) = (\id, g)\circ(\id,f).
+\end{equation*}
+In particular,
+\begin{equation*}
+\pi^\prime = g \circ \left\langle\pi, f\right\rangle,
+\end{equation*}
+so
+\begin{align*}
+\left\langle\pi, g\right\rangle \circ \left\langle\pi, f\right\rangle
+&= \left\langle \pi \circ \left\langle\pi, f\right\rangle, g \circ \left\langle\pi, f\right\rangle\right\rangle \\
+&= \left\langle \pi, \pi^\prime\right\rangle \\
+&= \id.
+\end{align*}
+Therefore, \(\left\langle\pi, f\right\rangle : I \times X \to I \times Y\) is an isomorphism in \(\cat{B}\).
 
 (\(\Longleftarrow\))
 Let \((u, f) : (I, X) \to (J, Y)\) be a morphism in \(\simple(\cat{B})\) over \(u : I \to J\), and suppose that \(\left\langle\pi, f\right\rangle : I \times X \to I \times Y\) is an isomorphism.
