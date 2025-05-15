@@ -18,3 +18,108 @@ Prove that it maps Cartesian morphisms to pullback squares.
 [This functor restricts to a full and faithful functor \(\cat{B}\sslash I \to \cat{B} / I\).]
 \end{parts}
 \end{exercise}
+
+\begin{remark}
+In part~\partref{1}{3}{1}{i}, the assertion that ``there is an isomorphism \(h : I \times X \to I \times Y\) in \(\cat{B}\) such that \(\pi \circ h = \pi\) and \(\pi^\prime \circ h = f\)'' is the same as saying that ``\(\left\langle\pi, f\right\rangle : I \times X \to I \times Y\) is an isomorphism.''
+\end{remark}
+
+\begin{lemma}
+\label{lemma:ex1.3.1}
+Let \(\cat{B}\) be a category with objects \(A, B, C\), a product
+\begin{equation*}
+\begin{tikzcd}
+A & A \times B \arrow[l, "\pi"{above}] \arrow[r, "\pi^\prime"{above}] & B
+\end{tikzcd}
+\end{equation*}
+and morphisms \(f : C \to A\) and \(g : C \to B\) such that \(\langle f, g\rangle : C \to A \times B\) is an isomorphism.
+Then
+\begin{align*}
+f \circ \left\langle f, g\right\rangle^{-1} &= \pi, &
+g \circ \left\langle f, g\right\rangle^{-1} &= \pi^\prime.
+\end{align*}
+\end{lemma}
+
+\begin{proof}
+For the first case, we have
+\begin{equation*}
+f \circ \left\langle f, g\right\rangle^{-1}
+= \pi \circ \left\langle f, g\right\rangle \circ \left\langle f, g\right\rangle^{-1}
+= \pi.
+\qedhere
+\end{equation*}
+\end{proof}
+
+\begin{partsolution}{i}
+
+(\(\Longleftarrow\))
+Let \((u, f) : (I, X) \to (J, Y)\) be a morphism in \(\simple(\cat{B})\) over \(u : I \to J\), and suppose that \(\left\langle\pi, f\right\rangle : I \times X \to I \times Y\) is an isomorphism.
+Consider another morphism \((v, g) : (K, Z) \to (J, Y)\) in \(\simple(\cat{B})\) and a morphism \(w : K \to I\) in \(\cat{B}\) such that \(u \circ w = v\).
+This situation is summarized in the following commutative diagram.
+\begin{equation*}
+\begin{tikzcd}[row sep=small]
+{(K, Z)} \arrow[dd, -Triangle] \arrow[drr, bend left=20, near end, "{(v, g)}"{above right}] \\
+& {(I, X)} \arrow[dd, -Triangle] \arrow[r, "{(u, f)}"{above}]
+& {(J, Y)} \arrow[dd, -Triangle] \\
+K \arrow[dr, "w"{below left}] \arrow[drr, bend left=20, near end, "v"{above right}] \\
+& I \arrow[r, "u"]
+& J
+\arrow[from=uul, to=l, -Triangle, crossing over]
+\end{tikzcd}
+\end{equation*}
+Consider the following composition in \(\cat{B}\) (call it \(h : K \times Z \to X\)).
+\begin{equation*}
+\begin{tikzcd}
+K \times Z \arrow[r, "{\left\langle w \circ \pi, g\right\rangle}"]
+& I \times Y \arrow[r, "{\left\langle\pi, f\right\rangle^{-1}}"]
+& I \times X \arrow[r, "{\pi^\prime}"]
+& X
+\end{tikzcd}
+\end{equation*}
+We claim that \((w, h) : (K, Z) \to (I, X)\) is the unique morphism in \(\simple(\cat{B})\) such that \((u, f) \circ (w, h) = (v, g)\), which will imply that \((u, f)\) is Cartesian.
+That is, the following diagram will be shown to commute.
+\begin{equation*}
+\begin{tikzcd}[row sep=small]
+{(K, Z)} \arrow[dd, -Triangle] \arrow[drr, bend left=20, near end, "{(v, g)}"{above right}] \arrow[dr, dashed, "{(w, h)}"{above right}] \\
+& {(I, X)} \arrow[dd, -Triangle] \arrow[r, "{(u, f)}"{above}]
+& {(J, Y)} \arrow[dd, -Triangle] \\
+K \arrow[dr, "w"{below left}] \arrow[drr, bend left=20, near end, "v"{above right}] \\
+& I \arrow[r, "u"]
+& J
+\arrow[from=uul, to=l, -Triangle, crossing over]
+\end{tikzcd}
+\end{equation*}
+We have \(v = u \circ w\) by assumption, so to see that \((u, f) \circ (w, h) = (v, g)\), it remains to show that \(g = f \circ \langle w\circ\pi, h\rangle\).
+Note that
+\begin{align*}
+\pi \circ \left\langle \pi, f\right\rangle^{-1} \circ \left\langle w \circ \pi, g\right\rangle
+&= \pi \circ \left\langle w \circ \pi, g\right\rangle & &\text{by Lemma~\ref{lemma:ex1.3.1}} \\
+&= w \circ \pi,
+\end{align*}
+so the universal property of products yields
+\begin{equation}
+\label{eq:ex1.3.1:tuple-identity}
+\begin{aligned}
+\left\langle \pi, f\right\rangle^{-1} \circ \left\langle w \circ \pi, g\right\rangle
+&= \left\langle w \circ \pi, \pi^\prime \circ \left\langle\pi, f\right\rangle^{-1} \circ \left\langle w \circ \pi, g\right\rangle\right\rangle \\
+&= \left\langle w \circ \pi, h\right\rangle.
+\end{aligned}
+\end{equation}
+Then we have
+\begin{align*}
+g
+&= \pi^\prime \circ \left\langle w \circ \pi, g\right\rangle \\
+&= f \circ \left\langle \pi, f\right\rangle^{-1} \circ \left\langle w \circ \pi, g\right\rangle & &\text{by Lemma~\ref{lemma:ex1.3.1}} \\
+&= f \circ \left\langle w \circ \pi, h\right\rangle. & &\text{by~\eqref{eq:ex1.3.1:tuple-identity}}\
+\end{align*}
+To show uniqueness, suppose that \((w, h^\prime) : (K, Z) \to (I, X)\) is another morphism in \(\simple(\cat{B})\) over \(w: K \to I\) such that \((u, f) \circ (w\, h^\prime) = (v, g)\) (and, in particular, \(g = f \circ \left\langle w \circ \pi, h^\prime\right\rangle\)).
+Then we have
+\begin{align*}
+h^\prime
+&= \pi^\prime \circ \left\langle w \circ \pi, h^\prime\right\rangle \\
+&= \pi^\prime \circ \left\langle \pi, f\right\rangle^{-1} \circ \left\langle \pi, f\right\rangle \circ \left\langle w \circ \pi, h^\prime\right\rangle \\
+&= \pi^\prime \circ \left\langle \pi, f\right\rangle^{-1} \circ \left\langle \pi \circ \left\langle w \circ \pi, h^\prime\right\rangle, f \circ \left\langle w \circ \pi, h^\prime\right\rangle\right\rangle \\
+&= \pi^\prime \circ \left\langle \pi, f\right\rangle^{-1} \circ \left\langle  w \circ \pi, g\right\rangle \\
+&= h.
+\end{align*}
+Therefore, \((u, f) : (I, X) \to (J, Y)\) is Cartesian in \(\simple(\cat{B})\) over \(u : I \to J\).
+\end{partsolution}
