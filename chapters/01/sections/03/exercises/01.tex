@@ -186,3 +186,158 @@ h^\prime
 \end{align*}
 Therefore, \((u, f) : (I, X) \to (J, Y)\) is Cartesian in \(\simple(\cat{B})\) over \(u : I \to J\).
 \end{partsolution}
+
+\begin{partsolution}{ii}
+We will define a functor \(F : \simple(\cat{B}) \to \cat{B}^{\rightarrow}\) by first specifying the following assignments on objects and morphisms.
+\begin{equation*}
+\begin{tikzcd}[row sep=small]
+\simple(\cat{B}) \arrow[r, "F"{above}] & \cat{B}^{\rightarrow} \\
+(I, X)
+\arrow[ddd, "{(u, f)}"{name=A}] \arrow[r, mapsto]
+& \begin{pmatrix}
+\begin{tikzpicture}
+\node(1){\(I \times X\)};
+\node(2)[below of=1]{\(I\)};
+\draw[->](1)--node[right]{\scriptsize\(\pi\)} (2);
+\end{tikzpicture}
+\end{pmatrix} \arrow[ddd, "{(u, \left\langle u\circ\pi,f\right\rangle)}"{right}, " "{left, name=B}]  \\ \\ \\
+(J, Y) \arrow[r, mapsto]
+& \begin{pmatrix}
+\begin{tikzpicture}
+\node(1){\(J \times Y\)};
+\node(2)[below of=1]{\(J\)};
+\draw[->](1)--node[right]{\scriptsize\(\pi\)} (2);
+\end{tikzpicture}
+\end{pmatrix}
+\arrow[from=A, to=B, mapsto]
+\end{tikzcd}
+\end{equation*}
+This is well-defined because for a morphism \((u, f) : (I, X) \to (J, Y)\) in \(\simple(\cat{B})\) (i.e., \(u : I \to J\) and \(f : I \times X \to Y\) are morphisms in \(\cat{B}\)), the following diagram commutes.
+\begin{equation*}
+\begin{tikzcd}
+I \times X \arrow[r, "{\left\langle u\circ\pi, f\right\rangle}"] \arrow[d, "\pi"{left}]
+& J \times Y \arrow[d, "\pi"] \\
+I \arrow[r, "u"]
+& J
+\end{tikzcd}
+\end{equation*}
+Moreover, these assignments are functorial by the following considerations.
+\begin{description}
+\item[identity]
+The identity morphism of an object \((I, X)\) in \(\simple(\cat{B})\) is \((\id, \pi^\prime)\), which maps to \((\id,\left\langle\pi,\pi^\prime\right\rangle)=(\id,\id)\) under the morphism assignment, which is the identity morphism of \(\pi : I \times X \to I\) in \(\cat{B}^{\rightarrow}\).
+\item[composition]
+The composition of two morphisms \((u, f) : (I, X) \to (J, Y)\) and \((v, g) : (J, Y) \to (K, Z)\) in \(\simple(\cat{B})\) is given by
+\begin{equation*}
+(v, g) \circ (u, f) = (v \circ u, g \circ \left\langle u \circ \pi, f\right\rangle).
+\end{equation*}
+Applying \(F\) yields
+\begin{align*}
+F\left((v, g) \circ (u, f)\right)
+&= F\left(v \circ u, g \circ \left\langle u \circ \pi, f\right\rangle\right) \\
+&= \left(v \circ u, \left\langle v \circ u \circ \pi, g \circ \left\langle u \circ \pi, f\right\rangle\right\rangle\right) \\
+&= \left(v \circ u, \left\langle v \circ \pi \circ \left\langle u \circ \pi, f\right\rangle, g \circ \left\langle u \circ \pi, f\right\rangle\right\rangle\right) \\
+&= \left(v \circ u, \left\langle v\circ\pi, g\right\rangle \circ \left\langle u\circ\pi, f\right\rangle\right) \\
+&= \left(v, \left\langle v\circ \pi, g\right\rangle\right) \circ \left(u, \left\langle u\circ\pi, f\right\rangle\right) \\
+&= F(v, g) \circ F(u, f).
+\end{align*}
+That is, the following diagram commutes.
+\begin{equation*}
+\begin{tikzcd}
+I \times X \arrow[r, "{\left\langle u\circ\pi, f\right\rangle}"] \arrow[d, "\pi"{left}] \arrow[rr, bend left, "{\left\langle v \circ u \circ \pi, g \circ \left\langle u \circ \pi, f\right\rangle\right\rangle}"{above}]
+& J \times Y\arrow[r, "{\left\langle v\circ\pi, g\right\rangle}"]  \arrow[d, "\pi"]
+& K \times Z \arrow[d, "\pi"{right}] \\
+I \arrow[r, "u"]
+& J \arrow[r, "v"]
+& K
+\end{tikzcd}
+\end{equation*}
+\end{description}
+Thus, \(F\) is a functor.
+
+To show that \(F\) is full and faithful, we must find an inverse to the assignment \((u,f) \mapsto F(u, f) \coloneq (u, \langle u\circ\pi,f\rangle)\) from morphisms between objects \((I, X)\) and \((J, Y)\) in \(\simple(\cat{B})\) to morphisms between \(\pi : I \times X \to I\) and \(\pi : J \times Y \to J\) in \(\cat{B}^\rightarrow\).
+We claim that the inverse of this assignment is given by \((u, g) \mapsto F^\prime(u, g) \coloneq (u, \pi^\prime \circ g)\).
+On the one hand, if \((u, f) : (I, X) \to (J, Y)\) is a morphism in \(\simple(\cat{B})\), then
+\begin{align*}
+F^\prime(F(u, f))
+&= F^\prime\left(u, \left\langle u\circ\pi,f\right\rangle\right) \\
+&= \left(u, \pi^\prime \circ \left\langle u\circ\pi,f\right\rangle\right) \\
+&= (u, f).
+\end{align*}
+On the other hand, if \((u, g) : (\pi : I \times X \to I) \to (\pi : J \times Y \to I)\) is a morphism in \(\cat{B}^\rightarrow\), then in particular \(\pi \circ g = u \circ \pi\), so
+\begin{align*}
+F(F^\prime(u, g))
+&= F\left(u, \pi^\prime \circ g\right) \\
+&= \left(u, \left\langle u\circ\pi, \pi^\prime \circ g\right\rangle\right) \\
+&= \left(u, \left\langle \pi \circ g, \pi^\prime \circ g\right\rangle\right) \\
+&= (u, g).
+\end{align*}
+Therefore, the functor \(F\) is full and faithful.
+
+Finally, we claim that if \((u, f) : (I, X) \to (J, Y)\) is a Cartesian morphism in \(\simple(\cat{B})\) over \(u : I \to J\) in \(\cat{B}\), then its image under \(F\) in \(\cat{B}^\rightarrow\) is a pullback square in \(\cat{B}\) as in the following diagram.
+\begin{equation}
+\label{eq:ex1.3.1.ii:pullback-square}
+\begin{tikzcd}
+I \times X \arrow[r, "{\left\langle u\circ\pi, f\right\rangle}"] \arrow[d, "\pi"{left}] \arrow[dr, phantom, ""{pullback}, very near start]
+& J \times Y \arrow[d, "\pi"] \\
+I \arrow[r, "u"]
+& J
+\end{tikzcd}
+\end{equation}
+Indeed, consider morphisms \(p: Z \to I\) and \(q: Z \to Y \times J\) in \(\cat{B}\) such that the following diagram commutes.
+\begin{equation*}
+\begin{tikzcd}[row sep=small]
+Z \arrow[dddr, bend right=20, near end, "p"{below left}] \arrow[drr, bend left=20, "q"{above right}] \\
+& I \times X \arrow[r, "{\left\langle u\circ\pi, f\right\rangle}"] \arrow[dd, "\pi"{left}]
+& J \times Y \arrow[dd, "\pi"] \\ \\
+& I \arrow[r, "u"]
+& J
+\end{tikzcd}
+\end{equation*}
+That is, \(u \circ p = \pi \circ q\).
+Recall from part~\partref{1}{3}{1}{i} that \(\langle\pi,f\rangle : I \times X \to I \times Y\) is an isomorphism in \(\cat{B}\) since \((u, f) : (I, X) \to (J, Y)\) is Cartesian.
+Define the morphism \(g : Z \to I \times X\) in \(\cat{B}\) by the following composition.
+\begin{equation*}
+\begin{tikzcd}
+Z \arrow[r, "{\left\langle p, \pi^\prime \circ q\right\rangle}"] & I \times Y \arrow[r, "{\left\langle \pi, f\right\rangle^{-1}}"] & I \times X.
+\end{tikzcd}
+\end{equation*}
+We claim that \(g\) is the unique morphism in \(\cat{B}\) such that \(\pi \circ g = p\) and \(\langle u\circ\pi, f\rangle \circ g = q\), making the following diagram commute.
+\begin{equation*}
+\begin{tikzcd}[row sep=small]
+Z \arrow[dddr, bend right=20, near end, "p"{below left}] \arrow[drr, bend left=20, "q"{above right}] \arrow[dr, dashed, "g"{above right}] \\
+& I \times X \arrow[r, "{\left\langle u\circ\pi, f\right\rangle}"] \arrow[dd, "\pi"{left}]
+& J \times Y \arrow[dd, "\pi"] \\ \\
+& I \arrow[r, "u"]
+& J
+\end{tikzcd}
+\end{equation*}
+To show the equalities, we have
+\begin{align*}
+\pi \circ g
+&= \pi \circ \left\langle\pi,f\right\rangle^{-1} \circ \left\langle p, \pi^\prime \circ q\right\rangle \\
+&= \pi \circ \left\langle p, \pi^\prime \circ q\right\rangle & &\text{by Lemma~\ref{lemma:ex1.3.1}} \\
+&= p,
+\end{align*}
+and
+\begin{align*}
+\langle u\circ\pi, f\rangle \circ g
+&= \left\langle u\circ\pi, f\right\rangle \circ \left\langle\pi,f\right\rangle^{-1} \circ \left\langle p, \pi^\prime \circ q\right\rangle \\
+&= \left\langle u\circ\pi\circ\left\langle\pi,f\right\rangle^{-1}, f\circ\left\langle\pi,f\right\rangle^{-1}\right\rangle \circ \left\langle p, \pi^\prime \circ q\right\rangle \\
+&= \left\langle u\circ\pi, \pi^\prime\right\rangle \circ \left\langle p, \pi^\prime \circ q\right\rangle \qquad\qquad\text{by Lemma~\ref{lemma:ex1.3.1}} \\
+&= \left\langle u\circ\pi \circ \left\langle p, \pi^\prime \circ q\right\rangle, \pi^\prime \circ \left\langle p, \pi^\prime \circ q\right\rangle\right\rangle \\
+&= \left\langle u\circ p, \pi^\prime \circ q\right\rangle \\
+&= \left\langle \pi\circ q, \pi^\prime \circ q\right\rangle \\
+&= q.
+\end{align*}
+Lastly, to show uniqueness, suppose that \(g^\prime : Z \to I \times X\) is another morphism in \(\cat{B}\) such that \(\pi \circ g^\prime = p\) and \(\langle u\circ\pi, f\rangle \circ g^\prime = q\).
+Then we have
+\begin{align*}
+g^\prime
+&= \left\langle\pi,f\right\rangle^{-1} \circ \left\langle\pi,f\right\rangle \circ g^\prime \\
+&= \left\langle\pi,f\right\rangle^{-1} \circ \left\langle \pi \circ g^\prime, f \circ g^\prime\right\rangle \\
+&= \left\langle\pi,f\right\rangle^{-1} \circ \left\langle \pi \circ g^\prime, \pi^\prime \circ \langle u\circ\pi, f\rangle \circ g^\prime\right\rangle \\
+&= \left\langle\pi,f\right\rangle^{-1} \circ \left\langle p, \pi^\prime \circ q\right\rangle \\
+&= g.
+\end{align*}
+Therefore, the diagram in \eqref{eq:ex1.3.1.ii:pullback-square} is a pullback square in \(\cat{B}\).
+\end{partsolution}
