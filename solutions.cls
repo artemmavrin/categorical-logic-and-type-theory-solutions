@@ -22,6 +22,10 @@
 \RequirePackage{mathrsfs}
 \RequirePackage{thmtools}
 
+% Proof trees in the style of the sequent calculus
+% https://www.ctan.org/pkg/bussproofs
+\RequirePackage{bussproofs}
+
 % Page Formatting
 \pagestyle{headings}
 % \allowdisplaybreaks
@@ -164,6 +168,7 @@
 \usetikzlibrary{calc}
 \usetikzlibrary{arrows}
 \usetikzlibrary{cd}
+\usetikzlibrary{positioning}
 \tikzcdset{
     diagrams={sep=large},
 }

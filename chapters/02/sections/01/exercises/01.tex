@@ -1,0 +1,25 @@
+\begin{exercise}
+Prove that the following `extended' structural rules are derivable.
+\begin{parts}
+\part
+\AxiomC{\(\Gamma, v_n : \sigma, \Delta, v_{n+m} : \rho, \Theta \vdash M : \tau\)}
+\UnaryInfC{\(\Gamma, v_n : \rho, \Delta, v_{n+m} : \sigma, \Theta \vdash M\left[v_n/v_{n+m},v_{n+m}/v_n\right] : \tau\)}
+\DisplayProof
+\part
+\AxiomC{\(\Gamma, v_n : \sigma, \Delta \vdash M : \tau\)}
+\UnaryInfC{\(\Gamma, \Delta, v_{n+m} : \sigma \vdash M\left[v_{n+m}/v_n, v_n/v_{n+1},\ldots,v_{n+m-1}/v_{n+m}\right] : \tau\)}
+\DisplayProof
+\part
+\AxiomC{\(\Gamma, v_n : \sigma, \Delta, v_{n+m} : \sigma, \Theta \vdash M : \tau\)}
+\UnaryInfC{%
+\begin{tikzpicture}
+\node(1){\(\Gamma, v_n : \sigma, \Delta, \Theta \vdash\)};
+\node[below right = -1mm and -23mm of 1]{\(M\left[v_n/v_{n+m},v_{n+m}/v_{n+m+1},\ldots,v_{n+m+k-1}/v_{n+m+k}\right] : \tau\)};
+\end{tikzpicture}}
+\DisplayProof
+\part
+\AxiomC{\(\Gamma, \Gamma \vdash M : \tau\)}
+\UnaryInfC{\(\Gamma \vdash M[v_1/v_{n+1}, \ldots, v_n / v_{2n}] : \tau\)}
+\DisplayProof
+\end{parts}
+\end{exercise}
