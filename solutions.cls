@@ -21,6 +21,7 @@
 \RequirePackage{mathtools}
 \RequirePackage{mathrsfs}
 \RequirePackage{thmtools}
+\RequirePackage{xfrac}
 
 % Proof trees in the style of the sequent calculus
 % https://www.ctan.org/pkg/bussproofs

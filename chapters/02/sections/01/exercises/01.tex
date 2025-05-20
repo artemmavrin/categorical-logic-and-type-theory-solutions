@@ -27,3 +27,22 @@ Prove that the following `extended' structural rules are derivable.
 \DisplayProof}
 \end{parts}
 \end{exercise}
+
+\begin{lemma}
+Let \(\sigma\) and \(\rho\) be basic types and \(\Gamma, \Delta, \Theta\) contexts of lengths \(m, n, p\), respectively.
+Then the following two rules are derivable\footnote{Recall that, by convention, context variable indices start at \(1\).}.
+\begin{enumerate}
+\item
+\label{lemma:ex:2.1.1:1.a}
+\makebox[\linewidth]{%
+\AxiomC{\(\Gamma, v_{m+1} : \sigma, \Delta, \Theta \vdash M : \tau\)}
+\UnaryInfC{\(\Gamma, \Delta, v_{m+n+1} : \sigma, \Theta \vdash M\left[\sfrac{v_{m+1}}{v_{m+n+1}},\sfrac{v_{m+2}}{v_{m+1}},\ldots,\sfrac{v_{m+n+1}}{v_{m+n}}\right] : \tau\)}
+\DisplayProof}
+\item
+\label{lemma:ex:2.1.1:1.b}
+\makebox[\linewidth]{%
+\AxiomC{\(\Gamma, \Delta, v_{m+n+1} : \sigma, \Theta \vdash M : \tau\)}
+\UnaryInfC{\(\Gamma, v_{m+1} : \sigma, \Delta, \Theta \vdash M\left[\sfrac{v_{m+1}}{v_{m+2}},\ldots,\sfrac{v_{m+n}}{v_{m+n+1}},\sfrac{v_{m+n+1}}{v_{m+1}}\right] : \tau\)}
+\DisplayProof}
+\end{enumerate}
+\end{lemma}
