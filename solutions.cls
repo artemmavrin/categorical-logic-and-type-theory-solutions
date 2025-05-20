@@ -166,10 +166,7 @@
 
 % Drawing
 \RequirePackage{tikz}
-\usetikzlibrary{calc}
-\usetikzlibrary{arrows}
-\usetikzlibrary{cd}
-\usetikzlibrary{positioning}
+\usetikzlibrary{calc,arrows,cd,positioning}
 \tikzcdset{
     diagrams={sep=large},
 }
