@@ -53,7 +53,7 @@ We omit the proof of \ref{lemma:ex:2.1.1:1.b} since it involves the same argumen
 \begin{proof}[Proof of \ref{lemma:ex:2.1.1:1.a}]
 We proceed by induction on \(n\), the length of \(\Delta\).
 If \(n = 0\), then the conclusion is vacuously true.
-If \(n > 0\), then, writing \(\Delta = \Delta^\prime, v_n : \sigma^\prime\), we first apply \ref{lemma:ex:2.1.1:1.a} inductively to shift the variable of type \(\sigma\) to the right past \(\Delta^\prime\) and then apply the \textbf{exchange}/) rule to shift it right one more time:
+If \(n > 0\), then, writing \(\Delta = \Delta^\prime, v_n : \sigma^\prime\), we first apply \ref{lemma:ex:2.1.1:1.a} inductively to shift the variable of type \(\sigma\) to the right past \(\Delta^\prime\) and then apply the \textbf{exchange} rule to shift it right one more time:
 \begin{prooftree}
 \AxiomC{\(\Gamma, v_{m+1} : \sigma, \Delta, \Theta \vdash M : \tau\)}
 \RightLabel{\ref{lemma:ex:2.1.1:1.a}}
