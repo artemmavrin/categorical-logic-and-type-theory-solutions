@@ -30,7 +30,7 @@ Prove that the following `extended' structural rules are derivable.
 
 \begin{lemma}
 Let \(\sigma\) and \(\rho\) be basic types and \(\Gamma, \Delta, \Theta\) contexts of lengths \(m, n, p\), respectively.
-Then the following two rules are derivable\footnote{Recall that, by convention, context variable indices start at \(1\).}.
+Then the following two rules are derivable\footnote{Recall that, by convention in \cite{MR1674451}, context variable indices start at \(1\).}.
 \begin{enumerate}
 \item
 \label{lemma:ex:2.1.1:1.a}
@@ -46,3 +46,29 @@ Then the following two rules are derivable\footnote{Recall that, by convention, 
 \DisplayProof}
 \end{enumerate}
 \end{lemma}
+
+We will prove \ref{lemma:ex:2.1.1:1.a} by applying the \textbf{exchange} rule \(m+1\) times to shift the variable of type \(\sigma\) (initially in position \(m+1\)) from left to right one context position at a time.
+We omit the proof of \ref{lemma:ex:2.1.1:1.b} since it involves the same argument but in the right-to-left direction.
+
+\begin{proof}[Proof of \ref{lemma:ex:2.1.1:1.a}]
+We proceed by indunction on \(n\), the length of \(\Delta\).
+If \(n = 0\), then the conclusion is an instance of the \textbf{exchange} rule.
+If \(n > 0\), then, writing \(\Delta = \Delta^\prime, v_n : \sigma^\prime\), we have
+\begin{prooftree}
+\AxiomC{\(\Gamma, v_{m+1} : \sigma, \Delta, \Theta \vdash M : \tau\)}
+\RightLabel{\ref{lemma:ex:2.1.1:1.a}}
+\UnaryInfC{%
+\begin{tikzpicture}
+\node(1){\(\Gamma, \Delta^\prime, v_{m+n} : \sigma, v_{m+n+1} : \sigma^\prime, \Theta \vdash\)};
+\node[below right = -1mm and -33mm of 1]{\(M\left[\sfrac{v_{m+1}}{v_{m+n}},\sfrac{v_{m+2}}{v_{m+1}},\ldots,\sfrac{v_{m+n}}{v_{m+n-1}}\right] : \tau\)};
+\end{tikzpicture}}
+\RightLabel{(E)}
+\UnaryInfC{\(\Gamma, \Delta, v_{m+n+1} : \sigma, \Theta \vdash M\left[\sfrac{v_{m+1}}{v_{m+n+1}},\sfrac{v_{m+2}}{v_{m+1}},\ldots,\sfrac{v_{m+n+1}}{v_{m+n}}\right] : \tau\)}
+\end{prooftree}
+where the use of \ref{lemma:ex:2.1.1:1.a} is justified by induction and computing the consecutive context permutation
+\begin{align*}
+& M\left[\sfrac{v_{m+1}}{v_{m+n}},\sfrac{v_{m+2}}{v_{m+1}},\ldots,\sfrac{v_{m+n}}{v_{m+n-1}}\right]\left[\sfrac{v_{m+n}}{v_{m+n+1}},\sfrac{v_{m+n+1}}{v_{m+n}}\right] \\
+& \qquad = M\left[\sfrac{v_{m+1}}{v_{m+n+1}},\sfrac{v_{m+2}}{v_{m+1}},\ldots,\sfrac{v_{m+n+1}}{v_{m+n}}\right].
+\qedhere
+\end{align*}
+\end{proof}
