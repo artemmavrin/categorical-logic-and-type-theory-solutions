@@ -47,13 +47,13 @@ Then the following two rules are derivable\footnote{Recall that, by convention i
 \end{enumerate}
 \end{lemma}
 
-We will prove \ref{lemma:ex:2.1.1:1.a} by applying the \textbf{exchange} rule \(m+1\) times to shift the variable of type \(\sigma\) (initially in position \(m+1\)) from left to right one context position at a time.
+We will prove \ref{lemma:ex:2.1.1:1.a} by applying the \textbf{exchange} rule \(n\) times to shift the variable of type \(\sigma\) (initially in position \(m+1\)) from left to right one context position at a time.
 We omit the proof of \ref{lemma:ex:2.1.1:1.b} since it involves the same argument but in the right-to-left direction.
 
 \begin{proof}[Proof of \ref{lemma:ex:2.1.1:1.a}]
 We proceed by induction on \(n\), the length of \(\Delta\).
-If \(n = 0\), then the conclusion is an instance of the \textbf{exchange} rule.
-If \(n > 0\), then, writing \(\Delta = \Delta^\prime, v_n : \sigma^\prime\), we have
+If \(n = 0\), then the conclusion is vacuously true.
+If \(n > 0\), then, writing \(\Delta = \Delta^\prime, v_n : \sigma^\prime\), we first apply \ref{lemma:ex:2.1.1:1.a} inductively to shift the variable of type \(\sigma\) to the right past \(\Delta^\prime\) and then apply the \textbf{exchange}/) rule to shift it right one more time:
 \begin{prooftree}
 \AxiomC{\(\Gamma, v_{m+1} : \sigma, \Delta, \Theta \vdash M : \tau\)}
 \RightLabel{\ref{lemma:ex:2.1.1:1.a}}
@@ -65,7 +65,7 @@ If \(n > 0\), then, writing \(\Delta = \Delta^\prime, v_n : \sigma^\prime\), we 
 \RightLabel{(E)}
 \UnaryInfC{\(\Gamma, \Delta, v_{m+n+1} : \sigma, \Theta \vdash M\left[\sfrac{v_{m+1}}{v_{m+n+1}},\sfrac{v_{m+2}}{v_{m+1}},\ldots,\sfrac{v_{m+n+1}}{v_{m+n}}\right] : \tau\)}
 \end{prooftree}
-where the use of \ref{lemma:ex:2.1.1:1.a} is justified by induction and computing the consecutive context permutation
+The last step required computing the consecutive context permutation
 \begin{align*}
 & M\left[\sfrac{v_{m+1}}{v_{m+n}},\sfrac{v_{m+2}}{v_{m+1}},\ldots,\sfrac{v_{m+n}}{v_{m+n-1}}\right]\left[\sfrac{v_{m+n}}{v_{m+n+1}},\sfrac{v_{m+n+1}}{v_{m+n}}\right] \\
 & \qquad = M\left[\sfrac{v_{m+1}}{v_{m+n+1}},\sfrac{v_{m+2}}{v_{m+1}},\ldots,\sfrac{v_{m+n+1}}{v_{m+n}}\right].
