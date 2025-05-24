@@ -1,0 +1,38 @@
+name: Build and Deploy PDF
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v4
+      - name: Compile LaTeX document to PDF
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: solutions.tex
+      - name: Upload PDF artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: solutions.pdf
+          path: solutions.pdf
+      - name: Prepare for deployment
+        run: |
+          mkdir -p assets
+          cp solutions.pdf assets
+          echo "<assets><body><meta http-equiv=\"refresh\" content=\"0; url=./solutions.pdf\" /></body></assets>" > assets/index.html
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+      - name: Upload GitHub Pages artifacts
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: "./assets"
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
