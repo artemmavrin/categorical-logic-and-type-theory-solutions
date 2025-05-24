@@ -14,7 +14,7 @@ jobs:
       - name: Check out Git repository
         uses: actions/checkout@v4
       - name: Compile LaTeX document to PDF
-        uses: xu-cheng/latex-action@master
+        uses: xu-cheng/latex-action@v3
         with:
           root_file: solutions.tex
       - name: Upload PDF artifact
