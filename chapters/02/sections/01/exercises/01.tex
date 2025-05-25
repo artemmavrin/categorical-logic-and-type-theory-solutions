@@ -29,6 +29,7 @@ Prove that the following `extended' structural rules are derivable.
 \end{exercise}
 
 \begin{lemma}
+\label{lemma:ex:2.1.1:1}
 Let \(\sigma\) and \(\rho\) be basic types and \(\Gamma, \Delta, \Theta\) contexts of lengths \(m, n, p\), respectively.
 Then the following two rules are derivable\footnote{Recall that, by convention in \cite{MR1674451}, context variable indices start at \(1\).}.
 \begin{enumerate}
@@ -72,3 +73,21 @@ The last step required computing the consecutive context permutation
 \qedhere
 \end{align*}
 \end{proof}
+
+\begin{partsolution}{i}
+First, shift the variable of type \(\sigma\) to the right past \(\Delta,v_m:\rho\) using Lemma~\ref{lemma:ex:2.1.1:1}\ref{lemma:ex:2.1.1:1.a}.
+Second, shift the variable of type \(\rho\) to the left past \(\Delta\) using Lemma~\ref{lemma:ex:2.1.1:1}\ref{lemma:ex:2.1.1:1.b}.
+\begin{prooftree}
+\AxiomC{\(\Gamma, v_n : \sigma, \Delta, v_{n+m} : \rho, \Theta \vdash M : \tau\)}
+\RightLabel{\ref{lemma:ex:2.1.1:1.a}}
+\UnaryInfC{\(\Gamma, \Delta, v_{n+m-1} : \rho, v_{n+m} : \sigma, \Theta \vdash M\left[\sfrac{v_n}{v_{n+m}},\sfrac{v_{n+1}}{v_n},\ldots,\sfrac{v_{n+m}}{v_{n+m-1}}\right] : \tau\)}
+\RightLabel{\ref{lemma:ex:2.1.1:1.b}}
+\UnaryInfC{\(\Gamma, v_n : \rho, \Delta, v_{n+m} : \sigma, \Theta \vdash M\left[\sfrac{v_n}{v_{n+m}},\sfrac{v_{n+m}}{v_n}\right] : \tau\)}
+\end{prooftree}
+The second step involved the consecutive context permutation
+\begin{align*}
+& M\left[\sfrac{v_n}{v_{n+m}},\sfrac{v_{n+1}}{v_n},\ldots,\sfrac{v_{n+m}}{v_{n+m-1}}\right]\left[\sfrac{v_n}{v_{n+1}},\ldots,\sfrac{v_{n+m-2}}{v_{n+m-1}},\sfrac{v_{n+m-1}}{v_n}\right] \\
+& \qquad = M\left[\sfrac{v_n}{v_{n+m}},\sfrac{v_{n+m}}{v_n}\right].
+\qedhere
+\end{align*}
+\end{partsolution}
