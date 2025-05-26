@@ -28,66 +28,50 @@ Prove that the following `extended' structural rules are derivable.
 \end{parts}
 \end{exercise}
 
-\begin{lemma}
-\label{lemma:ex:2.1.1:1}
-Let \(\sigma\) and \(\rho\) be basic types and \(\Gamma, \Delta, \Theta\) contexts of lengths \(m, n, p\), respectively.
-Then the following two rules are derivable\footnote{Recall that, by convention in \cite{MR1674451}, context variable indices start at \(1\).}.
-\begin{enumerate}
-\item
-\label{lemma:ex:2.1.1:1.a}
-\makebox[\linewidth]{%
-\AxiomC{\(\Gamma, v_{m+1} : \sigma, \Delta, \Theta \vdash M : \tau\)}
-\UnaryInfC{\(\Gamma, \Delta, v_{m+n+1} : \sigma, \Theta \vdash M\left[\sfrac{v_{m+1}}{v_{m+n+1}},\sfrac{v_{m+2}}{v_{m+1}},\ldots,\sfrac{v_{m+n+1}}{v_{m+n}}\right] : \tau\)}
-\DisplayProof}
-\item
-\label{lemma:ex:2.1.1:1.b}
-\makebox[\linewidth]{%
-\AxiomC{\(\Gamma, \Delta, v_{m+n+1} : \sigma, \Theta \vdash M : \tau\)}
-\UnaryInfC{\(\Gamma, v_{m+1} : \sigma, \Delta, \Theta \vdash M\left[\sfrac{v_{m+1}}{v_{m+2}},\ldots,\sfrac{v_{m+n}}{v_{m+n+1}},\sfrac{v_{m+n+1}}{v_{m+1}}\right] : \tau\)}
-\DisplayProof}
-\end{enumerate}
+\begin{lemma}[Permutation Rule]
+\label{lemma:ex:2.1.1:permutation}
+If \(\Gamma = v_1 : \sigma_1, \ldots, v_n : \sigma_n\) and \(\pi\) is a permutation of \(\{1,\ldots,n\}\), then the following structural rule is derivable:
+\begin{prooftree}
+\Axiom$\Gamma \ \fCenter\vdash M : \tau$
+\RightLabel{(P)}
+\UnaryInf$\pi(\Gamma) \ \fCenter\vdash M\left[\pi\right] : \tau$
+\end{prooftree}
+where
+\begin{align*}
+\pi(\Gamma) &\coloneq v_1 : \sigma_{\pi(1)}, \ldots, v_n : \sigma_{\pi(n)}, &
+M\left[\pi\right] &\coloneq M\left[\sfrac{v_1}{v_{\pi(1)}}, \ldots, \sfrac{v_n}{v_{\pi(n)}}\right].
+\end{align*}
 \end{lemma}
 
-We will prove \ref{lemma:ex:2.1.1:1.a} by applying the \textbf{exchange} rule \(n\) times to shift the variable of type \(\sigma\) (initially in position \(m+1\)) from left to right one context position at a time.
-We omit the proof of \ref{lemma:ex:2.1.1:1.b} since it involves the same argument but in the right-to-left direction.
-
-\begin{proof}[Proof of \ref{lemma:ex:2.1.1:1.a}]
-We proceed by induction on \(n\), the length of \(\Delta\).
-If \(n = 0\), then the conclusion is vacuously true.
-If \(n > 0\), then, writing \(\Delta = \Delta^\prime, v_n : \sigma^\prime\), we first apply \ref{lemma:ex:2.1.1:1.a} inductively to shift the variable of type \(\sigma\) to the right past \(\Delta^\prime\) and then apply the \textbf{exchange} rule to shift it right one more time:
+\begin{proof}
+Every permutation of finitely many items can be represented as a composition of zero or more adjacent transpositions\footnote{E.g., see \cite[Chapter~I, \S5, No.~7, Proposition~9]{BourbakiAlgebraI}.}, so we proceed by induction on the number of adjacent transpositions in such a representation.
+First, the composition of zero adjacent transpositions is the identity permutation, for which the conclusion holds vacuously.
+Next, if \(\pi = [i \mapsto i + 1, i + 1\mapsto i] \circ \pi^\prime\) for some \(i \in \{1, \ldots, n - 1\}\), then we deduce by induction
 \begin{prooftree}
-\AxiomC{\(\Gamma, v_{m+1} : \sigma, \Delta, \Theta \vdash M : \tau\)}
-\RightLabel{\ref{lemma:ex:2.1.1:1.a}}
-\UnaryInfC{%
-\begin{tikzpicture}
-\node(1){\(\Gamma, \Delta^\prime, v_{m+n} : \sigma, v_{m+n+1} : \sigma^\prime, \Theta \vdash\)};
-\node[below right = -1mm and -33mm of 1]{\(M\left[\sfrac{v_{m+1}}{v_{m+n}},\sfrac{v_{m+2}}{v_{m+1}},\ldots,\sfrac{v_{m+n}}{v_{m+n-1}}\right] : \tau\)};
-\end{tikzpicture}}
+\AxiomC{\(v_1 : \sigma_1, \ldots, v_n : \sigma_n \vdash M : \tau\)}
+\RightLabel{(P)}
+\UnaryInfC{\(v_1 : \sigma_{\pi^\prime(1)}, \ldots, v_i : \sigma_{\pi^\prime(i)}, v_{i+1} : \sigma_{\pi^\prime(i+1)}, \ldots, v_n : \sigma_{\pi^\prime(n)} \vdash M\left[\pi^\prime\right] : \tau\)}
 \RightLabel{(E)}
-\UnaryInfC{\(\Gamma, \Delta, v_{m+n+1} : \sigma, \Theta \vdash M\left[\sfrac{v_{m+1}}{v_{m+n+1}},\sfrac{v_{m+2}}{v_{m+1}},\ldots,\sfrac{v_{m+n+1}}{v_{m+n}}\right] : \tau\)}
+\UnaryInfC{\footnotesize\(v_1 : \sigma_{\pi^\prime(1)}, \ldots, v_i : \sigma_{\pi^\prime(i+1)}, v_{i+1} : \sigma_{\pi^\prime(i)}, \ldots, v_n : \sigma_{\pi^\prime(n)} \vdash M\left[\pi^\prime\right]\left[\sfrac{v_i}{v_{i+1}},\sfrac{v_{i+1}}{v_i}\right] : \tau\)}
 \end{prooftree}
-The last step required computing the consecutive context permutation
+where, since \(\pi = [i \mapsto i + 1, i + 1\mapsto i] \circ \pi^\prime\), we have
 \begin{align*}
-& M\left[\sfrac{v_{m+1}}{v_{m+n}},\sfrac{v_{m+2}}{v_{m+1}},\ldots,\sfrac{v_{m+n}}{v_{m+n-1}}\right]\left[\sfrac{v_{m+n}}{v_{m+n+1}},\sfrac{v_{m+n+1}}{v_{m+n}}\right] \\
-& \qquad = M\left[\sfrac{v_{m+1}}{v_{m+n+1}},\sfrac{v_{m+2}}{v_{m+1}},\ldots,\sfrac{v_{m+n+1}}{v_{m+n}}\right].
-\qedhere
+&v_1 : \sigma_{\pi^\prime(1)}, \ldots, v_i : \sigma_{\pi^\prime(i+1)}, v_{i+1} : \sigma_{\pi^\prime(i)}, \ldots, v_n : \sigma_{\pi^\prime(n)} \\
+&\qquad\qquad\qquad\qquad= v_1 : \sigma_{\pi(1)}, \ldots, v_n : \sigma_{\pi(n)},
 \end{align*}
+and
+\begin{equation*}
+M\left[\pi^\prime\right]\left[\sfrac{v_i}{v_{i+1}},\sfrac{v_{i+1}}{v_i}\right]
+= M\left[\pi\right]
+\qedhere
+\end{equation*}
 \end{proof}
 
 \begin{partsolution}{i}
-First, shift the variable of type \(\sigma\) to the right past \(\Delta,v_m:\rho\) using Lemma~\ref{lemma:ex:2.1.1:1}\ref{lemma:ex:2.1.1:1.a}.
-Second, shift the variable of type \(\rho\) to the left past \(\Delta\) using Lemma~\ref{lemma:ex:2.1.1:1}\ref{lemma:ex:2.1.1:1.b}.
-\begin{prooftree}
-\AxiomC{\(\Gamma, v_n : \sigma, \Delta, v_{n+m} : \rho, \Theta \vdash M : \tau\)}
-\RightLabel{\ref{lemma:ex:2.1.1:1.a}}
-\UnaryInfC{\(\Gamma, \Delta, v_{n+m-1} : \rho, v_{n+m} : \sigma, \Theta \vdash M\left[\sfrac{v_n}{v_{n+m}},\sfrac{v_{n+1}}{v_n},\ldots,\sfrac{v_{n+m}}{v_{n+m-1}}\right] : \tau\)}
-\RightLabel{\ref{lemma:ex:2.1.1:1.b}}
-\UnaryInfC{\(\Gamma, v_n : \rho, \Delta, v_{n+m} : \sigma, \Theta \vdash M\left[\sfrac{v_n}{v_{n+m}},\sfrac{v_{n+m}}{v_n}\right] : \tau\)}
-\end{prooftree}
-The second step involved the consecutive context permutation
-\begin{align*}
-& M\left[\sfrac{v_n}{v_{n+m}},\sfrac{v_{n+1}}{v_n},\ldots,\sfrac{v_{n+m}}{v_{n+m-1}}\right]\left[\sfrac{v_n}{v_{n+1}},\ldots,\sfrac{v_{n+m-2}}{v_{n+m-1}},\sfrac{v_{n+m-1}}{v_n}\right] \\
-& \qquad = M\left[\sfrac{v_n}{v_{n+m}},\sfrac{v_{n+m}}{v_n}\right].
-\qedhere
-\end{align*}
+Apply the permutation rule (Lemma~\ref{lemma:ex:2.1.1:permutation}) with the permutation that swaps \(n\) and \(n+m\).
+\end{partsolution}
+
+\begin{partsolution}{ii}
+Apply the permutation rule (Lemma~\ref{lemma:ex:2.1.1:permutation}) with the cyclic permutation
+given by \(n \mapsto n + 1, \ldots, n + m - 1 \mapsto n + m, n + m \mapsto n\).
 \end{partsolution}
