@@ -57,7 +57,8 @@ Next, if \(\pi = [i \mapsto i + 1, i + 1\mapsto i] \circ \pi^\prime\) for some \
 where, since \(\pi = [i \mapsto i + 1, i + 1\mapsto i] \circ \pi^\prime\), we have
 \begin{align*}
 &v_1 : \sigma_{\pi^\prime(1)}, \ldots, v_i : \sigma_{\pi^\prime(i+1)}, v_{i+1} : \sigma_{\pi^\prime(i)}, \ldots, v_n : \sigma_{\pi^\prime(n)} \\
-&\qquad\qquad\qquad\qquad= v_1 : \sigma_{\pi(1)}, \ldots, v_n : \sigma_{\pi(n)},
+&\qquad\qquad\qquad\qquad= v_1 : \sigma_{\pi(1)}, \ldots, v_n : \sigma_{\pi(n)} \\
+&\qquad\qquad\qquad\qquad= \pi(\Gamma),
 \end{align*}
 and
 \begin{equation*}
@@ -74,4 +75,34 @@ Apply the permutation rule (Lemma~\ref{lemma:ex:2.1.1:permutation}) with the per
 \begin{partsolution}{ii}
 Apply the permutation rule (Lemma~\ref{lemma:ex:2.1.1:permutation}) with the cyclic permutation
 given by \(n \mapsto n + 1, \ldots, n + m - 1 \mapsto n + m, n + m \mapsto n\).
+\end{partsolution}
+
+\begin{partsolution}{iii}
+Combine the permutation rule (Lemma~\ref{lemma:ex:2.1.1:permutation}) with the contraction rule as follows.
+\begin{prooftree}
+\Axiom$\Gamma, v_n : \sigma, \Delta, v_{n+m} : \sigma, \Theta \ \fCenter\vdash M : \tau$
+\RightLabel{(P)}
+\UnaryInf$\Gamma, \Delta, \Theta, v_{n+m+k-1} : \sigma, v_{n+m+k} : \sigma \ \fCenter\vdash M\left[\pi\right] : \tau$
+\RightLabel{(C)}
+\UnaryInf$\Gamma, \Delta, \Theta, v_{n+m+k-1} : \sigma \ \fCenter\vdash M\left[\pi\right]\left[\sfrac{v_{n+m+k-1}}{v_{n+m+k}}\right] : \tau$
+\RightLabel{(P)}
+\UnaryInf$\Gamma, v_n : \sigma, \Delta, \Theta \ \fCenter\vdash M\left[\pi\right]\left[\sfrac{v_{n+m+k-1}}{v_{n+m+k}}\right]\left[\pi^\prime\right] : \tau$
+\end{prooftree}
+where the permutations \(\pi\) and \(\pi^\prime\) are defined by
+\begin{align*}
+\pi &\coloneq \left(\begin{smallmatrix}
+n   & \cdots & n+m-2 & n+m-1 & \cdots & n+m+k-2 & n+m+k-1 & n+m+k \\
+n+1 & \cdots & n+m-1 & n+m+1 & \cdots & n+m+k   & n       & n+m
+\end{smallmatrix}\right) \\
+\pi^\prime &\coloneq \left(\begin{smallmatrix}
+n   & n+1 & \cdots & n+m+k-1 \\
+n+m+k-1 & n & \cdots & n+m+k-2
+\end{smallmatrix}\right)
+\end{align*}
+and therefore one can compute
+\begin{align*}
+M\left[\pi\right]\left[\sfrac{v_{n+m+k-1}}{v_{n+m+k}}\right]\left[\pi^\prime\right]
+&= M\left[\sfrac{v_n}{v_{n+m}},\sfrac{v_{n+m}}{v_{n+m+1}},\ldots,\sfrac{v_{n+m+k-1}}{v_{n+m+k}}\right].
+\qedhere
+\end{align*}
 \end{partsolution}
