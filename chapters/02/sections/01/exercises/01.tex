@@ -106,3 +106,38 @@ M\left[\pi\right]\left[\sfrac{v_{n+m+k-1}}{v_{n+m+k}}\right]\left[\pi^\prime\rig
 \qedhere
 \end{align*}
 \end{partsolution}
+
+\begin{lemma}[Generalized Contraction Rule]
+\label{lemma:ex:2.1.1:contraction}
+If \(\Gamma, \Delta, \Theta\) are contexts of lengths \(n\), \(m\), and \(k\), then the following structural rule is derivable\footnote{Recall that, by convention, context indexing begins at \(1\) in \cite{MR1674451}}.
+\begin{prooftree}
+\Axiom$\Delta,\Gamma,\Gamma,\Theta\ \fCenter\vdash M : \tau$
+\RightLabel{(GC)}
+\UnaryInf$\Delta,\Gamma,\Theta\ \fCenter\vdash M\left[\sfrac{v_{m+1}}{v_{m+n+1}},\ldots,\sfrac{v_{m+n+k}}{v_{m+2n+k}}\right] : \tau$
+\end{prooftree}
+\end{lemma}
+
+\begin{proof}
+Proceed by induction on the length of \(\Gamma\).
+If \(\Gamma\) is empty, then the conclusion is vacuously true.
+If \(\Gamma\) is non-empty with \(\Gamma = \Gamma^\prime, v_n : \sigma_n\), then apply \partref{2}{1}{1}{iii}, the permutation rule (Lemma~\ref{lemma:ex:2.1.1:permutation}), and induction to obtain the conclusion as follows.
+\begin{prooftree}
+\Axiom$\Delta, \Gamma, \Gamma, \Theta \ \fCenter\vdash M : \tau$
+\RightLabel{\partref{2}{1}{1}{iii}}
+\UnaryInf$\Delta, \Gamma, \Gamma^\prime, \Theta \ \fCenter\vdash M\left[\pi\right] : \tau$
+\RightLabel{(P)}
+\UnaryInf$\Delta, \Gamma^\prime, \Gamma, \Theta \ \fCenter\vdash M\left[\pi\right]\left[\pi^\prime\right] : \tau$
+\RightLabel{(GC)}
+\UnaryInf$\Delta, \Gamma, \Theta \ \fCenter\vdash M\left[\pi\right]\left[\pi^\prime\right]\left[\pi^{\prime\prime}\right] : \tau$
+\end{prooftree}
+where the permutations \(\pi\), \(\pi^\prime\), and \(\pi^{\prime\prime}\) are determined by the rules used, for which we have
+\begin{equation*}
+M\left[\pi\right]\left[\pi^\prime\right]\left[\pi^{\prime\prime}\right]
+= M\left[\sfrac{v_{m+1}}{v_{m+n+1}},\ldots,\sfrac{v_{m+n+k}}{v_{m+2n+k}}\right].
+\qedhere
+\end{equation*}
+\end{proof}
+
+\begin{partsolution}{iv}
+Apply the generalized contraction rule (Lemma~\ref{lemma:ex:2.1.1:contraction}) with \(\Delta\) and \(\Theta\) empty.
+\end{partsolution}
