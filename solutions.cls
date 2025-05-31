@@ -21,6 +21,11 @@
 \RequirePackage{mathtools}
 \RequirePackage{mathrsfs}
 \RequirePackage{thmtools}
+\RequirePackage{xfrac}
+
+% Proof trees in the style of the sequent calculus
+% https://www.ctan.org/pkg/bussproofs
+\RequirePackage{bussproofs}
 
 % Page Formatting
 \pagestyle{headings}
@@ -161,9 +166,7 @@
 
 % Drawing
 \RequirePackage{tikz}
-\usetikzlibrary{calc}
-\usetikzlibrary{arrows}
-\usetikzlibrary{cd}
+\usetikzlibrary{calc,arrows,cd,positioning}
 \tikzcdset{
     diagrams={sep=large},
 }
