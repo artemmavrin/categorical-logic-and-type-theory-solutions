@@ -1,0 +1,13 @@
+\begin{exercise}
+Derive the following substitution rule.
+\begin{prooftree}
+\AxiomC{\(\Gamma, v_n : \sigma, \Delta \vdash M : \tau\)}
+\AxiomC{\(\Theta \vdash N : \sigma\)}
+\BinaryInfC{\(\Gamma, \Theta, \Delta \vdash M^*\left[N^{\#} / v_n\right] : \tau\)}
+\end{prooftree}
+where, assuming \(\Delta\) to be of length \(m\) and \(\Theta\) of length \(k\),
+\begin{align*}
+M^* &= M\left[v_{n+k} / v_{n+1}, \ldots, v_{n+k+m-1} / v_{n+m}\right], \\
+N^{\#} &= N\left[v_n / v_1, \ldots, v_{n+k-1} / v_k\right],
+\end{align*}
+\end{exercise}
