@@ -23,6 +23,16 @@
 \RequirePackage{thmtools}
 \RequirePackage{xfrac}
 
+% TeX Live 2026 workaround: The LaTeX kernel updated its sibling counter handling mechanism in a way
+% that conflicts with thmtools's implementation. \declaretheorem was failing when sibling counters
+% were registered with errors like '! LaTeX Error: Command \c@<counter> already defined.'
+% See: https://github.com/muzimuzhi/thmtools/issues/75
+% TODO: migrate from thmtools + mdframed to keytheorems + tcolorbox
+% See https://ctan.org/pkg/keytheorems and https://ctan.org/pkg/tcolorbox
+\@ifundefined{newcounteralias}{}{%
+    \renewcommand\thmt@autorefsetup{\@xa\def\csname\thmt@envname autorefname\@xa\endcsname\@xa{\thmt@thmname}}%
+}
+
 % Proof trees in the style of the sequent calculus
 % https://www.ctan.org/pkg/bussproofs
 \RequirePackage{bussproofs}
