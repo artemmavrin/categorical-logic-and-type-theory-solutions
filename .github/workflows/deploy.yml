@@ -8,12 +8,12 @@ permissions:
   contents: read
   pages: write
   id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: true
 jobs:
   build:
     runs-on: ubuntu-latest
-    concurrency:
-      group: pages
-      cancel-in-progress: true
     steps:
       - name: Check out Git repository
         uses: actions/checkout@v7
@@ -38,6 +38,13 @@ jobs:
         uses: actions/upload-pages-artifact@v5
         with:
           path: "./assets"
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v5
