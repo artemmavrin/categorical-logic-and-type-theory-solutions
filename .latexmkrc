@@ -1,4 +1,5 @@
-$ENV{'TZ'}='America/Los_Angeles';
+# Pass the title-page revision directly to LuaLaTeX.
+chomp($ENV{'SOLUTIONS_REVISION'} = $ENV{'GITHUB_SHA'} || qx(git rev-parse --verify HEAD 2>/dev/null));
 
 # Use LuaLaTeX
 $pdf_mode = 4;

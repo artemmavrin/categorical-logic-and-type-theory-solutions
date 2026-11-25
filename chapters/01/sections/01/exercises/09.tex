@@ -15,7 +15,7 @@ Let
         \draw[->](1)--node[right]{\scriptsize\(\varphi\)} (2);
 \end{tikzpicture}
 \end{pmatrix}
-\arrow[r, "{(u, f)}"]
+\arrow[r, "{\Pair{u}{f}}"]
 \&
 \begin{pmatrix}
 \begin{tikzpicture}
@@ -45,7 +45,7 @@ Since \(\cat{B}\) has pullbacks, let \(X \overset{\alpha}{\leftarrow} A \overset
         \draw[->](1)--node[right]{\scriptsize\(\varphi\)} (2);
 \end{tikzpicture}
 \end{pmatrix}
-\arrow[r, "{(u, f, q)}"]
+\arrow[r, "{\Triple{u}{f}{q}}"]
 \&
 \begin{pmatrix}
 \begin{tikzpicture}
@@ -65,7 +65,7 @@ X \arrow[r, "f"] \arrow[d, "\varphi"{left}] \& Y \arrow[d, "\psi"] \\
 I \arrow[r, "u"] \& J
 \end{tikzcd}
 \end{align*}
-is a Cartesian lift of \((u, f)\).
+is a Cartesian lift of \(\Pair{u}{f}\).
 Indeed, consider a situation as in the following diagram.
 \begin{equation}
 \label{eq:ex:1.1.9.diagram}
@@ -80,7 +80,7 @@ Indeed, consider a situation as in the following diagram.
 \end{tikzpicture}
 \end{pmatrix}
 \arrow[dd, -Triangle]
-\arrow[drr, bend left, "{(w, h, r)}"]
+\arrow[drr, bend left, "{\Triple{w}{h}{r}}"]
 \arrow[dr, dashed, "?"]
 \\[-10ex]
 &
@@ -93,7 +93,7 @@ Indeed, consider a situation as in the following diagram.
         \draw[->](1)--node[right]{\scriptsize\(\varphi\)} (2);
 \end{tikzpicture}
 \end{pmatrix}
-\arrow[r, "{(u, f, q)}"]
+\arrow[r, "{\Triple{u}{f}{q}}"]
 \arrow[dd, -Triangle]
 &
 \begin{pmatrix}
@@ -114,7 +114,7 @@ Indeed, consider a situation as in the following diagram.
         \draw[->](1)--node[right]{\scriptsize\(\xi\)} (2);
 \end{tikzpicture}
 \end{pmatrix}
-\arrow[dr, "{(v, g)}"{below left}]
+\arrow[dr, "{\Pair{v}{g}}"{below left}]
 \\[-2ex]
 &
 \begin{pmatrix}
@@ -124,7 +124,7 @@ Indeed, consider a situation as in the following diagram.
         \draw[->](1)--node[right]{\scriptsize\(\varphi\)} (2);
 \end{tikzpicture}
 \end{pmatrix}
-\arrow[r, "{(u, f)}"]
+\arrow[r, "{\Pair{u}{f}}"]
 &
 \begin{pmatrix}
 \begin{tikzpicture}
@@ -147,7 +147,7 @@ K \arrow[r, "v"] \arrow[rr, bend right, "w"{below}] & I \arrow[r, "u"] & J
 \end{tikzcd}
 \end{equation*}
 Here the dashed arrow \(p : C \to A\) is the unique morphism in \(\cat{B}\) such that \(g \circ \gamma = \alpha \circ p\) and \(r = q \circ p\), by virtue of \(X \overset{\alpha}{\leftarrow} A \overset{q}{\rightarrow} B\) being a pullback of \(X \overset{f}{\to} Y \overset{\beta}{\leftarrow} B\).
-It follows that the unique filler for ``\(?\)'' in \eqref{eq:ex:1.1.9.diagram} is \(? = (v, g, p)\), so \((u, f, q)\) is a Cartesian lift of \((u, f)\), and hence the functor \(\cat{B}^{\rightarrow\rightarrow} \to \cat{B}^\rightarrow\) sending \(\overset{f}{\to}\overset{g}{\to}\) to \(\overset{g}{\to}\) is a fibration.
+It follows that the unique filler for ``\(?\)'' in \eqref{eq:ex:1.1.9.diagram} is \(? = \Triple{v}{g}{p}\), so \(\Triple{u}{f}{q}\) is a Cartesian lift of \(\Pair{u}{f}\), and hence the functor \(\cat{B}^{\rightarrow\rightarrow} \to \cat{B}^\rightarrow\) sending \(\overset{f}{\to}\overset{g}{\to}\) to \(\overset{g}{\to}\) is a fibration.
 
 Moreover, the composite \(B^{\rightarrow\rightarrow} \to \cat{B}^{\rightarrow} \to \cat{B}\) is also a fibration since the composition of two fibrations is again a fibration (cf. \cite[Proposition~8.1.12]{MR1313497}, \cite[Proposition~3.7]{MR2222646}, \cite[Proposition~3.1]{MR0213413} \cite[Proposition~9.1.10]{MR4261588}) and since the codomain functor \(\cod : \cat{B}^{\rightarrow} \to \cat{B}\) is a fibration when \(\cat{B}\) has pullbacks (cf. \cite[Proposition~1.1.6]{MR1674451}).
 \end{solution}

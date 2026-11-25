@@ -2,44 +2,42 @@
 \ProvidesClass{solutions}
 
 % Base class
-\LoadClass[12pt, oneside, letterpaper]{book}
-
-% Input encoding
-\RequirePackage[utf8]{inputenc}
+\PassOptionsToPackage{paper=letter}{typearea}
+\LoadClass[fontsize=12pt, oneside, chapterprefix, numbers=noenddot]{scrbook}
 
 % Fonts
-\RequirePackage{lmodern}
-\RequirePackage[T1]{fontenc}
+\RequirePackage[no-math]{fontspec}
+\setmainfont{Latin Modern Roman}
+\setsansfont{Latin Modern Sans}
+\setmonofont{Latin Modern Mono}
 \RequirePackage{microtype}
 
 % Math packages
 \let\openbox\relax
 \RequirePackage{amsmath}
-\RequirePackage{amsfonts}
-\RequirePackage{amssymb}
 \RequirePackage{amsthm}
 \RequirePackage{mathtools}
-\RequirePackage{mathrsfs}
-\RequirePackage{thmtools}
 \RequirePackage{xfrac}
 
-% TeX Live 2026 workaround: The LaTeX kernel updated its sibling counter handling mechanism in a way
-% that conflicts with thmtools's implementation. \declaretheorem was failing when sibling counters
-% were registered with errors like '! LaTeX Error: Command \c@<counter> already defined.'
-% See: https://github.com/muzimuzhi/thmtools/issues/75
-% TODO: migrate from thmtools + mdframed to keytheorems + tcolorbox
-% See https://ctan.org/pkg/keytheorems and https://ctan.org/pkg/tcolorbox
-\@ifundefined{newcounteralias}{}{%
-    \renewcommand\thmt@autorefsetup{\@xa\def\csname\thmt@envname autorefname\@xa\endcsname\@xa{\thmt@thmname}}%
-}
+% Latin Modern Math, with XITS Math for the script alphabets and \sslash.
+\RequirePackage{unicode-math}
+\setmathfont{Latin Modern Math}
+\setmathfont[range={\mathscr,\mathbfscr,\sslash}]{XITS Math}
 
 % Proof trees in the style of the sequent calculus
 % https://www.ctan.org/pkg/bussproofs
 \RequirePackage{bussproofs}
 
 % Page Formatting
-\pagestyle{headings}
-% \allowdisplaybreaks
+\RequirePackage[automark,markcase=upper]{scrlayer-scrpage}
+\automark{chapter}
+\clearpairofpagestyles
+\ihead{\headmark}
+\ohead{\pagemark}
+\cfoot[\pagemark]{}
+\setkomafont{pagehead}{\normalfont\slshape}
+\renewcommand*\chaptermarkformat{\chapapp\nobreakspace\thechapter.\enskip}
+\pagestyle{scrheadings}
 \flushbottom
 
 % Programming tools
@@ -53,60 +51,64 @@
 % Hyperlinks
 \RequirePackage[hyperfootnotes=false]{hyperref}
 \RequirePackage{bookmark}
+\RequirePackage[capitalize]{cleveref}
 \hypersetup{
-  pdfborder={0 0 0},
-  linktoc=all,
-  colorlinks=true,
-  citecolor=@citecolor,
-  linkcolor=@linkcolor,
+    pdfborder={0 0 0},
+    linktoc=all,
+    colorlinks=true,
+    citecolor=@citecolor,
+    linkcolor=@linkcolor,
 }
 \AtEndPreamble{
-  \hypersetup{
-    pdfauthor={\@author},
-    pdftitle={\@title},
-  }
+    \hypersetup{
+        pdfauthor={\@author},
+        pdftitle={\@title},
+    }
 }
 
 % Good practices
 \RequirePackage[all, error]{onlyamsmath}
 \RequirePackage[l2tabu, orthodox]{nag}
 
-% Framed environments, used by thmtools to make exercise environment
-\RequirePackage{mdframed}
-\mdfsetup{framemethod=TikZ}
+% Theorems and breakable exercise frames
+\RequirePackage{keytheorems}
+\RequirePackage{tcolorbox}
+\tcbuselibrary{breakable}
 
 % Exercise and solution environments
 \newcommand\@exerciselabel[3]{\label{ex:#1.#2.#3}}
-\declaretheoremstyle[
+\newkeytheoremstyle{exercisestyle}{
     headfont=\bfseries,
-    notebraces={(}{)},
     bodyfont=\normalfont,
-    headpunct={.},
-    postheadhook={%
-        \@exerciselabel{\arabic{chapter}}{\arabic{section}}{\arabic{exercise}}%
-        \phantomsection%
-        \addcontentsline{toc}{subsection}{\arabic{chapter}.\arabic{section}.\arabic{exercise}}%
-    },
-    spacebelow=\parsep,
+    headformat={\NUMBER\NOTE},
     spaceabove=\parsep,
-    headformat={\NAME\arabic{chapter}.\arabic{section}.\arabic{exercise}\NOTE},
-]{exercisestyle}
-\declaretheorem[%
+    spacebelow=\parsep,
+}
+\newkeytheorem{exercise}[
     name={},
     style=exercisestyle,
-    parent=section,
+    within=section,
     refname={Exercise,Exercises},
     Refname={Exercise,Exercises},
-    mdframed={
-        backgroundcolor=gray!5,
-        linecolor=black,
-        innertopmargin=6pt,
-        roundcorner=2pt,
-        innerbottommargin=10pt,
-        skipabove=\parsep,
-        skipbelow=\parsep,
+    postheadhook={%
+    \@exerciselabel{\arabic{chapter}}{\arabic{section}}{\arabic{exercise}}%
+    \phantomsection%
+    \addcontentsline{toc}{subsection}{\arabic{chapter}.\arabic{section}.\arabic{exercise}}%
     },
-]{exercise}
+    tcolorbox-no-titlebar={
+        breakable,
+        colback=gray!5,
+        colframe=black,
+        boxrule=0.4pt,
+        arc=2pt,
+        boxsep=0pt,
+        left=10pt,
+        right=10pt,
+        top=6pt,
+        bottom=10pt,
+        pad at break=10pt,
+    },
+]
 \newenvironment{solution}[1][Solution]{\begin{proof}[#1]}{\end{proof}}
 \newenvironment{altsolution}[1][Alternative Solution]{\begin{proof}[#1]}{\end{proof}}
 
@@ -115,18 +117,23 @@
 \numberwithin{figure}{exercise}
 
 % Theorem-like environments
-\declaretheorem[parent=exercise, style=plain]{theorem}
-\declaretheorem[sibling=theorem, style=plain]{lemma}
-\declaretheorem[sibling=theorem, style=plain]{proposition}
-\declaretheorem[sibling=theorem, style=plain]{corollary}
-\declaretheorem[sibling=theorem, style=plain]{claim}
-\declaretheorem[sibling=theorem, style=definition]{definition}
-\declaretheorem[sibling=theorem, style=definition]{example}
-\declaretheorem[sibling=theorem, style=definition]{counterexample}
-\declaretheorem[sibling=theorem, style=definition]{remark}
-\declaretheorem[sibling=theorem, style=definition]{observation}
-\declaretheorem[sibling=theorem, style=definition]{notation}
-\declaretheorem[sibling=theorem, style=definition]{axiom}
+\newkeytheorem{theorem}[within=exercise, style=plain]
+\newkeytheorem{lemma}[sibling=theorem, style=plain]
+\newkeytheorem{proposition}[sibling=theorem, style=plain]
+\newkeytheorem{corollary}[sibling=theorem, style=plain]
+\newkeytheorem{claim}[sibling=theorem, style=plain]
+\newkeytheorem{definition}[sibling=theorem, style=definition]
+\newkeytheorem{example}[sibling=theorem, style=definition]
+\newkeytheorem{counterexample}[sibling=theorem, style=definition]
+\newkeytheorem{remark}[sibling=theorem, style=definition]
+\newkeytheorem{observation}[sibling=theorem, style=definition]
+\newkeytheorem{notation}[sibling=theorem, style=definition]
+\newkeytheorem{axiom}[sibling=theorem, style=definition]
+\crefname{claim}{Claim}{Claims}
+\crefname{counterexample}{Counterexample}{Counterexamples}
+\crefname{observation}{Observation}{Observations}
+\crefname{notation}{Notation}{Notations}
+\crefname{axiom}{Axiom}{Axioms}
 
 % Custom lists (e.g., exercise parts lists)
 \RequirePackage{enumitem}
@@ -138,10 +145,12 @@
 % Exercise parts list
 \newlist{parts}{enumerate}{2}
 \setlist[parts, 1]{label={(\roman*)}}
+\crefname{partsi}{Part}{Parts}
 
 % Use \part instead of \item in parts environments for automatic label generation
 \newcommand\@partlabel[4]{\label{ex:#1.#2.#3.#4}}
-\renewcommand\part{\item\@partlabel{\arabic{chapter}}{\arabic{section}}{\arabic{exercise}}{\roman{partsi}}}
+\newcommand*\@exercisepart{\item\@partlabel{\arabic{chapter}}{\arabic{section}}{\arabic{exercise}}{\roman{partsi}}}
+\AtBeginEnvironment{parts}{\let\part\@exercisepart}
 
 % Solution for a problem
 \newenvironment{partsolution}[1]{\begin{solution}[Solution, {\normalfont\partref{\arabic{chapter}}{\arabic{section}}{\arabic{exercise}}{#1}}]}{\end{solution}}
@@ -168,6 +177,7 @@
 \AfterEndEnvironment{example}{\NoIndentAfterThis}
 \AfterEndEnvironment{counterexample}{\NoIndentAfterThis}
 \AfterEndEnvironment{remark}{\NoIndentAfterThis}
+\AfterEndEnvironment{observation}{\NoIndentAfterThis}
 \AfterEndEnvironment{notation}{\NoIndentAfterThis}
 \AfterEndEnvironment{axiom}{\NoIndentAfterThis}
 \AfterEndEnvironment{enumerate}{\NoIndentAfterThis}
@@ -179,6 +189,7 @@
 \usetikzlibrary{calc,arrows,cd,positioning}
 \tikzcdset{
     diagrams={sep=large},
+    arrow style=tikz,
 }
 
 % Captions for, e.g., figures
@@ -189,6 +200,8 @@
 
 % Bibliography/references
 \RequirePackage[backend=biber]{biblatex}
+% Allow a URL to break inside a word when punctuation breaks do not fit.
+\setcounter{biburllcpenalty}{9000}
 
 % Generate solutions body
 \newcommand\@MAXCHAPTERS{100}
@@ -201,15 +214,15 @@
 \newcommand\@sectiondir{}
 \newcommand\@exercisefilenoext{}
 \newcommand\@chapterlabel[1]{\label{ch:#1}}
-\newcommand\@sectionlabel[1]{\label{section:\arabic{chapter}#1}}
+\newcommand\@sectionlabel[1]{\label{section:\arabic{chapter}.#1}}
 \newcommand{\GenerateSolutions}{
-    % Loop over chapters
+% Loop over chapters
     \foreach \@c in {0,1,...,\@MAXCHAPTERS}{%
         \renewcommand\@chapterdir{./chapters/\@twodigits{\@c}}
         % Each chapter directory should have a main.tex that defines the \chapter
         % for that chapter
         \IfFileExists{\@chapterdir/main.tex}{
-            % Advance chapter counter to force correct numbering
+        % Advance chapter counter to force correct numbering
             \setcounter{chapter}{\@c}
             \addtocounter{chapter}{-1}
             % Read chapter heading
@@ -223,7 +236,7 @@
                 % Each section directory should have a main.tex that defines the \chapter
                 % for that chapter
                 \IfFileExists{\@sectiondir/main.tex}{
-                    % Advance section counter to force correct numbering
+                % Advance section counter to force correct numbering
                     \setcounter{section}{\@s}
                     \addtocounter{section}{-1}
                     % Read section heading
@@ -235,7 +248,7 @@
                     \foreach \@e in {1,2,...,\@MAXEXERCISES}{%
                         \renewcommand\@exercisefilenoext{\@sectiondir/exercises/\@twodigits{\@e}}
                         \IfFileExists{{\@exercisefilenoext}.tex}{
-                            % Advance exercise environment counter based on name from file name
+                        % Advance exercise environment counter based on name from file name
                             \setcounter{exercise}{\@e}%
                             \addtocounter{exercise}{-1}%
                             % Include exercise + solution
@@ -254,77 +267,38 @@
 \newcommand\partref[4]{\ref{ex:#1.#2.#3.#4}}
 \newcommand\expartref[4]{\hyperref[ex:#1.#2.#3.#4]{Exercise~#1.#2.#3(#4)}}
 
-% A more compact table of contents
-\RequirePackage{titletoc}
-\titlecontents*%
-    {section} % section name witnout backslash
-    [0em] % left margin
-    {\contentsmargin{0em}} % above-code
-    {\itshape\thecontentslabel.\space} % numbered-entry-format
-    {\itshape} % numberless-entry-format
-    {} % filler-page-format
-    [,\space\space] % separator
-\titlecontents*%
-    {subsection} % section name without backslash
-    [0em] % left margin
-    {\contentsmargin{0em}} % above-code
-    {} % numbered-entry-format
-    {} % numberless-entry-format
-    {} % filler-page-format
-    [,\space\space] % begin
-    [,\space\space] % separator
-    [] % end
+% Keep section titles and exercise links inline beneath each chapter.
+\newcommand*\@tocsectionnumber[1]{#1.}
+\newcommand*\@tocentryseparator{,\space\space}
+\DeclareTOCStyleEntry[
+    indent=0pt,
+    rightindent=0pt,
+    entryformat=\textit,
+    entrynumberformat=\@tocsectionnumber,
+    prepagenumber={},
+    pagenumberformat=\@gobble,
+    onendentry=\@tocentryseparator,
+]{toctext}{section}
+\DeclareTOCStyleEntry[
+    indent=0pt,
+    rightindent=0pt,
+    prepagenumber={},
+    pagenumberformat=\@gobble,
+    onendentry=\@tocentryseparator,
+]{toctext}{subsection}
+\setuptoc{toc}{totoc}
 
-% Include the table of contents in the table of contents
-% https://tex.stackexchange.com/questions/106093
-\RequirePackage{tocbibind}
-
-% Change appearance of chapter and section headings
-\RequirePackage{titlesec}
-\titleformat{\chapter}%
-    [display] % shape
-    {\normalfont\bfseries\huge} % format
-    {Chapter \thechapter} % label
-    {10pt} % sep
-    {} % before-code
-\titlespacing*{\chapter}{0pt}{-50pt}{40pt}
-\titleformat{\section}%
-    [hang] % shape
-    {\normalfont\itshape\large} % format
-    {\thesection} % label
-    {10pt} % sep
-    {} % before-code
-
-% For timestamp
-\RequirePackage[style=iso]{datetime2}
-
-\RequirePackage{fontawesome}
-
-% "symbols for theoretical computer science"
-\RequirePackage{stmaryrd}
-
-% Get current git commit and branch
-% https://tex.stackexchange.com/questions/455396
-\RequirePackage{xstring}
-\RequirePackage{catchfile}
-\IfFileExists{.git/HEAD}{%
-    \CatchFileDef{\githeadfull}{.git/HEAD}{}%
-    \StrGobbleRight{\githeadfull}{1}[\githead]%
-    \IfSubStr{\githead}{ref: refs/heads/}{%
-        \StrBehind[2]{\githead}{/}[\gitbranch]%
-        \IfFileExists{.git/refs/heads/\gitbranch}{%
-            \CatchFileDef{\gitcommit}{.git/refs/heads/\gitbranch}{}%
-        }{%
-            \def\gitcommit{unknown}%
-        }%
-    }{%
-        \def\gitbranch{detached}%
-        \def\gitcommit{\githead}%
-    }%
-    \StrGobbleRight{\gitcommit}{1}[\gitcommithash]%
-}{%
-    \def\gitbranch{unknown}%
-    \def\gitcommit{unknown}%
-    \def\gitcommithash{unknown}%
-}%
-\newcommand\gitreponame{artemmavrin/categorical-logic-and-type-theory-solutions}
+% Title and headings
+\setkomafont{disposition}{\normalfont\bfseries}
+\setkomafont{title}{\normalfont}
+\setkomafont{chapter}{\huge}
+\setkomafont{chapterprefix}{\huge}
+\setkomafont{section}{\normalfont\itshape\large}
+\renewcommand*\sectionformat{\thesection\hspace{10pt}}
+\RedeclareSectionCommand[
+    beforeskip=0pt,
+    innerskip=10pt,
+    afterskip=14pt,
+    afterindent=false,
+]{chapter}
+\RedeclareSectionCommand[afterskip=1.5ex plus 0.2ex]{section}
