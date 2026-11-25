@@ -1,5 +1,7 @@
 name: Build PDF
-on: [pull_request, workflow_dispatch]
+on:
+  - push
+  - workflow_dispatch
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -10,6 +12,7 @@ jobs:
         uses: xu-cheng/latex-action@v4
         with:
           root_file: solutions.tex
+          latexmk_use_lualatex: true
       - name: Upload PDF artifact
         uses: actions/upload-artifact@v7
         with:

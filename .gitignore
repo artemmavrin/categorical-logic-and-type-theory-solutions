@@ -282,3 +282,10 @@ TSWLatexianTemp*
 *Notes.bib
 
 .vscode/
+
+# JetBrains IDEs
+.idea/
+*.iml
+
+# macOS
+.DS_Store
