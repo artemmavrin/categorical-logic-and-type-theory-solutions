@@ -199,7 +199,7 @@
 \RequirePackage[multiple]{footmisc}
 
 % Bibliography/references
-\RequirePackage[backend=biber]{biblatex}
+\RequirePackage[backend=biber,backref=true]{biblatex}
 % Allow a URL to break inside a word when punctuation breaks do not fit.
 \setcounter{biburllcpenalty}{9000}
 
