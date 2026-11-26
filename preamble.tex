@@ -1,15 +1,21 @@
-\usepackage{defs}
+\usepackage[style=iso]{datetime2}
+\usepackage{fontawesome5}
+\usepackage{notation}
+
+\edef\gitcommithash{\directlua{tex.sprint(os.getenv("SOLUTIONS_REVISION") or "")}}
+\newcommand\gitreponame{artemmavrin/categorical-logic-and-type-theory-solutions}
 
 \title{\texorpdfstring{%
-Solutions to the exercises in\\
-\emph{Categorical Logic and Type Theory}\\
-by Bart Jacobs}%
+    Solutions to the exercises in\\
+    \emph{Categorical Logic and Type Theory}\\
+    by Bart Jacobs}%
 {Categorical Logic and Type Theory Solutions}}
 \author{Artem Mavrin}
 \date{%
-\small Updated: \texttt{\DTMNow}\\%
-\faGithub\, \href{https://github.com/\gitreponame}{\texttt{\gitreponame}}\\%
-Version: \href{https://github.com/\gitreponame/commit/\gitcommithash}{\texttt{\gitcommithash}}%
+    \small Updated: \texttt{\DTMNow}\\%
+    \faGithub\, \href{https://github.com/\gitreponame}{\texttt{\gitreponame}}\\%
+    Version: \ifdefempty{\gitcommithash}{\texttt{unknown}}{%
+        \href{https://github.com/\gitreponame/commit/\gitcommithash}{\texttt{\gitcommithash}}}%
 }
 
 \addbibresource{refs.bib}

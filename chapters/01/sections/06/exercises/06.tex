@@ -1,5 +1,5 @@
 \begin{exercise}
-Let \(\Sigma\) be a signature and \(T = |\Sigma|\) its set of types.
+Let \(\Sigma\) be a signature and \(T = \Carrier{\Sigma}\) its set of types.
 We write \(\SModel(\Sigma)\) for the fibre category over \(\Sigma\) of the fibration
 \begin{tikzcd}[row sep=small]
 \SModel \arrow[d] \\ \Sign
@@ -9,13 +9,13 @@ This is the category of \(\Sigma\)-models.
 \part
 Show that the assignment
 \begin{equation*}
-X = \left(X_\sigma\right)_{\sigma \in T}
-\mapsto \big(\Terms_\tau(X)\big)_{\tau \in T}
+X = \IndexedFamily{\sigma \in T}{X_\sigma}
+\mapsto \IndexedFamily[\big]{\tau \in T}{\Terms_\tau(X)}
 \end{equation*}
-extends to a functor from the category \(\Fam\left(\Sets\right)_T = \Sets^T\) of \(T\)-indexed families of sets to \(\SModel(\Sigma)\).
+extends to a functor from the category \(\Fam\Parens*{\Sets}_T = \Sets^T\) of \(T\)-indexed families of sets to \(\SModel(\Sigma)\).
 \part
-Assume \(\left(\left(A_\sigma\right)_{\sigma \in T},\left\llbracket\_\right\rrbracket\right)\) is a \(\Sigma\)-model.
-Verify that an interpretation \(\left\llbracket\_\right\rrbracket_\rho^\tau : \Terms_\tau(X) \to A_\tau\) is a morphism of \(\Sigma\)-models.
+Assume \(\Pair*{\IndexedFamily{\sigma \in T}{A_\sigma}}{\Interpretation{}}\) is a \(\Sigma\)-model.
+Verify that an interpretation \(\Interpretation{}_\rho^\tau : \Terms_\tau(X) \to A_\tau\) is a morphism of \(\Sigma\)-models.
 \end{parts}
 \end{exercise}
 
@@ -27,104 +27,104 @@ We will define a ``term model'' functor
 First, consider the following ``pre-functorial'' data (assignments of objects and morphisms in \(\Sets^T\) to objects and morphisms in \(\SModel(\Sigma)\)).
 \begin{description}
 \item[objects]
-For a \(T\)-indexed family of sets \(X = \left(X_\sigma\right)_{\sigma \in T}\) (viewed as a set of variables for each of the basic types in \(T\)),
+For a \(T\)-indexed family of sets \(X = \IndexedFamily{\sigma \in T}{X_\sigma}\) (viewed as a set of variables for each of the basic types in \(T\)),
 \begin{align*}
-X \mapsto & \left(\left(\Terms_\tau(X)\right)_{\tau \in T}, \left\llbracket\_\right\rrbracket_X\right) \\
+X \mapsto & \Pair*{\IndexedFamily*{\tau \in T}{\Terms_\tau(X)}}{\Interpretation{}_X} \\
 &= \text{the \textbf{term model} of \(\Sigma\) with variables from \(X\)}.
 \end{align*}
-That is, the right-hand side is the model of \(\Sigma\) whose \textbf{carrier sets} are \(\left(\Terms_\tau(X)\right)_{\tau \in T}\) and whose \textbf{interpretation function} \(\left\llbracket\_\right\rrbracket_X\) is given, for a function symbol \(F : \tau_0,\,\ldots,\,\tau_{n-1} \to \tau_n\) in \(\Sigma\), by
+That is, the right-hand side is the model of \(\Sigma\) whose \textbf{carrier sets} are \(\IndexedFamily*{\tau \in T}{\Terms_\tau(X)}\) and whose \textbf{interpretation function} \(\Interpretation{}_X\) is given, for a function symbol \(F : \tau_0,\,\ldots,\,\tau_{n-1} \to \tau_n\) in \(\Sigma\), by
 \begin{gather*}
-\left\llbracket F \right\rrbracket_X : \Terms_{\tau_0}(X) \times \cdots \times \Terms_{\tau_{n-1}}(X) \to \Terms_{\tau_n}(X) \\
-(M_0, \ldots, M_{n-1}) \mapsto F (M_0, \ldots, M_{n-1}).
+\Interpretation{F}_X : \Terms_{\tau_0}(X) \times \cdots \times \Terms_{\tau_{n-1}}(X) \to \Terms_{\tau_n}(X) \\
+\Parens{M_0, \ldots, M_{n-1}} \mapsto F\Parens{M_0, \ldots, M_{n-1}}.
 \end{gather*}
 \item[morphisms]
-For a morphism \(f = \left(f_\sigma : X_\sigma \to Y_\sigma\right)_{\sigma \in T} : X \to Y\) in \(\Sets^T\),
+For a morphism \(f = \IndexedFamily*{\sigma \in T}{f_\sigma : X_\sigma \to Y_\sigma} : X \to Y\) in \(\Sets^T\),
 \begin{equation*}
-f \mapsto \left\llbracket\_\right\rrbracket_f : \left(\left(\Terms_\tau(X)\right)_{\tau \in T}, \left\llbracket\_\right\rrbracket_X\right) \to \left(\left(\Terms_\tau(Y)\right)_{\tau \in T}, \left\llbracket\_\right\rrbracket_Y\right)
+f \mapsto \Interpretation{}_f : \Pair*{\IndexedFamily*{\tau \in T}{\Terms_\tau(X)}}{\Interpretation{}_X} \to \Pair*{\IndexedFamily*{\tau \in T}{\Terms_\tau(Y)}}{\Interpretation{}_Y}
 \end{equation*}
 defined as follows.
-Viewing \(X\) as a set of variables used to interpret the term model \(\left(\left(\Terms_\tau(Y)\right)_{\tau \in T}, \left\llbracket\_\right\rrbracket_Y\right)\), define a \textbf{valuation}
+Viewing \(X\) as a set of variables used to interpret the term model \(\Pair*{\IndexedFamily*{\tau \in T}{\Terms_\tau(Y)}}{\Interpretation{}_Y}\), define a \textbf{valuation}
 \begin{align*}
-\rho(f) &\coloneq \left(\rho_\sigma(f) : X_\sigma \to \Terms_\sigma(Y)\right)_{\sigma \in T} \\
+\rho(f) &\coloneq \IndexedFamily*{\sigma \in T}{\rho_\sigma(f) : X_\sigma \to \Terms_\sigma(Y)} \\
 \rho_\sigma(f) &\coloneq x \mapsto f_\sigma(x) \qquad\text{(as a term in \(\Terms_\sigma(Y)\))}.
 \end{align*}
 This yields an interpretation
 \begin{align*}
-\left\llbracket\_\right\rrbracket_f
-\coloneq \left\llbracket\_\right\rrbracket_{\rho(f)}
-= \left(\left\llbracket\_\right\rrbracket_{\rho(f)}^\tau : \Terms_\tau(X) \to \Terms_\tau(Y)\right)_{\tau \in T},
+\Interpretation{}_f
+\coloneq \Interpretation{}_{\rho(f)}
+= \IndexedFamily*{\tau \in T}{\Interpretation{}_{\rho(f)}^\tau : \Terms_\tau(X) \to \Terms_\tau(Y)},
 \end{align*}
-which is a morphism of \(\Sigma\)-models from \(\left(\left(\Terms_\tau(X)\right)_{\tau \in T}, \left\llbracket\_\right\rrbracket_X\right)\) to \(\left(\left(\Terms_\tau(Y)\right)_{\tau \in T}, \left\llbracket\_\right\rrbracket_Y\right)\) by \partref{1}{6}{6}{ii}.
+which is a morphism of \(\Sigma\)-models from \(\Pair*{\IndexedFamily*{\tau \in T}{\Terms_\tau(X)}}{\Interpretation{}_X}\) to \(\Pair*{\IndexedFamily*{\tau \in T}{\Terms_\tau(Y)}}{\Interpretation{}_Y}\) by \partref{1}{6}{6}{ii}.
 \end{description}
 It remains to verify that these assignments are functorial.
 First, induction on the structure of terms shows that
 \begin{equation*}
-\left\llbracket t\right\rrbracket_{\rho(\id_X)}^\tau
+\Interpretation*{t}_{\rho(\id{X})}^\tau
 = t
 \end{equation*}
 for every term \(t \in \Terms_\tau(X)\) and every basic type \(\tau\), so that
 \begin{equation*}
-\left\llbracket\_\right\rrbracket_{\id_X}
-= \id_{\left(\left(\Terms_\tau(X)\right)_{\tau \in T}, \left\llbracket\_\right\rrbracket_X\right)}.
+\Interpretation{}_{\id{X}}
+= \id{\Pair*{\IndexedFamily*{\tau \in T}{\Terms_\tau(X)}}{\Interpretation{}_X}}.
 \end{equation*}
 Second, for morphisms \(f : X \to Y\) and \(g : Y \to Z\) in \(\Sets^T\), we have
 \begin{align*}
-\left\llbracket x \right\rrbracket_{\rho(g \circ f)}^\tau
-&= \left(g \circ f\right)_\tau(x)
-= g_\tau\left(f_\tau(x)\right)
-= \left\llbracket \left\llbracket x \right\rrbracket_{\rho(f)}^\tau \right\rrbracket_{\rho(g)}^\tau
+\Interpretation*{x}_{\rho(g \circ f)}^\tau
+&= \Parens*{g \circ f}_\tau(x)
+= g_\tau\Parens*{f_\tau(x)}
+= \Interpretation*{\Interpretation*{x}_{\rho(f)}^\tau}_{\rho(g)}^\tau
 &\text{for \(x \in X_\tau\)}
 \end{align*}
 and, by induction on terms, for a function symbol \(F : \tau_0,\,\ldots,\,\tau_{n-1} \to \tau_n\) in \(\Sigma\) and terms \(M_0 \in \Terms_{\tau_0}(X),\ldots,M_{n-1} \in \Terms_{\tau_{n-1}}(X)\),
 \begin{align*}
-\left\llbracket F(M_0,\ldots,M_{n-1}) \right\rrbracket_{\rho(g \circ f)}^{\tau_n}
-&= \left\llbracket F\right\rrbracket_Z\left(\left\llbracket M_0 \right\rrbracket_{\rho(g \circ f)}^{\tau_0},\ldots,\left\llbracket M_{n-1} \right\rrbracket_{\rho(g \circ f)}^{\tau_{n-1}}\right) \\
-&= \left\llbracket F\right\rrbracket_Z\left(\left\llbracket \left\llbracket M_0 \right\rrbracket_{\rho(f)}^{\tau_0} \right\rrbracket_{\rho(g)}^{\tau_0},\ldots,\left\llbracket \left\llbracket M_{n-1} \right\rrbracket_{\rho(f)}^{\tau_{n-1}} \right\rrbracket_{\rho(g)}^{\tau_{n-1}}\right) \\
-&= \left\llbracket F(\left\llbracket M_0 \right\rrbracket_{\rho(f)}^{\tau_0},\ldots,\left\llbracket M_{n-1}\right\rrbracket_{\rho(f)}^{\tau_{n-1}}) \right\rrbracket_{\rho(g)}^{\tau_n} \\
-&= \left\llbracket \left\llbracket F\right\rrbracket_Y(\left\llbracket M_0 \right\rrbracket_{\rho(f)}^{\tau_0},\ldots,\left\llbracket M_{n-1}\right\rrbracket_{\rho(f)}^{\tau_{n-1}}) \right\rrbracket_{\rho(g)}^{\tau_n} \\
-&= \left\llbracket \left\llbracket F(M_0,\ldots,M_{n-1})\right\rrbracket_{\rho(f)}^{\tau_n} \right\rrbracket_{\rho(g)}^{\tau_n}.
+\Interpretation*{F\Parens{M_0,\ldots,M_{n-1}}}_{\rho(g \circ f)}^{\tau_n}
+&= \Interpretation*{F}_Z\Parens*{\Interpretation*{M_0}_{\rho(g \circ f)}^{\tau_0},\ldots,\Interpretation*{M_{n-1}}_{\rho(g \circ f)}^{\tau_{n-1}}} \\
+&= \Interpretation*{F}_Z\Parens*{\Interpretation*{\Interpretation*{M_0}_{\rho(f)}^{\tau_0}}_{\rho(g)}^{\tau_0},\ldots,\Interpretation*{\Interpretation*{M_{n-1}}_{\rho(f)}^{\tau_{n-1}}}_{\rho(g)}^{\tau_{n-1}}} \\
+&= \Interpretation*{F\Parens{\Interpretation*{M_0}_{\rho(f)}^{\tau_0},\ldots,\Interpretation*{M_{n-1}}_{\rho(f)}^{\tau_{n-1}}}}_{\rho(g)}^{\tau_n} \\
+&= \Interpretation*{\Interpretation*{F}_Y\Parens{\Interpretation*{M_0}_{\rho(f)}^{\tau_0},\ldots,\Interpretation*{M_{n-1}}_{\rho(f)}^{\tau_{n-1}}}}_{\rho(g)}^{\tau_n} \\
+&= \Interpretation*{\Interpretation*{F\Parens{M_0,\ldots,M_{n-1}}}_{\rho(f)}^{\tau_n}}_{\rho(g)}^{\tau_n}.
 \end{align*}
 We conclude that
 \begin{equation*}
-\left\llbracket\_\right\rrbracket_{g \circ f}
-= \left\llbracket\_\right\rrbracket_g \circ \left\llbracket\_\right\rrbracket_f
+\Interpretation{}_{g \circ f}
+= \Interpretation{}_g \circ \Interpretation{}_f
 \end{equation*}
 so \(\Terms : \Sets^T \to \SModel(\Sigma)\) is a functor.
 \end{partsolution}
 
 \begin{partsolution}{ii}
-Let \(\left(\left(A_\sigma\right)_{\sigma\in T}, \left\llbracket\_\right\rrbracket\right)\) be a \(\Sigma\)-model, \(X = \left(X_\sigma\right)_{\sigma \in T}\) a \(T\)-indexed family of sets (viewed as sets of variables for the basic types in \(T\)), and \(\rho = \left(\rho_\sigma : X_\sigma \to A_\sigma\right)_{\sigma \in T}\) a valuation.
+Let \(\Pair*{\IndexedFamily{\sigma\in T}{A_\sigma}}{\Interpretation{}}\) be a \(\Sigma\)-model, \(X = \IndexedFamily{\sigma \in T}{X_\sigma}\) a \(T\)-indexed family of sets (viewed as sets of variables for the basic types in \(T\)), and \(\rho = \IndexedFamily*{\sigma \in T}{\rho_\sigma : X_\sigma \to A_\sigma}\) a valuation.
 Then \(\rho\) induces an \textbf{interpretation}
 \begin{equation*}
-\left\llbracket\_\right\rrbracket_\rho
-\coloneq \left(\left\llbracket\_\right\rrbracket_\rho^\tau : \Terms_\tau(X) \to A_\tau\right)_{\tau \in T},
+\Interpretation{}_\rho
+\coloneq \IndexedFamily*{\tau \in T}{\Interpretation{}_\rho^\tau : \Terms_\tau(X) \to A_\tau},
 \end{equation*}
 which is defined by induction on the structure of terms by
 \begin{equation*}
-\left\llbracket x \right\rrbracket_\rho^\tau \coloneq \rho_\tau(x)
+\Interpretation*{x}_\rho^\tau \coloneq \rho_\tau(x)
 \end{equation*}
 for \(x \in X_\tau\) and
 \begin{equation}
 \label{eq:1.6.6:interpretation-definition}
-\left\llbracket F(M_0,\ldots,M_{n-1}) \right\rrbracket_\rho^{\tau_n}
-\coloneq \left\llbracket F \right\rrbracket \left(\left\llbracket M_0 \right\rrbracket_\rho^{\tau_0}, \ldots, \left\llbracket M_{n-1} \right\rrbracket_\rho^{\tau_{n-1}}\right)
+\Interpretation*{F\Parens{M_0,\ldots,M_{n-1}}}_\rho^{\tau_n}
+\coloneq \Interpretation{F} \Parens*{\Interpretation*{M_0}_\rho^{\tau_0}, \ldots, \Interpretation*{M_{n-1}}_\rho^{\tau_{n-1}}}
 \end{equation}
-for function symbols \(F : \tau_0,\,\ldots,\,\tau_{n-1} \to \tau_n\) in \(\Sigma\) and terms \(M_i \in \Terms_{\tau_i}(X)\) (\(i \in \{0, \ldots, n - 1\}\)).
+for function symbols \(F : \tau_0,\,\ldots,\,\tau_{n-1} \to \tau_n\) in \(\Sigma\) and terms \(M_i \in \Terms_{\tau_i}(X)\) (\(i \in \SetOf{0, \ldots, n - 1}\)).
 In fact, \eqref{eq:1.6.6:interpretation-definition} immediately yields
 \begin{align*}
-\left\llbracket F\right\rrbracket\left(\left\llbracket M_0\right\rrbracket_\rho^{\tau_0},\ldots,\left\llbracket M_{n-1}\right\rrbracket_\rho^{\tau_{n-1}}\right)
-&= \left\llbracket F(M_0,\ldots,M_{n-1}) \right\rrbracket_\rho^{\tau_n} \\
-&= \left\llbracket \left\llbracket F\right\rrbracket_X(M_0,\ldots,M_{n-1}) \right\rrbracket_\rho^{\tau_n}.
+\Interpretation*{F}\Parens*{\Interpretation*{M_0}_\rho^{\tau_0},\ldots,\Interpretation*{M_{n-1}}_\rho^{\tau_{n-1}}}
+&= \Interpretation*{F\Parens{M_0,\ldots,M_{n-1}}}_\rho^{\tau_n} \\
+&= \Interpretation*{\Interpretation*{F}_X\Parens{M_0,\ldots,M_{n-1}}}_\rho^{\tau_n}.
 \end{align*}
-In other words, the following diagram commutes for every function symbol \(F : \tau_0,\,\ldots,\,\tau_{n-1} \to \tau_n\) in \(\Sigma\), whence \(\left\llbracket\_\right\rrbracket_\rho\) is a morphism of \(\Sigma\)-models from the term model \(\left(\left(\Terms_\tau(X)\right)_{\tau \in T}, \left\llbracket\_\right\rrbracket_X\right)\) to \(\left(\left(A_\sigma\right)_{\sigma\in T}, \left\llbracket\_\right\rrbracket\right)\).
+In other words, the following diagram commutes for every function symbol \(F : \tau_0,\,\ldots,\,\tau_{n-1} \to \tau_n\) in \(\Sigma\), whence \(\Interpretation{}_\rho\) is a morphism of \(\Sigma\)-models from the term model \(\Pair*{\IndexedFamily*{\tau \in T}{\Terms_\tau(X)}}{\Interpretation{}_X}\) to \(\Pair*{\IndexedFamily{\sigma\in T}{A_\sigma}}{\Interpretation{}}\).
 \begin{equation*}
 \begin{tikzcd}
 \Terms_{\tau_0}(X) \times\cdots\times \Terms_{\tau_{n-1}}(X)
-\arrow[d, "\left\llbracket F\right\rrbracket_X"{left}]
-\arrow[rr, "\left\llbracket\_\right\rrbracket_\rho^{\tau_0} \times\cdots\times \left\llbracket\_\right\rrbracket_\rho^{\tau_{n-1}}"]
+\arrow[d, "\Interpretation*{F}_X"{left}]
+\arrow[rr, "\Interpretation{}_\rho^{\tau_0} \times\cdots\times \Interpretation{}_\rho^{\tau_{n-1}}"]
 && A_{\tau_0} \times\cdots\times A_{\tau_{n-1}}
-\arrow[d, "\left\llbracket F\right\rrbracket"{right}] \\
-\Terms_{\tau_n}(X) \arrow[rr, "\left\llbracket\_\right\rrbracket_\rho^{\tau_n}"]
+\arrow[d, "\Interpretation*{F}"{right}] \\
+\Terms_{\tau_n}(X) \arrow[rr, "\Interpretation{}_\rho^{\tau_n}"]
 && A_{\tau_n}
 \end{tikzcd}
 \qedhere

@@ -1,0 +1,94 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{notation}
+
+\RequirePackage{etoolbox}
+\RequirePackage{mathtools}
+\RequirePackage{tikz}
+\RequirePackage{unicode-math}
+
+% Paired delimiters
+\newcommand*{\@argumentSlot}[1]{\ifblank{#1}{\mathord{-}}{#1}}
+\DeclarePairedDelimiterX\Parens[1]\lparen\rparen{\@argumentSlot{#1}}
+\DeclarePairedDelimiterX\Pair[2]\lparen\rparen{\@argumentSlot{#1},\@argumentSlot{#2}}
+\DeclarePairedDelimiterX\Triple[3]\lparen\rparen{\@argumentSlot{#1},\@argumentSlot{#2},\@argumentSlot{#3}}
+\DeclarePairedDelimiterXPP\IndexedFamily[2]{}\lparen\rparen{_{#1}}{#2}
+\DeclarePairedDelimiter\Tuple{\langle}{\rangle}
+\DeclarePairedDelimiterX\Pairing[2]{\langle}{\rangle}{#1,#2}
+\DeclarePairedDelimiter\Substitution{[}{]}
+\DeclarePairedDelimiter\Permutation{[}{]}
+\DeclarePairedDelimiterXPP\EquivalenceClass[2]{}{[}{]}{_{#1}}{#2}
+\DeclarePairedDelimiter\Carrier{\lvert}{\rvert}
+\DeclarePairedDelimiter\FibrationOfObjects{\lvert}{\rvert}
+\DeclarePairedDelimiterX\Interpretation[1]\lBrack\rBrack{\ifblank{#1}{\:\rule{0.4em}{0.4pt}\:}{#1}}
+
+% Set notation (adapted from mathtools documentation: https://ctan.org/pkg/mathtools)
+\providecommand\SuchThat{}
+\newcommand\SetSymbol[1][]{%
+    \mathchoice{\:}{\:}{\,}{\,}#1\vert%
+    \allowbreak%
+    \mathchoice{\:}{\:}{\,}{\,}%
+    \mathopen{}}
+\DeclarePairedDelimiterX\SetOf[1]\{\}{%
+    \renewcommand\SuchThat{\SetSymbol[\delimsize]}%
+    #1}
+
+% Generic categories
+\newcommand{\cat}{\mathbb}
+\DeclarePairedDelimiterXPP\Hom[3]{#1}\lparen\rparen{}{\@argumentSlot{#2},\@argumentSlot{#3}}
+\DeclareMathOperator{\cod}{cod}
+\DeclareMathOperator{\dom}{dom}
+\newcommand{\id}[1]{\operatorname{id}\ifblank{#1}{}{_{#1}}}
+\newcommand{\op}[1]{{#1}^{\mathrm{op}}}
+
+% Set-theoretic notation
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\PowerSet}{P\Parens}
+
+% Named categories
+\newcommand{\Sets}{\mathbf{Sets}}
+\newcommand{\Pred}{\mathbf{Pred}}
+\newcommand{\Rel}[1]{{\ifblank{#1}{}{#1\text{-}}\mathbf{Rel}}}
+\newcommand{\Fld}{\mathbf{Fld}}
+\newcommand{\Vect}{\mathbf{Vect}}
+\newcommand{\PER}{\mathbf{PER}}
+\newcommand{\omegaSets}{\omega\text{-}\Sets}
+\newcommand{\Cat}{\mathbf{Cat}}
+\newcommand{\Sign}{\mathbf{Sign}}
+\newcommand{\FinSets}{\mathbf{FinSets}}
+\newcommand{\FinSign}{\mathbf{FinSign}}
+\newcommand{\SModel}{\mathbf{S\text{\textbf{-}}Model}}
+\newcommand{\ST}{\mathbf{ST}}
+
+% Category constructors
+\DeclareMathOperator{\Fam}{Fam}
+\DeclareMathOperator{\Cart}{Cart}
+\DeclareMathOperator{\FinFam}{FinFam}
+\DeclareMathOperator{\simple}{s}
+
+% Term constructors
+\newcommand{\ite}[3]{\text{if \(#1\) then \(#2\) else \(#3\)}}
+\DeclareMathOperator{\fst}{fst}
+\DeclareMathOperator{\snd}{snd}
+\DeclareMathOperator{\Eq}{Eq}
+\DeclareMathOperator{\nEq}{nEq}
+
+\DeclareMathOperator{\Terms}{Terms}
+
+\newcommand*\widebar[1]{\wideoverbar{#1}}
+
+% Set arrow and accent conventions after unicode-math defines its symbols.
+\AtBeginDocument{%
+  \renewcommand{\to}{\mathchoice{\longrightarrow}{\rightarrow}{\rightarrow}{\rightarrow}}
+  \let\mapstoo\mapsto
+  \renewcommand{\mapsto}{\mathchoice{\longmapsto}{\mapstoo}{\mapstoo}{\mapstoo}}
+  \let\@hookrightarrowold\hookrightarrow
+  \renewcommand\hookrightarrow{\mathchoice{\lhook\joinrel\longrightarrow}{\@hookrightarrowold}{\@hookrightarrowold}{\@hookrightarrowold}}
+  \let\@twoheadrightarrowold\twoheadrightarrow
+  \renewcommand\twoheadrightarrow{\mathchoice{\relbar\joinrel\@twoheadrightarrowold}{\@twoheadrightarrowold}{\@twoheadrightarrowold}{\@twoheadrightarrowold}}
+  \renewcommand{\bar}{\widebar}
+}
+
+% https://tex.stackexchange.com/questions/503536
+\tikzset{pullback/.style={minimum size=1.2ex,path picture={
+\draw[opacity=1,black,-,#1] (-0.5ex,-0.5ex) -- (0.5ex,-0.5ex) -- (0.5ex,0.5ex);%
+}}}

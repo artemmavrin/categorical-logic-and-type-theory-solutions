@@ -1,38 +1,50 @@
 name: Build and Deploy PDF
 on:
   push:
-    branches: ["main"]
+    branches:
+      - "main"
   workflow_dispatch:
 permissions:
   contents: read
   pages: write
   id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: true
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Check out Git repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
       - name: Compile LaTeX document to PDF
-        uses: xu-cheng/latex-action@v3
+        uses: xu-cheng/latex-action@v4
         with:
           root_file: solutions.tex
+          latexmk_use_lualatex: true
       - name: Upload PDF artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: solutions.pdf
           path: solutions.pdf
-      - name: Prepare for deployment
+      - name: Create index.html for deployment
         run: |
           mkdir -p assets
           cp solutions.pdf assets
-          echo "<assets><body><meta http-equiv=\"refresh\" content=\"0; url=./solutions.pdf\" /></body></assets>" > assets/index.html
+          echo "<html><head><meta http-equiv=\"refresh\" content=\"0; url=./solutions.pdf\" /></head><body></body></html>" > assets/index.html
       - name: Configure GitHub Pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
       - name: Upload GitHub Pages artifacts
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
           path: "./assets"
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5

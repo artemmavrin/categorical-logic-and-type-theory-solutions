@@ -41,7 +41,7 @@ We claim that
         \draw[->](1)--node[right]{\scriptsize\(\psi \circ u\)} (2);
 \end{tikzpicture}
 \end{pmatrix}
-\arrow[r, "{(\id_Y, u)}"]
+\arrow[r, "{\Pair{\id{Y}}{u}}"]
 \&
 \begin{pmatrix}
 \begin{tikzpicture}
@@ -70,7 +70,7 @@ Indeed, consider a situation as in the following commutative diagram of solid ar
         \draw[->](1)--node[right]{\scriptsize\(\varphi\)} (2);
 \end{tikzpicture}
 \end{pmatrix}
-\arrow[rrd, bend left, near end, "{(g, u \circ v)}"]
+\arrow[rrd, bend left, near end, "{\Pair{g}{u \circ v}}"]
 \arrow[rd, dashed, "?"] \arrow[dd, -Triangle, "\dom"{left}]
 \\[-7ex]
 & \begin{pmatrix}
@@ -80,7 +80,7 @@ Indeed, consider a situation as in the following commutative diagram of solid ar
         \draw[->](1)--node[right]{\scriptsize\(\psi \circ u\)} (2);
 \end{tikzpicture}
 \end{pmatrix}
-\arrow[r, "{(\id_Y, u)}"] \arrow[dd, -Triangle, "\dom"]
+\arrow[r, "{\Pair{\id{Y}}{u}}"] \arrow[dd, -Triangle, "\dom"]
 &
 \begin{pmatrix}
 \begin{tikzpicture}
@@ -103,7 +103,7 @@ K \arrow[r, "v"] \arrow[d, "\varphi"] & I \arrow[r, "u"] \arrow[d, "\psi \circ u
 Z \arrow[r, dashed, "?"] \arrow[rr, bend right, "g"{below}] & Y \arrow[r, equal] & Y
 \end{tikzcd}
 \end{equation*}
-It becomes evident that the unique morphism that fills in the dashed ``\(?\)'' arrow in \eqref{eq:ex:1.1.1.8(ii):situation} to makes the diagram commute is \(? = (g, v)\).
+It becomes evident that the unique morphism that fills in the dashed ``\(?\)'' arrow in \eqref{eq:ex:1.1.1.8(ii):situation} to makes the diagram commute is \(? = \Pair{g}{v}\).
 Thus, \eqref{eq:ex:1.1.1.8(ii):lift candidate} is a Cartesian lift of \(u\), and hence \(\dom : \cat{B}^{\rightarrow} \to \cat{B}\) is a fibration.
 \end{partsolution}
 

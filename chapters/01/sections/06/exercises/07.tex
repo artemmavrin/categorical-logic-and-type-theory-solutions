@@ -1,64 +1,65 @@
 \begin{exercise}
-Let \(\left(\left(A_\sigma\right),\left\llbracket\_\right\rrbracket\right)\) be a \(\Sigma\)-model and \(\rho\) a valuation \(\left(X_\sigma \to A_\sigma\right)\).
+Let \(\Pair*{\Parens*{A_\sigma}}{\Interpretation{}}\) be a \(\Sigma\)-model and \(\rho\) a valuation \(\Parens*{X_\sigma \to A_\sigma}\).
 \begin{parts}
 \part
 Show that
 \begin{equation*}
-\left\llbracket M\left[N/x\right]\right\rrbracket_\rho
-= \left\llbracket M\right\rrbracket_{\rho(x \mapsto \left\llbracket N\right\rrbracket_\rho)}.
+\Interpretation*{M\Substitution*{N/x}}_\rho
+= \Interpretation*{M}_{\rho(x \mapsto \Interpretation*{N}_\rho)}.
 \end{equation*}
 \part
-Let \(\left(\left(B_\sigma\right),\left\llbracket\_\right\rrbracket\right)\) be another \(\Sigma\)-model and \(H_\sigma : A_\sigma \to B_\sigma\) be a morphism of \(\Sigma\)-models (\emph{i.e.} a morphism in the fibre of \(\SModel\) over \(\Sigma\)).
+Let \(\Pair*{\Parens*{B_\sigma}}{\Interpretation{}}\) be another \(\Sigma\)-model and \(H_\sigma : A_\sigma \to B_\sigma\) be a morphism of \(\Sigma\)-models (\emph{i.e.} a morphism in the fibre of \(\SModel\) over \(\Sigma\)).
 Show that
 \begin{equation*}
-H\left(\left\llbracket M \right\rrbracket_\rho\right)
-= \left\llbracket M \right\rrbracket_{H \circ \rho}.
+H\Parens*{\Interpretation*{M}_\rho}
+= \Interpretation*{M}_{H \circ \rho}.
 \end{equation*}
 \end{parts}
 \end{exercise}
 
 \begin{partsolution}{i}
+Let \(T = \Carrier{\Sigma}\) be the set of types. The valuation is the family \(\rho = \IndexedFamily*{\sigma \in T}{\rho_\sigma : X_\sigma \to A_\sigma}\).
 We proceed by induction on terms.
 First, for \(\tau\in T\), \(x, y \in X_\tau\), and \(N \in \Terms_\tau(X)\),
 \begin{align*}
-\left\llbracket y\left[N/x\right]\right\rrbracket_\rho^\tau
+\Interpretation*{y\Substitution*{N/x}}_\rho^\tau
 &=\begin{cases}
-\left\llbracket N\right\rrbracket_\rho^\tau & \text{if \(y = x\)} \\
-\left\llbracket y\right\rrbracket_\rho^\tau & \text{otherwise}
+\Interpretation*{N}_\rho^\tau & \text{if \(y = x\)} \\
+\Interpretation*{y}_\rho^\tau & \text{otherwise}
 \end{cases} \\
 &=\begin{cases}
-\left\llbracket N\right\rrbracket_\rho^\tau & \text{if \(y = x\)} \\
+\Interpretation*{N}_\rho^\tau & \text{if \(y = x\)} \\
 \rho_\tau(y) & \text{otherwise}
 \end{cases} \\
-&= \rho_\tau(x \mapsto \left\llbracket N\right\rrbracket_\rho^\tau)(y) \\
-&=\left\llbracket y\right\rrbracket_{\rho(x \mapsto \left\llbracket N\right\rrbracket_\rho^\tau)}^\tau.
+&= \rho_\tau(x \mapsto \Interpretation*{N}_\rho^\tau)(y) \\
+&=\Interpretation*{y}_{\rho(x \mapsto \Interpretation*{N}_\rho^\tau)}^\tau.
 \end{align*}
 Next, if \(\tau_0,\ldots,\tau_n\in T\), \(M_0 \in \Terms_{\tau_0}(X), \ldots, M_{n-1} \in \Terms_{\tau_{n-1}}(X)\), and \(F : \tau_0,\,\ldots,\,\tau_{n-1} \to \tau_n\) is a function symbol in \(\Sigma\), then, by induction,
 \begin{align*}
-&\left\llbracket F(M_0,\ldots,M_{n-1})\left[N/x\right]\right\rrbracket_\rho^{\tau_n} \\
-&\qquad=\left\llbracket F(M_0\left[N/x\right],\ldots,M_{n-1}\left[N/x\right])\right\rrbracket_\rho^{\tau_n} \\
-&\qquad=\left\llbracket F\right\rrbracket\left(\left\llbracket M_0\left[N/x\right]\right\rrbracket_\rho^{\tau_0},\ldots,\left\llbracket M_{n-1}\left[N/x\right]\right\rrbracket_\rho^{\tau_{n-1}}\right) \\
-&\qquad=\left\llbracket F\right\rrbracket\left(\left\llbracket M_0\right\rrbracket_{\rho(x \mapsto \left\llbracket N\right\rrbracket_\rho^\tau)}^{\tau_0},\ldots,\left\llbracket M_{n-1}\right\rrbracket_{\rho(x \mapsto \left\llbracket N\right\rrbracket_\rho^\tau)}^{\tau_{n-1}}\right) \\
-&\qquad=\left\llbracket F(M_0,\ldots,M_{n-1})\right\rrbracket_{\rho(x \mapsto \left\llbracket N\right\rrbracket_\rho^\tau)}^{\tau_n}.
+&\Interpretation*{F\Parens{M_0,\ldots,M_{n-1}}\Substitution*{N/x}}_\rho^{\tau_n} \\
+&\qquad=\Interpretation*{F\Parens{M_0\Substitution*{N/x},\ldots,M_{n-1}\Substitution*{N/x}}}_\rho^{\tau_n} \\
+&\qquad=\Interpretation*{F}\Parens*{\Interpretation*{M_0\Substitution*{N/x}}_\rho^{\tau_0},\ldots,\Interpretation*{M_{n-1}\Substitution*{N/x}}_\rho^{\tau_{n-1}}} \\
+&\qquad=\Interpretation*{F}\Parens*{\Interpretation*{M_0}_{\rho(x \mapsto \Interpretation*{N}_\rho^\tau)}^{\tau_0},\ldots,\Interpretation*{M_{n-1}}_{\rho(x \mapsto \Interpretation*{N}_\rho^\tau)}^{\tau_{n-1}}} \\
+&\qquad=\Interpretation*{F\Parens{M_0,\ldots,M_{n-1}}}_{\rho(x \mapsto \Interpretation*{N}_\rho^\tau)}^{\tau_n}.
 \qedhere
 \end{align*}
 \end{partsolution}
 
 \begin{partsolution}{ii}
-Let \(\left(\left(A_\sigma\right)_{\sigma\in T},\left\llbracket\_\right\rrbracket_A\right)\) and \(\left(\left(B_\sigma\right)_{\sigma\in T},\left\llbracket\_\right\rrbracket_B\right)\) be \(\Sigma\)-models, and let \(H = \left(H_\sigma : A_\sigma \to B_\sigma\right)_{\sigma \in T}\) be a morphism of \(\Sigma\)-models.
+Let \(\Pair*{\IndexedFamily{\sigma\in T}{A_\sigma}}{\Interpretation{}_A}\) and \(\Pair*{\IndexedFamily{\sigma\in T}{B_\sigma}}{\Interpretation{}_B}\) be \(\Sigma\)-models, and let \(H = \IndexedFamily*{\sigma \in T}{H_\sigma : A_\sigma \to B_\sigma}\) be a morphism of \(\Sigma\)-models.
 If \(\tau\in T\) and \(x \in X_\tau\), then
 \begin{equation*}
-H_\tau\left(\left\llbracket x \right\rrbracket_{A,\,\rho}^\tau\right)
-=H_\tau\left(\rho_\tau(x)\right)
-=\left\llbracket x \right\rrbracket_{B,\,H \circ \rho}^\tau.
+H_\tau\Parens*{\Interpretation*{x}_{A,\,\rho}^\tau}
+=H_\tau\Parens*{\rho_\tau(x)}
+=\Interpretation*{x}_{B,\,H \circ \rho}^\tau.
 \end{equation*}
 Next, if \(\tau_0,\ldots,\tau_n\in T\), \(M_0 \in \Terms_{\tau_0}(X), \ldots, M_{n-1} \in \Terms_{\tau_{n-1}}(X)\), and \(F : \tau_0,\,\ldots,\,\tau_{n-1} \to \tau_n\) is a function symbol in \(\Sigma\), then, by induction,
 \begin{align*}
-&H_{\tau_n}\left(\left\llbracket F\left(M_0,\ldots,M_{n-1}\right)\right\rrbracket_{A,\,\rho}^{\tau_n}\right) \\
-&\qquad= H_{\tau_n}\left(\left\llbracket F\right\rrbracket_A\left(\left\llbracket M_0\right\rrbracket_{A,\,\rho}^{\tau_0},\ldots,\left\llbracket M_{n-1}\right\rrbracket_{A,\,\rho}^{\tau_{n-1}}\right)\right) \\
-&\qquad= \left\llbracket F\right\rrbracket_B\left(H_{\tau_0}\left(\left\llbracket M_0\right\rrbracket_{A,\,\rho}^{\tau_0}\right),\ldots,H_{\tau_{n-1}}\left(\left\llbracket M_{n-1}\right\rrbracket_{A,\,\rho}^{\tau_{n-1}}\right)\right) \\
-&\qquad= \left\llbracket F\right\rrbracket_B\left(\left\llbracket M_0\right\rrbracket_{B,\,H\circ\rho}^{\tau_0},\ldots,\left\llbracket M_{n-1}\right\rrbracket_{B,\,H\circ\rho}^{\tau_{n-1}}\right) \\
-&\qquad=\left\llbracket F\left(M_0,\ldots,M_{n-1}\right) \right\rrbracket_{B,\,H \circ \rho}^{\tau_n}.
+&H_{\tau_n}\Parens*{\Interpretation*{F\Parens*{M_0,\ldots,M_{n-1}}}_{A,\,\rho}^{\tau_n}} \\
+&\qquad= H_{\tau_n}\Parens*{\Interpretation*{F}_A\Parens*{\Interpretation*{M_0}_{A,\,\rho}^{\tau_0},\ldots,\Interpretation*{M_{n-1}}_{A,\,\rho}^{\tau_{n-1}}}} \\
+&\qquad= \Interpretation*{F}_B\Parens*{H_{\tau_0}\Parens*{\Interpretation*{M_0}_{A,\,\rho}^{\tau_0}},\ldots,H_{\tau_{n-1}}\Parens*{\Interpretation*{M_{n-1}}_{A,\,\rho}^{\tau_{n-1}}}} \\
+&\qquad= \Interpretation*{F}_B\Parens*{\Interpretation*{M_0}_{B,\,H\circ\rho}^{\tau_0},\ldots,\Interpretation*{M_{n-1}}_{B,\,H\circ\rho}^{\tau_{n-1}}} \\
+&\qquad=\Interpretation*{F\Parens*{M_0,\ldots,M_{n-1}}}_{B,\,H \circ \rho}^{\tau_n}.
 \qedhere
 \end{align*}
 \end{partsolution}

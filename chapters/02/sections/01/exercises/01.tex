@@ -4,12 +4,12 @@ Prove that the following `extended' structural rules are derivable.
 \part
 \makebox[\linewidth]{%
 \AxiomC{\(\Gamma, v_n : \sigma, \Delta, v_{n+m} : \rho, \Theta \vdash M : \tau\)}
-\UnaryInfC{\(\Gamma, v_n : \rho, \Delta, v_{n+m} : \sigma, \Theta \vdash M\left[v_n/v_{n+m},v_{n+m}/v_n\right] : \tau\)}
+\UnaryInfC{\(\Gamma, v_n : \rho, \Delta, v_{n+m} : \sigma, \Theta \vdash M\Substitution*{v_n/v_{n+m},v_{n+m}/v_n} : \tau\)}
 \DisplayProof}
 \part
 \makebox[\linewidth]{%
 \AxiomC{\(\Gamma, v_n : \sigma, \Delta \vdash M : \tau\)}
-\UnaryInfC{\(\Gamma, \Delta, v_{n+m} : \sigma \vdash M\left[v_{n+m}/v_n, v_n/v_{n+1},\ldots,v_{n+m-1}/v_{n+m}\right] : \tau\)}
+\UnaryInfC{\(\Gamma, \Delta, v_{n+m} : \sigma \vdash M\Substitution*{v_{n+m}/v_n, v_n/v_{n+1},\ldots,v_{n+m-1}/v_{n+m}} : \tau\)}
 \DisplayProof}
 \part
 \makebox[\linewidth]{%
@@ -17,44 +17,44 @@ Prove that the following `extended' structural rules are derivable.
 \UnaryInfC{%
 \begin{tikzpicture}
 \node(1){\(\Gamma, v_n : \sigma, \Delta, \Theta \vdash\)};
-\node[below right = -1mm and -23mm of 1]{\(M\left[v_n/v_{n+m},v_{n+m}/v_{n+m+1},\ldots,v_{n+m+k-1}/v_{n+m+k}\right] : \tau\)};
+\node[below right = -1mm and -23mm of 1]{\(M\Substitution*{v_n/v_{n+m},v_{n+m}/v_{n+m+1},\ldots,v_{n+m+k-1}/v_{n+m+k}} : \tau\)};
 \end{tikzpicture}}
 \DisplayProof}
 \part
 \makebox[\linewidth]{%
 \AxiomC{\(\Gamma, \Gamma \vdash M : \tau\)}
-\UnaryInfC{\(\Gamma \vdash M[v_1/v_{n+1}, \ldots, v_n / v_{2n}] : \tau\)}
+\UnaryInfC{\(\Gamma \vdash M\Substitution{v_1/v_{n+1}, \ldots, v_n / v_{2n}} : \tau\)}
 \DisplayProof}
 \end{parts}
 \end{exercise}
 
 \begin{lemma}[Permutation Rule]
 \label{lemma:ex:2.1.1:permutation}
-If \(\Gamma = v_1 : \sigma_1, \ldots, v_n : \sigma_n\) and \(\pi\) is a permutation of \(\{1,\ldots,n\}\), then the following structural rule is derivable:
+If \(\Gamma = v_1 : \sigma_1, \ldots, v_n : \sigma_n\) and \(\pi\) is a permutation of \(\SetOf{1,\ldots,n}\), then the following structural rule is derivable:
 \begin{prooftree}
 \Axiom$\Gamma \ \fCenter\vdash M : \tau$
 \RightLabel{(P)}
-\UnaryInf$\pi(\Gamma) \ \fCenter\vdash M\left[\pi\right] : \tau$
+\UnaryInf$\pi(\Gamma) \ \fCenter\vdash M\Substitution*{\pi} : \tau$
 \end{prooftree}
 where
 \begin{align*}
 \pi(\Gamma) &\coloneq v_1 : \sigma_{\pi(1)}, \ldots, v_n : \sigma_{\pi(n)}, &
-M\left[\pi\right] &\coloneq M\left[\sfrac{v_1}{v_{\pi(1)}}, \ldots, \sfrac{v_n}{v_{\pi(n)}}\right].
+M\Substitution*{\pi} &\coloneq M\Substitution*{\sfrac{v_1}{v_{\pi(1)}}, \ldots, \sfrac{v_n}{v_{\pi(n)}}}.
 \end{align*}
 \end{lemma}
 
 \begin{proof}
 Every permutation of finitely many items can be represented as a composition of zero or more adjacent transpositions\footnote{E.g., see \cite[Chapter~I, \S5, No.~7, Proposition~9]{BourbakiAlgebraI}.}, so we proceed by induction on the number of adjacent transpositions in such a representation.
 First, the composition of zero adjacent transpositions is the identity permutation, for which the conclusion holds vacuously.
-Next, if \(\pi = [i \mapsto i + 1, i + 1\mapsto i] \circ \pi^\prime\) for some \(i \in \{1, \ldots, n - 1\}\), then we deduce by induction
+Next, if \(\pi = \pi^\prime \circ \Permutation{i \mapsto i + 1, i + 1\mapsto i}\) for some \(i \in \SetOf{1, \ldots, n - 1}\), then we deduce by induction
 \begin{prooftree}
 \AxiomC{\(v_1 : \sigma_1, \ldots, v_n : \sigma_n \vdash M : \tau\)}
 \RightLabel{(P)}
-\UnaryInfC{\(v_1 : \sigma_{\pi^\prime(1)}, \ldots, v_i : \sigma_{\pi^\prime(i)}, v_{i+1} : \sigma_{\pi^\prime(i+1)}, \ldots, v_n : \sigma_{\pi^\prime(n)} \vdash M\left[\pi^\prime\right] : \tau\)}
+\UnaryInfC{\(v_1 : \sigma_{\pi^\prime(1)}, \ldots, v_i : \sigma_{\pi^\prime(i)}, v_{i+1} : \sigma_{\pi^\prime(i+1)}, \ldots, v_n : \sigma_{\pi^\prime(n)} \vdash M\Substitution*{\pi^\prime} : \tau\)}
 \RightLabel{(E)}
-\UnaryInfC{\footnotesize\(v_1 : \sigma_{\pi^\prime(1)}, \ldots, v_i : \sigma_{\pi^\prime(i+1)}, v_{i+1} : \sigma_{\pi^\prime(i)}, \ldots, v_n : \sigma_{\pi^\prime(n)} \vdash M\left[\pi^\prime\right]\left[\sfrac{v_i}{v_{i+1}},\sfrac{v_{i+1}}{v_i}\right] : \tau\)}
+\UnaryInfC{\footnotesize\scalebox{0.98}{\(v_1 : \sigma_{\pi^\prime(1)}, \ldots, v_i : \sigma_{\pi^\prime(i+1)}, v_{i+1} : \sigma_{\pi^\prime(i)}, \ldots, v_n : \sigma_{\pi^\prime(n)} \vdash M\Substitution*{\pi^\prime}\Substitution*{\sfrac{v_i}{v_{i+1}},\sfrac{v_{i+1}}{v_i}} : \tau\)}}
 \end{prooftree}
-where, since \(\pi = [i \mapsto i + 1, i + 1\mapsto i] \circ \pi^\prime\), we have
+where, since \(\pi = \pi^\prime \circ \Permutation{i \mapsto i + 1, i + 1\mapsto i}\), we have
 \begin{align*}
 &v_1 : \sigma_{\pi^\prime(1)}, \ldots, v_i : \sigma_{\pi^\prime(i+1)}, v_{i+1} : \sigma_{\pi^\prime(i)}, \ldots, v_n : \sigma_{\pi^\prime(n)} \\
 &\qquad\qquad\qquad\qquad= v_1 : \sigma_{\pi(1)}, \ldots, v_n : \sigma_{\pi(n)} \\
@@ -62,47 +62,47 @@ where, since \(\pi = [i \mapsto i + 1, i + 1\mapsto i] \circ \pi^\prime\), we ha
 \end{align*}
 and
 \begin{equation*}
-M\left[\pi^\prime\right]\left[\sfrac{v_i}{v_{i+1}},\sfrac{v_{i+1}}{v_i}\right]
-= M\left[\pi\right]
+M\Substitution*{\pi^\prime}\Substitution*{\sfrac{v_i}{v_{i+1}},\sfrac{v_{i+1}}{v_i}}
+= M\Substitution*{\pi}
 \qedhere
 \end{equation*}
 \end{proof}
 
 \begin{partsolution}{i}
-Apply the permutation rule (Lemma~\ref{lemma:ex:2.1.1:permutation}) with the permutation that swaps \(n\) and \(n+m\).
+Apply the permutation rule (\Cref{lemma:ex:2.1.1:permutation}) with the permutation that swaps \(n\) and \(n+m\).
 \end{partsolution}
 
 \begin{partsolution}{ii}
-Apply the permutation rule (Lemma~\ref{lemma:ex:2.1.1:permutation}) with the cyclic permutation
+Apply the permutation rule (\Cref{lemma:ex:2.1.1:permutation}) with the cyclic permutation
 given by \(n \mapsto n + 1, \ldots, n + m - 1 \mapsto n + m, n + m \mapsto n\).
 \end{partsolution}
 
 \begin{partsolution}{iii}
-Combine the permutation rule (Lemma~\ref{lemma:ex:2.1.1:permutation}) with the contraction rule as follows.
+Combine the permutation rule (\Cref{lemma:ex:2.1.1:permutation}) with the contraction rule as follows.
 \begin{prooftree}
 \Axiom$\Gamma, v_n : \sigma, \Delta, v_{n+m} : \sigma, \Theta \ \fCenter\vdash M : \tau$
 \RightLabel{(P)}
-\UnaryInf$\Gamma, \Delta, \Theta, v_{n+m+k-1} : \sigma, v_{n+m+k} : \sigma \ \fCenter\vdash M\left[\pi\right] : \tau$
+\UnaryInf$\Gamma, \Delta, \Theta, v_{n+m+k-1} : \sigma, v_{n+m+k} : \sigma \ \fCenter\vdash M\Substitution*{\pi} : \tau$
 \RightLabel{(C)}
-\UnaryInf$\Gamma, \Delta, \Theta, v_{n+m+k-1} : \sigma \ \fCenter\vdash M\left[\pi\right]\left[\sfrac{v_{n+m+k-1}}{v_{n+m+k}}\right] : \tau$
+\UnaryInf$\Gamma, \Delta, \Theta, v_{n+m+k-1} : \sigma \ \fCenter\vdash M\Substitution*{\pi}\Substitution*{\sfrac{v_{n+m+k-1}}{v_{n+m+k}}} : \tau$
 \RightLabel{(P)}
-\UnaryInf$\Gamma, v_n : \sigma, \Delta, \Theta \ \fCenter\vdash M\left[\pi\right]\left[\sfrac{v_{n+m+k-1}}{v_{n+m+k}}\right]\left[\pi^\prime\right] : \tau$
+\UnaryInf$\Gamma, v_n : \sigma, \Delta, \Theta \ \fCenter\vdash M\Substitution*{\pi}\Substitution*{\sfrac{v_{n+m+k-1}}{v_{n+m+k}}}\Substitution*{\pi^\prime} : \tau$
 \end{prooftree}
 where the permutations \(\pi\) and \(\pi^\prime\) are defined by
 \begin{align*}
-\pi &\coloneq \left(\begin{smallmatrix}
+\pi &\coloneq \begin{psmallmatrix}
 n   & \cdots & n+m-2 & n+m-1 & \cdots & n+m+k-2 & n+m+k-1 & n+m+k \\
 n+1 & \cdots & n+m-1 & n+m+1 & \cdots & n+m+k   & n       & n+m
-\end{smallmatrix}\right) \\
-\pi^\prime &\coloneq \left(\begin{smallmatrix}
+\end{psmallmatrix} \\
+\pi^\prime &\coloneq \begin{psmallmatrix}
 n   & n+1 & \cdots & n+m+k-1 \\
 n+m+k-1 & n & \cdots & n+m+k-2
-\end{smallmatrix}\right)
+\end{psmallmatrix}
 \end{align*}
 and therefore one can compute
 \begin{align*}
-M\left[\pi\right]\left[\sfrac{v_{n+m+k-1}}{v_{n+m+k}}\right]\left[\pi^\prime\right]
-&= M\left[\sfrac{v_n}{v_{n+m}},\sfrac{v_{n+m}}{v_{n+m+1}},\ldots,\sfrac{v_{n+m+k-1}}{v_{n+m+k}}\right].
+M\Substitution*{\pi}\Substitution*{\sfrac{v_{n+m+k-1}}{v_{n+m+k}}}\Substitution*{\pi^\prime}
+&= M\Substitution*{\sfrac{v_n}{v_{n+m}},\sfrac{v_{n+m}}{v_{n+m+1}},\ldots,\sfrac{v_{n+m+k-1}}{v_{n+m+k}}}.
 \qedhere
 \end{align*}
 \end{partsolution}
@@ -113,31 +113,31 @@ If \(\Gamma, \Delta, \Theta\) are contexts of lengths \(n\), \(m\), and \(k\), t
 \begin{prooftree}
 \Axiom$\Delta,\Gamma,\Gamma,\Theta\ \fCenter\vdash M : \tau$
 \RightLabel{(GC)}
-\UnaryInf$\Delta,\Gamma,\Theta\ \fCenter\vdash M\left[\sfrac{v_{m+1}}{v_{m+n+1}},\ldots,\sfrac{v_{m+n+k}}{v_{m+2n+k}}\right] : \tau$
+\UnaryInf$\Delta,\Gamma,\Theta\ \fCenter\vdash M\Substitution*{\sfrac{v_{m+1}}{v_{m+n+1}},\ldots,\sfrac{v_{m+n+k}}{v_{m+2n+k}}} : \tau$
 \end{prooftree}
 \end{lemma}
 
 \begin{proof}
 Proceed by induction on the length of \(\Gamma\).
 If \(\Gamma\) is empty, then the conclusion is vacuously true.
-If \(\Gamma\) is non-empty with \(\Gamma = \Gamma^\prime, v_n : \sigma_n\), then apply \partref{2}{1}{1}{iii}, the permutation rule (Lemma~\ref{lemma:ex:2.1.1:permutation}), and induction to obtain the conclusion as follows.
+If \(\Gamma\) is non-empty with \(\Gamma = \Gamma^\prime, v_n : \sigma_n\), then apply \partref{2}{1}{1}{iii}, the permutation rule (\Cref{lemma:ex:2.1.1:permutation}), and induction to obtain the conclusion as follows.
 \begin{prooftree}
 \Axiom$\Delta, \Gamma, \Gamma, \Theta \ \fCenter\vdash M : \tau$
 \RightLabel{\partref{2}{1}{1}{iii}}
-\UnaryInf$\Delta, \Gamma, \Gamma^\prime, \Theta \ \fCenter\vdash M\left[\pi\right] : \tau$
+\UnaryInf$\Delta, \Gamma, \Gamma^\prime, \Theta \ \fCenter\vdash M\Substitution*{\pi} : \tau$
 \RightLabel{(P)}
-\UnaryInf$\Delta, \Gamma^\prime, \Gamma, \Theta \ \fCenter\vdash M\left[\pi\right]\left[\pi^\prime\right] : \tau$
+\UnaryInf$\Delta, \Gamma^\prime, \Gamma, \Theta \ \fCenter\vdash M\Substitution*{\pi}\Substitution*{\pi^\prime} : \tau$
 \RightLabel{(GC)}
-\UnaryInf$\Delta, \Gamma, \Theta \ \fCenter\vdash M\left[\pi\right]\left[\pi^\prime\right]\left[\pi^{\prime\prime}\right] : \tau$
+\UnaryInf$\Delta, \Gamma, \Theta \ \fCenter\vdash M\Substitution*{\pi}\Substitution*{\pi^\prime}\Substitution*{\pi^{\prime\prime}} : \tau$
 \end{prooftree}
 where the permutations \(\pi\), \(\pi^\prime\), and \(\pi^{\prime\prime}\) are determined by the rules used, for which we have
 \begin{equation*}
-M\left[\pi\right]\left[\pi^\prime\right]\left[\pi^{\prime\prime}\right]
-= M\left[\sfrac{v_{m+1}}{v_{m+n+1}},\ldots,\sfrac{v_{m+n+k}}{v_{m+2n+k}}\right].
+M\Substitution*{\pi}\Substitution*{\pi^\prime}\Substitution*{\pi^{\prime\prime}}
+= M\Substitution*{\sfrac{v_{m+1}}{v_{m+n+1}},\ldots,\sfrac{v_{m+n+k}}{v_{m+2n+k}}}.
 \qedhere
 \end{equation*}
 \end{proof}
 
 \begin{partsolution}{iv}
-Apply the generalized contraction rule (Lemma~\ref{lemma:ex:2.1.1:contraction}) with \(\Delta\) and \(\Theta\) empty.
+Apply the generalized contraction rule (\Cref{lemma:ex:2.1.1:contraction}) with \(\Delta\) and \(\Theta\) empty.
 \end{partsolution}

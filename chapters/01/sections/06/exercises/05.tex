@@ -21,7 +21,7 @@ In this case, the key for modeling function symbols is the functor \(T \mapsto T
 The analogous functors generating predicate signatures and function-and-predicate signatures, repsectively, are
 \begin{align*}
 T & \mapsto T^* &
-T & \mapsto T^* \times (T + 1) \cong (T^* \times T) + T^*.
+T & \mapsto T^* \times \Parens{T + 1} \cong \Parens{T^* \times T} + T^*.
 \end{align*}
 These yield change-of-base situations that define categories \(\Sign^\prime\) and \(\Sign^{\prime\prime}\) of multi-typed signatures of predicates and multi-typed signatures of functions and predicates, as follows.
 \begin{equation*}
@@ -35,7 +35,7 @@ These yield change-of-base situations that define categories \(\Sign^\prime\) an
 \begin{tikzcd}
 {\Sign^{\prime\prime}} \arrow[r] \arrow[d] \arrow[rd, ""{pullback}, very near start, phantom]
 & \Fam(\Sets) \arrow[d] \\
-\Sets \arrow[r, "T \mapsto T^* \times (T + 1)"] &
+\Sets \arrow[r, "T \mapsto T^* \times \Parens{T + 1}"] &
 \Sets
 \end{tikzcd}
 \qedhere

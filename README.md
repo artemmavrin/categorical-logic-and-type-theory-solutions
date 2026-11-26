@@ -5,3 +5,12 @@
 
 Solutions to the exercises in _Categorical Logic and Type Theory_ by Bart Jacobs.
 [See solutions here](https://artemmavrin.github.io/categorical-logic-and-type-theory-solutions/solutions.pdf).
+## Development
+
+### Commands
+
+| Command               | Description                                           |
+|-----------------------|-------------------------------------------------------|
+| `latexmk`             | Build the document                                    |
+| `latexmk -pvc`        | Build the document and continuously watch for changes |
+| `latexmk -C`          | Clean the build artifacts                             |
