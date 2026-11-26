@@ -1,54 +1,54 @@
 \begin{exercise}
-Check that the operation \((I, X) \mapsto \{I \mid X\}\) yields a functor \(\Fam(\Sets) \to \Sets\), and show that it is right adjoint to the terminal object functor \(\Sets \to \Fam(\Sets)\), mapping a set \(J\) to the family of singletons \((\{*\})_{j \in J}\).
+Check that the operation \(\Pair{I}{X} \mapsto \SetOf{I \SuchThat X}\) yields a functor \(\Fam(\Sets) \to \Sets\), and show that it is right adjoint to the terminal object functor \(\Sets \to \Fam(\Sets)\), mapping a set \(J\) to the family of singletons \(\IndexedFamily{j \in J}{\SetOf{*}}\).
 Describe the unit and counit of the adjunction explicitly.
 \end{exercise}
 
 \begin{solution}
 Define the functor \(R : \Fam(\Sets) \to \Sets\) on objects by
 \begin{equation*}
-R(I, X) = \{I \mid X\} = \sum_{i \in I} X_i = \big\{(i, x) : \text{\(i \in I\) and \(x \in X_i\)}\big\}
+R\Parens{I, X} = \SetOf{I \SuchThat X} = \sum_{i \in I} X_i = \SetOf[\big]{\Pair{i}{x} \SuchThat \text{\(i \in I\) and \(x \in X_i\)}}
 \end{equation*}
 and on morphisms by
 \begin{equation*}
-R\left((I, X) \xrightarrow{(u, f)} (J, Y)\right)
-= \big((i, x) \mapsto (u(i), f_i(x))\big).
+R\Parens*{\Pair{I}{X} \xrightarrow{\Pair{u}{f}} \Pair{J}{Y}}
+= \Parens[\big]{\Pair{i}{x} \mapsto \Pair{u(i)}{f_i(x)}}.
 \end{equation*}
-We claim that \(L \dashv R\), where \(L : \Sets \to \Fam(\Sets)\) is the ``terminal object functor,'' defined on objects by \(L(J) = \left(\{*\}\right)_{j \in J}\).
+We claim that \(L \dashv R\), where \(L : \Sets \to \Fam(\Sets)\) is the ``terminal object functor,'' defined on objects by \(L(J) = \IndexedFamily*{j \in J}{\SetOf{*}}\).
 It suffices to prove that there is an isomorphism
 \begin{equation*}
-\Fam(\Sets)\left(\left(\{*\}\right)_{j \in J}, (I, X)\right)
-\cong \Sets\left(J, \{I \mid X\}\right),
+\Hom*{\Fam(\Sets)}{\IndexedFamily*{j \in J}{\SetOf{*}}}{\Pair{I}{X}}
+\cong \Hom*{\Sets}{J}{\SetOf{I \SuchThat X}},
 \end{equation*}
-which is natural in \(J\) in \(\Sets\) and \((I, X)\) in \(\Fam(\Sets)\).
+which is natural in \(J\) in \(\Sets\) and \(\Pair{I}{X}\) in \(\Fam(\Sets)\).
 Indeed, define
 \begin{equation*}
-\varphi : \Fam(\Sets)\left(\left(\{*\}\right)_{j \in J}, (I, X)\right)
-\to \Sets\left(J, \{I \mid X\}\right)
+\varphi : \Hom*{\Fam(\Sets)}{\IndexedFamily*{j \in J}{\SetOf{*}}}{\Pair{I}{X}}
+\to \Hom*{\Sets}{J}{\SetOf{I \SuchThat X}}
 \end{equation*}
 by
 \begin{equation*}
-\varphi\left(\left(\{*\}\right)_{j \in J} \xrightarrow{(u, f)} (I, X)\right)
-= \big(j \mapsto (u(j), f_j(*))\big).
+\varphi\Parens*{\IndexedFamily*{j \in J}{\SetOf{*}} \xrightarrow{\Pair{u}{f}} \Pair{I}{X}}
+= \Parens[\big]{j \mapsto \Pair{u(j)}{f_j(*)}}.
 \end{equation*}
 One can verify that \(\varphi\) is a bijection, with
 \begin{equation*}
-\varphi^{-1}\left(J \overset{g}{\to} \{I \mid X\}\right)
-= \left(j \mapsto \fst (g(j)) , \big(* \mapsto \snd(g(j))\big)_{j \in J}\right),
+\varphi^{-1}\Parens*{J \overset{g}{\to} \SetOf{I \SuchThat X}}
+= \Pair*{j \mapsto \fst (g(j))}{\IndexedFamily[\big]{j \in J}{* \mapsto \snd(g(j))}},
 \end{equation*}
-and that \(\varphi\) is natural in \(J\) and \((I, X)\).
+and that \(\varphi\) is natural in \(J\) and \(\Pair{I}{X}\).
 Thus, it yields an adjunction \(L \dashv R\).
 The unit of this adjunction is then given by
 \begin{align*}
-\eta_J &= \varphi\left(\id_{\left(\{*\}\right)_{j \in J}}\right): J \to \sum_{j \in J} \{*\}, &
-\eta_J(j) &= (j, *),
+\eta_J &= \varphi\Parens*{\id{\IndexedFamily*{j \in J}{\SetOf{*}}}}: J \to \sum_{j \in J} \SetOf{*}, &
+\eta_J(j) &= \Pair{j}{*},
 \end{align*}
 and the counit is given by
 \begin{align*}
-\varepsilon_{(I, X)}
-&: \left(\{*\}\right)_{(i, x) \in \{I \mid X\}} \to (I , X) \\
-\varepsilon_{(I, X)}
-&= \varphi^{-1}\left(\id_{\{I \mid X\}}\right)
-= \left((i, x) \mapsto i, \big(* \mapsto x\big)_{(i, x) \in \{I \mid X\}}\right).
+\varepsilon_{\Pair{I}{X}}
+&: \IndexedFamily*{\Pair{i}{x} \in \SetOf{I \SuchThat X}}{\SetOf{*}} \to \Pair{I}{X} \\
+\varepsilon_{\Pair{I}{X}}
+&= \varphi^{-1}\Parens*{\id{\SetOf{I \SuchThat X}}}
+= \Pair*{\Pair{i}{x} \mapsto i}{\IndexedFamily[\big]{\Pair{i}{x} \in \SetOf{I \SuchThat X}}{* \mapsto x}}.
 \qedhere
 \end{align*}
 \end{solution}

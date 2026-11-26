@@ -1,21 +1,21 @@
 \begin{exercise}
-Notice that for \(R \in \PER\), the ``global sections'' or ``global elements'' homset \(\PER(1, R)\) is isomorphic to the quotient \(\mathbb{N} / R\).
+Notice that for \(R \in \PER\), the ``global sections'' or ``global elements'' homset \(\Hom{\PER}{1}{R}\) is isomorphic to the quotient \(\NN / R\).
 And also that all homsets in \(\PER\) and in \(\omegaSets\) are countable.
 \end{exercise}
 
 \begin{proof}
-First, fix \(R \in \PER\). For a terminal object \(1\) in \(\PER\), choose \(1 = \{(0, 0)\}\), and denote \(\mathbb{N} / 1 = \{[0]_1\} = *\).
-Define \(\varphi : \PER(1, R) \to \mathbb{N} / R\) by
+First, fix \(R \in \PER\). For a terminal object \(1\) in \(\PER\), choose \(1 = \SetOf{\Pair{0}{0}}\), and denote \(\NN / 1 = \SetOf{\EquivalenceClass{1}{0}} = *\).
+Define \(\varphi : \Hom{\PER}{1}{R} \to \NN / R\) by
 \begin{equation*}
-\varphi\left(* \xrightarrow{f} \mathbb{N} / R\right)
-= f([0]_1).
+\varphi\Parens*{* \xrightarrow{f} \NN / R}
+= f(\EquivalenceClass{1}{0}).
 \end{equation*}
-Then \(\varphi\) is injective (since \([0]_1\) is the only element of \(*\)).
-Moreover, take an equivalence class \([n]_R \in \mathbb{N} / R\) for some \(n \in |R|\).
-Let \(e \in \mathbb{N}\) be the code of the constant total recursive function \(\mathbb{N} \to \mathbb{N}\), \(\_ \mapsto n\).
-Then define \(f : * \to \mathbb{N} / R\) by \(f([0]_1) = [n]_R\), and note that \(f\) is tracked by \(e\), so \(f \in \PER(1, R)\).
-Then we have \(\varphi(f) = [n]_R\), so \(\varphi\) is surjective.
-Thus, \(\varphi\) is an isomorphism (in \(\Sets\)) between \(\PER(1, R)\) and \(\mathbb{N} / R\).
+Then \(\varphi\) is injective (since \(\EquivalenceClass{1}{0}\) is the only element of \(*\)).
+Moreover, take an equivalence class \(\EquivalenceClass{R}{n} \in \NN / R\) for some \(n \in \Carrier{R}\).
+Let \(e \in \NN\) be the code of the constant total recursive function \(\NN \to \NN\), \(\_ \mapsto n\).
+Then define \(f : * \to \NN / R\) by \(f(\EquivalenceClass{1}{0}) = \EquivalenceClass{R}{n}\), and note that \(f\) is tracked by \(e\), so \(f \in \Hom{\PER}{1}{R}\).
+Then we have \(\varphi(f) = \EquivalenceClass{R}{n}\), so \(\varphi\) is surjective.
+Thus, \(\varphi\) is an isomorphism (in \(\Sets\)) between \(\Hom{\PER}{1}{R}\) and \(\NN / R\).
 
 Lastly, to see that all homsets in \(\PER\) and \(\omegaSets\) are countable, note that all the morphisms in these two categories are tracked by partial recursive functions, and there are only countably many partially recursive functions.
 \end{proof}

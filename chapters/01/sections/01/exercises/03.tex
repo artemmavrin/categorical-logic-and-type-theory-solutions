@@ -39,19 +39,19 @@ Let \(\cat{E}\) be a fibration over \(\cat{B}\), and let \(f : X \to Y\) be a Ca
 Let \(v = u^{-1} : J \to I\) in \(\cat{B}\), and consider the situation in the following commutative diagram.
 \begin{equation*}
 \begin{tikzcd}[row sep=small]
-Y \arrow[rd, dashed, "\exists! g"] \arrow[rrd, bend left, "\id_Y"] \arrow[dd, -Triangle] \\
+Y \arrow[rd, dashed, "\exists! g"] \arrow[rrd, bend left, "\id{Y}"] \arrow[dd, -Triangle] \\
 & X \arrow[r, "f"] & Y \arrow[dd, -Triangle] \\
-J \arrow[rd, "v"{below left}, "\sim"{sloped}] \arrow[rrd, bend left, near end, "\id_J"] \\
+J \arrow[rd, "v"{below left}, "\sim"{sloped}] \arrow[rrd, bend left, near end, "\id{J}"] \\
 & I \arrow[r, "u"{below}, "\sim"] & J
 \arrow[from=uul, to=l, -Triangle, crossing over]
 \end{tikzcd}
 \end{equation*}
 Here the dashed morphism \(g: Y \to X\) exists uniquely by virtue of \(f\) being Cartesian.
-Since \(f \circ g = \id_Y\) is Cartesian (by \expartref{1}{1}{4}{i}) and \(f\) is Cartesian, \expartref{1}{1}{4}{iii} implies that \(g\) is Cartesian over the isomorphism \(v\), and \(f \circ g = \id_Y\).
-The same argument then implies that there exists a morphism \(h : X \to Y\) over \(u = v^{-1}\) such that \(g \circ h = \id_X\).
+Since \(f \circ g = \id{Y}\) is Cartesian (by \expartref{1}{1}{4}{i}) and \(f\) is Cartesian, \expartref{1}{1}{4}{iii} implies that \(g\) is Cartesian over the isomorphism \(v\), and \(f \circ g = \id{Y}\).
+The same argument then implies that there exists a morphism \(h : X \to Y\) over \(u = v^{-1}\) such that \(g \circ h = \id{X}\).
 But then
 \begin{equation*}
-f = f \circ \id_X = f \circ g \circ h = \id_Y \circ h = h,
+f = f \circ \id{X} = f \circ g \circ h = \id{Y} \circ h = h,
 \end{equation*}
-so \(g \circ f = \id_X\), and hence \(g = f^{-1}\), so \(f\) is an isomorphism.
+so \(g \circ f = \id{X}\), and hence \(g = f^{-1}\), so \(f\) is an isomorphism.
 \end{partsolution}

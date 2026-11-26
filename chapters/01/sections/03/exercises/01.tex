@@ -5,9 +5,9 @@ Show that in the total category \(\simple(\cat{B})\) of a simple fibration
 \begin{tikzcd}[row sep=small]
 \simple(\cat{B}) \arrow[d] \\ \cat{B}
 \end{tikzcd}
-a morphism \((u, f) : (I, X) \to (J, Y)\) is Cartesian if and only if there is an isomorphism \(h : I \times X \overset{\cong}{\to} I \times Y\) in \(\cat{B}\) such that \(\pi \circ h = \pi\) and \(\pi^\prime \circ h = f\).
+a morphism \(\Pair{u}{f} : \Pair{I}{X} \to \Pair{J}{Y}\) is Cartesian if and only if there is an isomorphism \(h : I \times X \overset{\cong}{\to} I \times Y\) in \(\cat{B}\) such that \(\pi \circ h = \pi\) and \(\pi^\prime \circ h = f\).
 \part
-Show that the assignment \((I, X) \mapsto I^*(X) = \begin{pmatrix}
+Show that the assignment \(\Pair{I}{X} \mapsto I^*(X) = \begin{pmatrix}
 \begin{tikzcd}[row sep=small]
 I \times X \arrow[d, "\pi"] \\ I
 \end{tikzcd}
@@ -20,7 +20,7 @@ Prove that it maps Cartesian morphisms to pullback squares.
 \end{exercise}
 
 \begin{remark}
-In part~\partref{1}{3}{1}{i}, the assertion that ``there is an isomorphism \(h : I \times X \to I \times Y\) in \(\cat{B}\) such that \(\pi \circ h = \pi\) and \(\pi^\prime \circ h = f\)'' is the same as saying that ``\(\left\langle\pi, f\right\rangle : I \times X \to I \times Y\) is an isomorphism.''
+In part~\partref{1}{3}{1}{i}, the assertion that ``there is an isomorphism \(h : I \times X \to I \times Y\) in \(\cat{B}\) such that \(\pi \circ h = \pi\) and \(\pi^\prime \circ h = f\)'' is the same as saying that ``\(\Pairing*{\pi}{f} : I \times X \to I \times Y\) is an isomorphism.''
 \end{remark}
 
 \begin{lemma}
@@ -31,19 +31,19 @@ Let \(\cat{B}\) be a category with objects \(A, B, C\), a product
 A & A \times B \arrow[l, "\pi"{above}] \arrow[r, "\pi^\prime"{above}] & B
 \end{tikzcd}
 \end{equation*}
-and morphisms \(f : C \to A\) and \(g : C \to B\) such that \(\langle f, g\rangle : C \to A \times B\) is an isomorphism.
+and morphisms \(f : C \to A\) and \(g : C \to B\) such that \(\Pairing{f}{g} : C \to A \times B\) is an isomorphism.
 Then
 \begin{align*}
-f \circ \left\langle f, g\right\rangle^{-1} &= \pi, &
-g \circ \left\langle f, g\right\rangle^{-1} &= \pi^\prime.
+f \circ \Pairing*{f}{g}^{-1} &= \pi, &
+g \circ \Pairing*{f}{g}^{-1} &= \pi^\prime.
 \end{align*}
 \end{lemma}
 
 \begin{proof}
 For the first case, we have
 \begin{equation*}
-f \circ \left\langle f, g\right\rangle^{-1}
-= \pi \circ \left\langle f, g\right\rangle \circ \left\langle f, g\right\rangle^{-1}
+f \circ \Pairing*{f}{g}^{-1}
+= \pi \circ \Pairing*{f}{g} \circ \Pairing*{f}{g}^{-1}
 = \pi.
 \qedhere
 \end{equation*}
@@ -51,78 +51,78 @@ f \circ \left\langle f, g\right\rangle^{-1}
 
 \begin{partsolution}{i}
 (\(\Longrightarrow\))
-Suppose \((u, f) : (I, X) \to (J, Y)\) is Cartesian in \(\simple(\cat{B})\) over \(u : I \to J\).
-Consider the unique morphism \((\id, g) : (I, Y) \to (I, X)\) in \(\simple(\cat{B})\) over \(\id : I \to I\) such that the following diagram commutes.
+Suppose \(\Pair{u}{f} : \Pair{I}{X} \to \Pair{J}{Y}\) is Cartesian in \(\simple(\cat{B})\) over \(u : I \to J\).
+Consider the unique morphism \(\Pair{\id{}}{g} : \Pair{I}{Y} \to \Pair{I}{X}\) in \(\simple(\cat{B})\) over \(\id{} : I \to I\) such that the following diagram commutes.
 \begin{equation*}
 \begin{tikzcd}[row sep=small]
-{(I, Y)} \arrow[dd, -Triangle] \arrow[drr, bend left=20, near end, "{(u, \pi^\prime)}"{above right}] \arrow[dr, dashed, "{(\id, g)}"{above right}] \\
-& {(I, X)} \arrow[dd, -Triangle] \arrow[r, "{(u, f)}"{above}]
-& {(J, Y)} \arrow[dd, -Triangle] \\
-I \arrow[dr, "\id"{below left}] \\
+{\Pair{I}{Y}} \arrow[dd, -Triangle] \arrow[drr, bend left=20, near end, "{\Pair{u}{\pi^\prime}}"{above right}] \arrow[dr, dashed, "{\Pair{\id{}}{g}}"{above right}] \\
+& {\Pair{I}{X}} \arrow[dd, -Triangle] \arrow[r, "{\Pair{u}{f}}"{above}]
+& {\Pair{J}{Y}} \arrow[dd, -Triangle] \\
+I \arrow[dr, "\id{}"{below left}] \\
 & I \arrow[r, "u"]
 & J
 \end{tikzcd}
 \end{equation*}
 In particular,
 \begin{equation*}
-\pi^\prime = f \circ \left\langle \pi, g\right\rangle.
+\pi^\prime = f \circ \Pairing*{\pi}{g}.
 \end{equation*}
-We will show that \(\left\langle\pi, f\right\rangle : I \times X \to I \times Y\) is an isomorphism in \(\cat{B}\) by showing that \(\left\langle\pi, g\right\rangle : I \times Y \to I \times X\) is its inverse.
+We will show that \(\Pairing*{\pi}{f} : I \times X \to I \times Y\) is an isomorphism in \(\cat{B}\) by showing that \(\Pairing*{\pi}{g} : I \times Y \to I \times X\) is its inverse.
 On the one hand, we have
 \begin{align*}
-\left\langle\pi, f\right\rangle \circ \left\langle\pi, g\right\rangle
-&= \left\langle \pi \circ \left\langle\pi, g\right\rangle, f \circ \left\langle\pi, g\right\rangle\right\rangle \\
-&= \left\langle \pi, \pi^\prime\right\rangle \\
-&= \id.
+\Pairing*{\pi}{f} \circ \Pairing*{\pi}{g}
+&= \Pairing*{\pi \circ \Pairing*{\pi}{g}}{f \circ \Pairing*{\pi}{g}} \\
+&= \Pairing*{\pi}{\pi^\prime} \\
+&= \id{}.
 \end{align*}
 On the other hand, we have
 \begin{equation*}
-f = \pi^\prime \circ \left\langle\pi, f\right\rangle,
+f = \pi^\prime \circ \Pairing*{\pi}{f},
 \end{equation*}
 so the upper triangle in the following diagram commutes, which makes the whole diagram commute.
 \begin{equation*}
 \begin{tikzcd}[row sep=small]
-{(I, X)} \arrow[dd, -Triangle] \arrow[ddrrr, bend left, "{(u, f)}"{description}] \arrow[dr, "{\left(\id, f\right)}"{above right}] \\
-& {(I, Y)}  \arrow[dd, -Triangle] \arrow[drr, bend left=20, "{(u, \pi^\prime)}"{description}] \arrow[dr, "{(\id, g)}"{above right}] \\
-I \arrow[dr, "\id"{below left}]
-& & {(I, X)} \arrow[dd, -Triangle] \arrow[r, "{(u, f)}"{above}]
-& {(J, Y)} \arrow[dd, -Triangle] \\
-& I \arrow[dr, "\id"{below left}] \\
+{\Pair{I}{X}} \arrow[dd, -Triangle] \arrow[ddrrr, bend left, "{\Pair{u}{f}}"{description}] \arrow[dr, "{\Pair*{\id{}}{f}}"{above right}] \\
+& {\Pair{I}{Y}}  \arrow[dd, -Triangle] \arrow[drr, bend left=20, "{\Pair{u}{\pi^\prime}}"{description}] \arrow[dr, "{\Pair{\id{}}{g}}"{above right}] \\
+I \arrow[dr, "\id{}"{below left}]
+& & {\Pair{I}{X}} \arrow[dd, -Triangle] \arrow[r, "{\Pair{u}{f}}"{above}]
+& {\Pair{J}{Y}} \arrow[dd, -Triangle] \\
+& I \arrow[dr, "\id{}"{below left}] \\
 & & I \arrow[r, "u"]
 & J
 \end{tikzcd}
 \end{equation*}
-Since \((u, f)\) is Cartesian, the morphism \((\id, g)\circ(\id, f)\) is the unique morphism \((I, X) \to (I, X)\) in \(\simple(\cat{B})\) over \(\id : I \to I\) such that
+Since \(\Pair{u}{f}\) is Cartesian, the morphism \(\Pair{\id{}}{g}\circ\Pair{\id{}}{f}\) is the unique morphism \(\Pair{I}{X} \to \Pair{I}{X}\) in \(\simple(\cat{B})\) over \(\id{} : I \to I\) such that
 \begin{equation*}
-(u, f) \circ (\id, g) \circ (\id, f)
-= (u, f),
+\Pair{u}{f} \circ \Pair{\id{}}{g} \circ \Pair{\id{}}{f}
+= \Pair{u}{f},
 \end{equation*}
-but \(\id = (\id, \pi^\prime) : (I, X) \to (I, X)\) is another such morphism, so
+but \(\id{} = \Pair{\id{}}{\pi^\prime} : \Pair{I}{X} \to \Pair{I}{X}\) is another such morphism, so
 \begin{equation*}
-(\id, \pi^\prime) = (\id, g)\circ(\id,f).
+\Pair{\id{}}{\pi^\prime} = \Pair{\id{}}{g}\circ\Pair{\id{}}{f}.
 \end{equation*}
 In particular,
 \begin{equation*}
-\pi^\prime = g \circ \left\langle\pi, f\right\rangle,
+\pi^\prime = g \circ \Pairing*{\pi}{f},
 \end{equation*}
 so
 \begin{align*}
-\left\langle\pi, g\right\rangle \circ \left\langle\pi, f\right\rangle
-&= \left\langle \pi \circ \left\langle\pi, f\right\rangle, g \circ \left\langle\pi, f\right\rangle\right\rangle \\
-&= \left\langle \pi, \pi^\prime\right\rangle \\
-&= \id.
+\Pairing*{\pi}{g} \circ \Pairing*{\pi}{f}
+&= \Pairing*{\pi \circ \Pairing*{\pi}{f}}{g \circ \Pairing*{\pi}{f}} \\
+&= \Pairing*{\pi}{\pi^\prime} \\
+&= \id{}.
 \end{align*}
-Therefore, \(\left\langle\pi, f\right\rangle : I \times X \to I \times Y\) is an isomorphism in \(\cat{B}\).
+Therefore, \(\Pairing*{\pi}{f} : I \times X \to I \times Y\) is an isomorphism in \(\cat{B}\).
 
 (\(\Longleftarrow\))
-Let \((u, f) : (I, X) \to (J, Y)\) be a morphism in \(\simple(\cat{B})\) over \(u : I \to J\), and suppose that \(\left\langle\pi, f\right\rangle : I \times X \to I \times Y\) is an isomorphism.
-Consider another morphism \((v, g) : (K, Z) \to (J, Y)\) in \(\simple(\cat{B})\) and a morphism \(w : K \to I\) in \(\cat{B}\) such that \(u \circ w = v\).
+Let \(\Pair{u}{f} : \Pair{I}{X} \to \Pair{J}{Y}\) be a morphism in \(\simple(\cat{B})\) over \(u : I \to J\), and suppose that \(\Pairing*{\pi}{f} : I \times X \to I \times Y\) is an isomorphism.
+Consider another morphism \(\Pair{v}{g} : \Pair{K}{Z} \to \Pair{J}{Y}\) in \(\simple(\cat{B})\) and a morphism \(w : K \to I\) in \(\cat{B}\) such that \(u \circ w = v\).
 This situation is summarized in the following commutative diagram.
 \begin{equation*}
 \begin{tikzcd}[row sep=small]
-{(K, Z)} \arrow[dd, -Triangle] \arrow[drr, bend left=20, near end, "{(v, g)}"{above right}] \\
-& {(I, X)} \arrow[dd, -Triangle] \arrow[r, "{(u, f)}"{above}]
-& {(J, Y)} \arrow[dd, -Triangle] \\
+{\Pair{K}{Z}} \arrow[dd, -Triangle] \arrow[drr, bend left=20, near end, "{\Pair{v}{g}}"{above right}] \\
+& {\Pair{I}{X}} \arrow[dd, -Triangle] \arrow[r, "{\Pair{u}{f}}"{above}]
+& {\Pair{J}{Y}} \arrow[dd, -Triangle] \\
 K \arrow[dr, "w"{below left}] \arrow[drr, bend left=20, near end, "v"{above right}] \\
 & I \arrow[r, "u"]
 & J
@@ -132,59 +132,59 @@ K \arrow[dr, "w"{below left}] \arrow[drr, bend left=20, near end, "v"{above righ
 Consider the following composition in \(\cat{B}\) (call it \(h : K \times Z \to X\)).
 \begin{equation*}
 \begin{tikzcd}
-K \times Z \arrow[r, "{\left\langle w \circ \pi, g\right\rangle}"]
-& I \times Y \arrow[r, "{\left\langle\pi, f\right\rangle^{-1}}"]
+K \times Z \arrow[r, "{\Pairing*{w \circ \pi}{g}}"]
+& I \times Y \arrow[r, "{\Pairing*{\pi}{f}^{-1}}"]
 & I \times X \arrow[r, "{\pi^\prime}"]
 & X
 \end{tikzcd}
 \end{equation*}
-We claim that \((w, h) : (K, Z) \to (I, X)\) is the unique morphism in \(\simple(\cat{B})\) such that \((u, f) \circ (w, h) = (v, g)\), which will imply that \((u, f)\) is Cartesian.
+We claim that \(\Pair{w}{h} : \Pair{K}{Z} \to \Pair{I}{X}\) is the unique morphism in \(\simple(\cat{B})\) such that \(\Pair{u}{f} \circ \Pair{w}{h} = \Pair{v}{g}\), which will imply that \(\Pair{u}{f}\) is Cartesian.
 That is, the following diagram will be shown to commute.
 \begin{equation*}
 \begin{tikzcd}[row sep=small]
-{(K, Z)} \arrow[dd, -Triangle] \arrow[drr, bend left=20, near end, "{(v, g)}"{above right}] \arrow[dr, dashed, "{(w, h)}"{above right}] \\
-& {(I, X)} \arrow[dd, -Triangle] \arrow[r, "{(u, f)}"{above}]
-& {(J, Y)} \arrow[dd, -Triangle] \\
+{\Pair{K}{Z}} \arrow[dd, -Triangle] \arrow[drr, bend left=20, near end, "{\Pair{v}{g}}"{above right}] \arrow[dr, dashed, "{\Pair{w}{h}}"{above right}] \\
+& {\Pair{I}{X}} \arrow[dd, -Triangle] \arrow[r, "{\Pair{u}{f}}"{above}]
+& {\Pair{J}{Y}} \arrow[dd, -Triangle] \\
 K \arrow[dr, "w"{below left}] \arrow[drr, bend left=20, near end, "v"{above right}] \\
 & I \arrow[r, "u"]
 & J
 \arrow[from=uul, to=l, -Triangle, crossing over]
 \end{tikzcd}
 \end{equation*}
-We have \(v = u \circ w\) by assumption, so to see that \((u, f) \circ (w, h) = (v, g)\), it remains to show that \(g = f \circ \langle w\circ\pi, h\rangle\).
+We have \(v = u \circ w\) by assumption, so to see that \(\Pair{u}{f} \circ \Pair{w}{h} = \Pair{v}{g}\), it remains to show that \(g = f \circ \Pairing{w\circ\pi}{h}\).
 Note that
 \begin{align*}
-\pi \circ \left\langle \pi, f\right\rangle^{-1} \circ \left\langle w \circ \pi, g\right\rangle
-&= \pi \circ \left\langle w \circ \pi, g\right\rangle & &\text{by Lemma~\ref{lemma:ex1.3.1}} \\
+\pi \circ \Pairing*{\pi}{f}^{-1} \circ \Pairing*{w \circ \pi}{g}
+&= \pi \circ \Pairing*{w \circ \pi}{g} & &\text{by \Cref{lemma:ex1.3.1}} \\
 &= w \circ \pi,
 \end{align*}
 so the universal property of products yields
 \begin{equation}
 \label{eq:ex1.3.1:tuple-identity}
 \begin{aligned}
-\left\langle \pi, f\right\rangle^{-1} \circ \left\langle w \circ \pi, g\right\rangle
-&= \left\langle w \circ \pi, \pi^\prime \circ \left\langle\pi, f\right\rangle^{-1} \circ \left\langle w \circ \pi, g\right\rangle\right\rangle \\
-&= \left\langle w \circ \pi, h\right\rangle.
+\Pairing*{\pi}{f}^{-1} \circ \Pairing*{w \circ \pi}{g}
+&= \Pairing*{w \circ \pi}{\pi^\prime \circ \Pairing*{\pi}{f}^{-1} \circ \Pairing*{w \circ \pi}{g}} \\
+&= \Pairing*{w \circ \pi}{h}.
 \end{aligned}
 \end{equation}
 Then we have
 \begin{align*}
 g
-&= \pi^\prime \circ \left\langle w \circ \pi, g\right\rangle \\
-&= f \circ \left\langle \pi, f\right\rangle^{-1} \circ \left\langle w \circ \pi, g\right\rangle & &\text{by Lemma~\ref{lemma:ex1.3.1}} \\
-&= f \circ \left\langle w \circ \pi, h\right\rangle. & &\text{by~\eqref{eq:ex1.3.1:tuple-identity}}
+&= \pi^\prime \circ \Pairing*{w \circ \pi}{g} \\
+&= f \circ \Pairing*{\pi}{f}^{-1} \circ \Pairing*{w \circ \pi}{g} & &\text{by \Cref{lemma:ex1.3.1}} \\
+&= f \circ \Pairing*{w \circ \pi}{h}. & &\text{by~\eqref{eq:ex1.3.1:tuple-identity}}
 \end{align*}
-To show uniqueness, suppose that \((w, h^\prime) : (K, Z) \to (I, X)\) is another morphism in \(\simple(\cat{B})\) over \(w: K \to I\) such that \((u, f) \circ (w, h^\prime) = (v, g)\) (and, in particular, \(g = f \circ \left\langle w \circ \pi, h^\prime\right\rangle\)).
+To show uniqueness, suppose that \(\Pair{w}{h^\prime} : \Pair{K}{Z} \to \Pair{I}{X}\) is another morphism in \(\simple(\cat{B})\) over \(w: K \to I\) such that \(\Pair{u}{f} \circ \Pair{w}{h^\prime} = \Pair{v}{g}\) (and, in particular, \(g = f \circ \Pairing*{w \circ \pi}{h^\prime}\)).
 Then we have
 \begin{align*}
 h^\prime
-&= \pi^\prime \circ \left\langle w \circ \pi, h^\prime\right\rangle \\
-&= \pi^\prime \circ \left\langle \pi, f\right\rangle^{-1} \circ \left\langle \pi, f\right\rangle \circ \left\langle w \circ \pi, h^\prime\right\rangle \\
-&= \pi^\prime \circ \left\langle \pi, f\right\rangle^{-1} \circ \left\langle \pi \circ \left\langle w \circ \pi, h^\prime\right\rangle, f \circ \left\langle w \circ \pi, h^\prime\right\rangle\right\rangle \\
-&= \pi^\prime \circ \left\langle \pi, f\right\rangle^{-1} \circ \left\langle  w \circ \pi, g\right\rangle \\
+&= \pi^\prime \circ \Pairing*{w \circ \pi}{h^\prime} \\
+&= \pi^\prime \circ \Pairing*{\pi}{f}^{-1} \circ \Pairing*{\pi}{f} \circ \Pairing*{w \circ \pi}{h^\prime} \\
+&= \pi^\prime \circ \Pairing*{\pi}{f}^{-1} \circ \Pairing*{\pi \circ \Pairing*{w \circ \pi}{h^\prime}}{f \circ \Pairing*{w \circ \pi}{h^\prime}} \\
+&= \pi^\prime \circ \Pairing*{\pi}{f}^{-1} \circ \Pairing*{w \circ \pi}{g} \\
 &= h.
 \end{align*}
-Therefore, \((u, f) : (I, X) \to (J, Y)\) is Cartesian in \(\simple(\cat{B})\) over \(u : I \to J\).
+Therefore, \(\Pair{u}{f} : \Pair{I}{X} \to \Pair{J}{Y}\) is Cartesian in \(\simple(\cat{B})\) over \(u : I \to J\).
 \end{partsolution}
 
 \begin{partsolution}{ii}
@@ -192,16 +192,16 @@ We will define a functor \(F : \simple(\cat{B}) \to \cat{B}^{\rightarrow}\) by f
 \begin{equation*}
 \begin{tikzcd}[row sep=small]
 \simple(\cat{B}) \arrow[r, "F"{above}] & \cat{B}^{\rightarrow} \\
-(I, X)
-\arrow[ddd, "{(u, f)}"{name=A}] \arrow[r, mapsto]
+\Pair{I}{X}
+\arrow[ddd, "{\Pair{u}{f}}"{name=A}] \arrow[r, mapsto]
 & \begin{pmatrix}
 \begin{tikzpicture}
 \node(1){\(I \times X\)};
 \node(2)[below of=1]{\(I\)};
 \draw[->](1)--node[right]{\scriptsize\(\pi\)} (2);
 \end{tikzpicture}
-\end{pmatrix} \arrow[ddd, "{(u, \left\langle u\circ\pi,f\right\rangle)}"{right}, " "{left, name=B}]  \\ \\ \\
-(J, Y) \arrow[r, mapsto]
+\end{pmatrix} \arrow[ddd, "{\Pair{u}{\Pairing*{u\circ\pi}{f}}}"{right}, " "{left, name=B}]  \\ \\ \\
+\Pair{J}{Y} \arrow[r, mapsto]
 & \begin{pmatrix}
 \begin{tikzpicture}
 \node(1){\(J \times Y\)};
@@ -212,10 +212,10 @@ We will define a functor \(F : \simple(\cat{B}) \to \cat{B}^{\rightarrow}\) by f
 \arrow[from=A, to=B, mapsto]
 \end{tikzcd}
 \end{equation*}
-This is well-defined because for a morphism \((u, f) : (I, X) \to (J, Y)\) in \(\simple(\cat{B})\) (i.e., \(u : I \to J\) and \(f : I \times X \to Y\) are morphisms in \(\cat{B}\)), the following diagram commutes.
+This is well-defined because for a morphism \(\Pair{u}{f} : \Pair{I}{X} \to \Pair{J}{Y}\) in \(\simple(\cat{B})\) (i.e., \(u : I \to J\) and \(f : I \times X \to Y\) are morphisms in \(\cat{B}\)), the following diagram commutes.
 \begin{equation*}
 \begin{tikzcd}
-I \times X \arrow[r, "{\left\langle u\circ\pi, f\right\rangle}"] \arrow[d, "\pi"{left}]
+I \times X \arrow[r, "{\Pairing*{u\circ\pi}{f}}"] \arrow[d, "\pi"{left}]
 & J \times Y \arrow[d, "\pi"] \\
 I \arrow[r, "u"]
 & J
@@ -224,27 +224,27 @@ I \arrow[r, "u"]
 Moreover, these assignments are functorial by the following considerations.
 \begin{description}
 \item[identity]
-The identity morphism of an object \((I, X)\) in \(\simple(\cat{B})\) is \((\id, \pi^\prime)\), which maps to \((\id,\left\langle\pi,\pi^\prime\right\rangle)=(\id,\id)\) under the morphism assignment, which is the identity morphism of \(\pi : I \times X \to I\) in \(\cat{B}^{\rightarrow}\).
+The identity morphism of an object \(\Pair{I}{X}\) in \(\simple(\cat{B})\) is \(\Pair{\id{}}{\pi^\prime}\), which maps to \(\Pair{\id{}}{\Pairing*{\pi}{\pi^\prime}}=\Pair{\id{}}{\id{}}\) under the morphism assignment, which is the identity morphism of \(\pi : I \times X \to I\) in \(\cat{B}^{\rightarrow}\).
 \item[composition]
-The composition of two morphisms \((u, f) : (I, X) \to (J, Y)\) and \((v, g) : (J, Y) \to (K, Z)\) in \(\simple(\cat{B})\) is given by
+The composition of two morphisms \(\Pair{u}{f} : \Pair{I}{X} \to \Pair{J}{Y}\) and \(\Pair{v}{g} : \Pair{J}{Y} \to \Pair{K}{Z}\) in \(\simple(\cat{B})\) is given by
 \begin{equation*}
-(v, g) \circ (u, f) = (v \circ u, g \circ \left\langle u \circ \pi, f\right\rangle).
+\Pair{v}{g} \circ \Pair{u}{f} = \Pair{v \circ u}{g \circ \Pairing*{u \circ \pi}{f}}.
 \end{equation*}
 Applying \(F\) yields
 \begin{align*}
-F\left((v, g) \circ (u, f)\right)
-&= F\left(v \circ u, g \circ \left\langle u \circ \pi, f\right\rangle\right) \\
-&= \left(v \circ u, \left\langle v \circ u \circ \pi, g \circ \left\langle u \circ \pi, f\right\rangle\right\rangle\right) \\
-&= \left(v \circ u, \left\langle v \circ \pi \circ \left\langle u \circ \pi, f\right\rangle, g \circ \left\langle u \circ \pi, f\right\rangle\right\rangle\right) \\
-&= \left(v \circ u, \left\langle v\circ\pi, g\right\rangle \circ \left\langle u\circ\pi, f\right\rangle\right) \\
-&= \left(v, \left\langle v\circ \pi, g\right\rangle\right) \circ \left(u, \left\langle u\circ\pi, f\right\rangle\right) \\
-&= F(v, g) \circ F(u, f).
+F\Parens*{\Pair{v}{g} \circ \Pair{u}{f}}
+&= F\Parens*{v \circ u, g \circ \Pairing*{u \circ \pi}{f}} \\
+&= \Pair*{v \circ u}{\Pairing*{v \circ u \circ \pi}{g \circ \Pairing*{u \circ \pi}{f}}} \\
+&= \Pair*{v \circ u}{\Pairing*{v \circ \pi \circ \Pairing*{u \circ \pi}{f}}{g \circ \Pairing*{u \circ \pi}{f}}} \\
+&= \Pair*{v \circ u}{\Pairing*{v\circ\pi}{g} \circ \Pairing*{u\circ\pi}{f}} \\
+&= \Pair*{v}{\Pairing*{v\circ \pi}{g}} \circ \Pair*{u}{\Pairing*{u\circ\pi}{f}} \\
+&= F\Parens{v, g} \circ F\Parens{u, f}.
 \end{align*}
 That is, the following diagram commutes.
 \begin{equation*}
 \begin{tikzcd}
-I \times X \arrow[r, "{\left\langle u\circ\pi, f\right\rangle}"] \arrow[d, "\pi"{left}] \arrow[rr, bend left, "{\left\langle v \circ u \circ \pi, g \circ \left\langle u \circ \pi, f\right\rangle\right\rangle}"{above}]
-& J \times Y\arrow[r, "{\left\langle v\circ\pi, g\right\rangle}"]  \arrow[d, "\pi"]
+I \times X \arrow[r, "{\Pairing*{u\circ\pi}{f}}"] \arrow[d, "\pi"{left}] \arrow[rr, bend left, "{\Pairing*{v \circ u \circ \pi}{g \circ \Pairing*{u \circ \pi}{f}}}"{above}]
+& J \times Y\arrow[r, "{\Pairing*{v\circ\pi}{g}}"]  \arrow[d, "\pi"]
 & K \times Z \arrow[d, "\pi"{right}] \\
 I \arrow[r, "u"]
 & J \arrow[r, "v"]
@@ -254,30 +254,30 @@ I \arrow[r, "u"]
 \end{description}
 Thus, \(F\) is a functor.
 
-To show that \(F\) is full and faithful, we must find an inverse to the assignment \((u,f) \mapsto F(u, f) \coloneq (u, \langle u\circ\pi,f\rangle)\) from morphisms between objects \((I, X)\) and \((J, Y)\) in \(\simple(\cat{B})\) to morphisms between \(\pi : I \times X \to I\) and \(\pi : J \times Y \to J\) in \(\cat{B}^\rightarrow\).
-We claim that the inverse of this assignment is given by \((u, g) \mapsto F^\prime(u, g) \coloneq (u, \pi^\prime \circ g)\).
-On the one hand, if \((u, f) : (I, X) \to (J, Y)\) is a morphism in \(\simple(\cat{B})\), then
+To show that \(F\) is full and faithful, we must find an inverse to the assignment \(\Pair{u}{f} \mapsto F\Parens{u, f} \coloneq \Pair{u}{\Pairing{u\circ\pi}{f}}\) from morphisms between objects \(\Pair{I}{X}\) and \(\Pair{J}{Y}\) in \(\simple(\cat{B})\) to morphisms between \(\pi : I \times X \to I\) and \(\pi : J \times Y \to J\) in \(\cat{B}^\rightarrow\).
+We claim that the inverse of this assignment is given by \(\Pair{u}{g} \mapsto F^\prime\Parens{u, g} \coloneq \Pair{u}{\pi^\prime \circ g}\).
+On the one hand, if \(\Pair{u}{f} : \Pair{I}{X} \to \Pair{J}{Y}\) is a morphism in \(\simple(\cat{B})\), then
 \begin{align*}
-F^\prime(F(u, f))
-&= F^\prime\left(u, \left\langle u\circ\pi,f\right\rangle\right) \\
-&= \left(u, \pi^\prime \circ \left\langle u\circ\pi,f\right\rangle\right) \\
-&= (u, f).
+F^\prime(F\Parens{u, f})
+&= F^\prime\Parens*{u, \Pairing*{u\circ\pi}{f}} \\
+&= \Pair*{u}{\pi^\prime \circ \Pairing*{u\circ\pi}{f}} \\
+&= \Pair{u}{f}.
 \end{align*}
-On the other hand, if \((u, g) : (\pi : I \times X \to I) \to (\pi : J \times Y \to J)\) is a morphism in \(\cat{B}^\rightarrow\), then in particular \(\pi \circ g = u \circ \pi\), so
+On the other hand, if \(\Pair{u}{g} : \Parens{\pi : I \times X \to I} \to \Parens{\pi : J \times Y \to J}\) is a morphism in \(\cat{B}^\rightarrow\), then in particular \(\pi \circ g = u \circ \pi\), so
 \begin{align*}
-F(F^\prime(u, g))
-&= F\left(u, \pi^\prime \circ g\right) \\
-&= \left(u, \left\langle u\circ\pi, \pi^\prime \circ g\right\rangle\right) \\
-&= \left(u, \left\langle \pi \circ g, \pi^\prime \circ g\right\rangle\right) \\
-&= (u, g).
+F(F^\prime\Parens{u, g})
+&= F\Parens*{u, \pi^\prime \circ g} \\
+&= \Pair*{u}{\Pairing*{u\circ\pi}{\pi^\prime \circ g}} \\
+&= \Pair*{u}{\Pairing*{\pi \circ g}{\pi^\prime \circ g}} \\
+&= \Pair{u}{g}.
 \end{align*}
 Therefore, the functor \(F\) is full and faithful.
 
-Finally, we claim that if \((u, f) : (I, X) \to (J, Y)\) is a Cartesian morphism in \(\simple(\cat{B})\) over \(u : I \to J\) in \(\cat{B}\), then its image under \(F\) in \(\cat{B}^\rightarrow\) is a pullback square in \(\cat{B}\) as in the following diagram.
+Finally, we claim that if \(\Pair{u}{f} : \Pair{I}{X} \to \Pair{J}{Y}\) is a Cartesian morphism in \(\simple(\cat{B})\) over \(u : I \to J\) in \(\cat{B}\), then its image under \(F\) in \(\cat{B}^\rightarrow\) is a pullback square in \(\cat{B}\) as in the following diagram.
 \begin{equation}
 \label{eq:ex1.3.1.ii:pullback-square}
 \begin{tikzcd}
-I \times X \arrow[r, "{\left\langle u\circ\pi, f\right\rangle}"] \arrow[d, "\pi"{left}] \arrow[dr, phantom, ""{pullback}, very near start]
+I \times X \arrow[r, "{\Pairing*{u\circ\pi}{f}}"] \arrow[d, "\pi"{left}] \arrow[dr, phantom, ""{pullback}, very near start]
 & J \times Y \arrow[d, "\pi"] \\
 I \arrow[r, "u"]
 & J
@@ -287,25 +287,25 @@ Indeed, consider morphisms \(p: Z \to I\) and \(q: Z \to Y \times J\) in \(\cat{
 \begin{equation*}
 \begin{tikzcd}[row sep=small]
 Z \arrow[dddr, bend right=20, near end, "p"{below left}] \arrow[drr, bend left=20, "q"{above right}] \\
-& I \times X \arrow[r, "{\left\langle u\circ\pi, f\right\rangle}"] \arrow[dd, "\pi"{left}]
+& I \times X \arrow[r, "{\Pairing*{u\circ\pi}{f}}"] \arrow[dd, "\pi"{left}]
 & J \times Y \arrow[dd, "\pi"] \\ \\
 & I \arrow[r, "u"]
 & J
 \end{tikzcd}
 \end{equation*}
 That is, \(u \circ p = \pi \circ q\).
-Recall from part~\partref{1}{3}{1}{i} that \(\langle\pi,f\rangle : I \times X \to I \times Y\) is an isomorphism in \(\cat{B}\) since \((u, f) : (I, X) \to (J, Y)\) is Cartesian.
+Recall from part~\partref{1}{3}{1}{i} that \(\Pairing{\pi}{f} : I \times X \to I \times Y\) is an isomorphism in \(\cat{B}\) since \(\Pair{u}{f} : \Pair{I}{X} \to \Pair{J}{Y}\) is Cartesian.
 Define the morphism \(g : Z \to I \times X\) in \(\cat{B}\) by the following composition.
 \begin{equation*}
 \begin{tikzcd}
-Z \arrow[r, "{\left\langle p, \pi^\prime \circ q\right\rangle}"] & I \times Y \arrow[r, "{\left\langle \pi, f\right\rangle^{-1}}"] & I \times X.
+Z \arrow[r, "{\Pairing*{p}{\pi^\prime \circ q}}"] & I \times Y \arrow[r, "{\Pairing*{\pi}{f}^{-1}}"] & I \times X.
 \end{tikzcd}
 \end{equation*}
-We claim that \(g\) is the unique morphism in \(\cat{B}\) such that \(\pi \circ g = p\) and \(\langle u\circ\pi, f\rangle \circ g = q\), making the following diagram commute.
+We claim that \(g\) is the unique morphism in \(\cat{B}\) such that \(\pi \circ g = p\) and \(\Pairing{u\circ\pi}{f} \circ g = q\), making the following diagram commute.
 \begin{equation*}
 \begin{tikzcd}[row sep=small]
 Z \arrow[dddr, bend right=20, near end, "p"{below left}] \arrow[drr, bend left=20, "q"{above right}] \arrow[dr, dashed, "g"{above right}] \\
-& I \times X \arrow[r, "{\left\langle u\circ\pi, f\right\rangle}"] \arrow[dd, "\pi"{left}]
+& I \times X \arrow[r, "{\Pairing*{u\circ\pi}{f}}"] \arrow[dd, "\pi"{left}]
 & J \times Y \arrow[dd, "\pi"] \\ \\
 & I \arrow[r, "u"]
 & J
@@ -314,29 +314,29 @@ Z \arrow[dddr, bend right=20, near end, "p"{below left}] \arrow[drr, bend left=2
 To show the equalities, we have
 \begin{align*}
 \pi \circ g
-&= \pi \circ \left\langle\pi,f\right\rangle^{-1} \circ \left\langle p, \pi^\prime \circ q\right\rangle \\
-&= \pi \circ \left\langle p, \pi^\prime \circ q\right\rangle & &\text{by Lemma~\ref{lemma:ex1.3.1}} \\
+&= \pi \circ \Pairing*{\pi}{f}^{-1} \circ \Pairing*{p}{\pi^\prime \circ q} \\
+&= \pi \circ \Pairing*{p}{\pi^\prime \circ q} & &\text{by \Cref{lemma:ex1.3.1}} \\
 &= p,
 \end{align*}
 and
 \begin{align*}
-\langle u\circ\pi, f\rangle \circ g
-&= \left\langle u\circ\pi, f\right\rangle \circ \left\langle\pi,f\right\rangle^{-1} \circ \left\langle p, \pi^\prime \circ q\right\rangle \\
-&= \left\langle u\circ\pi\circ\left\langle\pi,f\right\rangle^{-1}, f\circ\left\langle\pi,f\right\rangle^{-1}\right\rangle \circ \left\langle p, \pi^\prime \circ q\right\rangle \\
-&= \left\langle u\circ\pi, \pi^\prime\right\rangle \circ \left\langle p, \pi^\prime \circ q\right\rangle \qquad\qquad\text{by Lemma~\ref{lemma:ex1.3.1}} \\
-&= \left\langle u\circ\pi \circ \left\langle p, \pi^\prime \circ q\right\rangle, \pi^\prime \circ \left\langle p, \pi^\prime \circ q\right\rangle\right\rangle \\
-&= \left\langle u\circ p, \pi^\prime \circ q\right\rangle \\
-&= \left\langle \pi\circ q, \pi^\prime \circ q\right\rangle \\
+\Pairing{u\circ\pi}{f} \circ g
+&= \Pairing*{u\circ\pi}{f} \circ \Pairing*{\pi}{f}^{-1} \circ \Pairing*{p}{\pi^\prime \circ q} \\
+&= \Pairing*{u\circ\pi\circ\Pairing*{\pi}{f}^{-1}}{f\circ\Pairing*{\pi}{f}^{-1}} \circ \Pairing*{p}{\pi^\prime \circ q} \\
+&= \Pairing*{u\circ\pi}{\pi^\prime} \circ \Pairing*{p}{\pi^\prime \circ q} \qquad\qquad\text{by \Cref{lemma:ex1.3.1}} \\
+&= \Pairing*{u\circ\pi \circ \Pairing*{p}{\pi^\prime \circ q}}{\pi^\prime \circ \Pairing*{p}{\pi^\prime \circ q}} \\
+&= \Pairing*{u\circ p}{\pi^\prime \circ q} \\
+&= \Pairing*{\pi\circ q}{\pi^\prime \circ q} \\
 &= q.
 \end{align*}
-Lastly, to show uniqueness, suppose that \(g^\prime : Z \to I \times X\) is another morphism in \(\cat{B}\) such that \(\pi \circ g^\prime = p\) and \(\langle u\circ\pi, f\rangle \circ g^\prime = q\).
+Lastly, to show uniqueness, suppose that \(g^\prime : Z \to I \times X\) is another morphism in \(\cat{B}\) such that \(\pi \circ g^\prime = p\) and \(\Pairing{u\circ\pi}{f} \circ g^\prime = q\).
 Then we have
 \begin{align*}
 g^\prime
-&= \left\langle\pi,f\right\rangle^{-1} \circ \left\langle\pi,f\right\rangle \circ g^\prime \\
-&= \left\langle\pi,f\right\rangle^{-1} \circ \left\langle \pi \circ g^\prime, f \circ g^\prime\right\rangle \\
-&= \left\langle\pi,f\right\rangle^{-1} \circ \left\langle \pi \circ g^\prime, \pi^\prime \circ \langle u\circ\pi, f\rangle \circ g^\prime\right\rangle \\
-&= \left\langle\pi,f\right\rangle^{-1} \circ \left\langle p, \pi^\prime \circ q\right\rangle \\
+&= \Pairing*{\pi}{f}^{-1} \circ \Pairing*{\pi}{f} \circ g^\prime \\
+&= \Pairing*{\pi}{f}^{-1} \circ \Pairing*{\pi \circ g^\prime}{f \circ g^\prime} \\
+&= \Pairing*{\pi}{f}^{-1} \circ \Pairing*{\pi \circ g^\prime}{\pi^\prime \circ \Pairing{u\circ\pi}{f} \circ g^\prime} \\
+&= \Pairing*{\pi}{f}^{-1} \circ \Pairing*{p}{\pi^\prime \circ q} \\
 &= g.
 \end{align*}
 Therefore, the diagram in \eqref{eq:ex1.3.1.ii:pullback-square} is a pullback square in \(\cat{B}\).

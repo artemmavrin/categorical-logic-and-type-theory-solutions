@@ -25,7 +25,7 @@ X \arrow[r, "f"] \arrow[d, "p"] & Y \arrow[d, "q"] \\
 I \arrow[r, "u"] & J
 \end{tikzcd}
 \end{equation*}
-is a pullback square if and only if \((u, f)\) is a Cartesian lift of \(u\) in the context of the codomain functor \(\cod : \cat{B}^{\rightarrow} \to \cat{B}\), as in the following diagram.
+is a pullback square if and only if \(\Pair{u}{f}\) is a Cartesian lift of \(u\) in the context of the codomain functor \(\cod : \cat{B}^{\rightarrow} \to \cat{B}\), as in the following diagram.
 \begin{equation*}
 \begin{tikzcd}
 \begin{pmatrix}
@@ -35,7 +35,7 @@ is a pullback square if and only if \((u, f)\) is a Cartesian lift of \(u\) in t
         \draw[->](1)--node[right]{\scriptsize\(p\)} (2);
 \end{tikzpicture}
 \end{pmatrix}
-\arrow[r, "{(u, f)}"] \arrow[d, -Triangle, "\cod"]
+\arrow[r, "{\Pair{u}{f}}"] \arrow[d, -Triangle, "\cod"]
 &
 \begin{pmatrix}
 \begin{tikzpicture}
